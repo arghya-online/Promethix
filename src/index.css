@@ -1,1 +1,100 @@
 @import "tailwindcss";
+
+@theme {
+    --font-heading: "Cormorant Garamond", serif;
+    --font-body: "Outfit", sans-serif;
+
+    --color-background: #ffffff;
+    --color-surface: #f8fafc;
+    /* Slate 50 */
+    --color-surface-light: #f1f5f9;
+    /* Slate 100 */
+
+    --color-border: #e2e8f0;
+    /* Slate 200 */
+
+    --color-primary: #0f172a;
+    /* Slate 900 (Professional Dark Blue/Black) */
+    --color-primary-foreground: #ffffff;
+
+    --color-secondary: #475569;
+    /* Slate 600 */
+    --color-secondary-foreground: #ffffff;
+
+    --color-text-primary: #0f172a;
+    /* Slate 900 */
+    --color-text-secondary: #475569;
+    /* Slate 600 */
+    --color-text-muted: #94a3b8;
+    /* Slate 400 */
+
+    --radius-xl: 0px;
+    --radius-2xl: 0px;
+    --radius-3xl: 0px;
+
+    --radius: 0px;
+
+    --animate-fade-in: fade-in 0.5s ease-in-out;
+    --animate-slide-up: slide-up 0.5s ease-out;
+}
+
+:root {
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-surface-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}

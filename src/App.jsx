@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Button } from "@/components/ui/button";
+import { ClerkProvider } from "@clerk/clerk-react";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import { CartProvider } from "./context/cart-context";
+import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import CustomProduct from "./pages/CustomProduct";
 import OrderCart from "./pages/OrderCart";
-import AppLayout from "./layouts/app-layout";
+import AppLayout from "./layouts/app-layout.jsx";
+import Support from "./pages/Support";
 
 function App() {
+  const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+  if (!PUBLISHABLE_KEY) {
+    throw new Error("Missing Clerk publishable key");
+  }
   const router = createBrowserRouter([
     {
       element: <AppLayout />,
@@ -28,20 +36,37 @@ function App() {
           element: <Products />,
         },
         {
-          path: "/customproduct",
+          path: "/category/:slug",
+          element: <Products />,
+        },
+        {
+          path: "/product/:id",
+          element: <ProductDetail />,
+        },
+        {
+          path: "/custom",
           element: <CustomProduct />,
         },
         {
-          path: "/ordercart",
+          path: "/support",
+          element: <Support />,
+        },
+        {
+          path: "/cart",
           element: <OrderCart />,
         },
       ],
     },
   ]);
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <ClerkProvider
+      appearance={{ theme: "simple" }}
+      publishableKey={PUBLISHABLE_KEY}
+    >
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </ClerkProvider>
   );
 }
 
