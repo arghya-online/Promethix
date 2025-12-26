@@ -34,7 +34,7 @@ export function LandingPage() {
     <main className="relative w-full overflow-hidden bg-background text-text-primary">
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 pb-12">
         <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -58,12 +58,12 @@ export function LandingPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/products">
-                <Button size="lg" className="h-14 px-8 text-lg bg-primary hover:bg-slate-800 text-white shadow-xl shadow-primary/20 rounded-none uppercase tracking-wider font-bold">
+                <Button size="lg" className="h-14 px-8 text-lg bg-primary hover:bg-slate-800 text-white shadow-xl shadow-primary/20 rounded-none uppercase tracking-wider font-bold w-full sm:w-auto">
                   Start Exploring
                 </Button>
               </Link>
               <Link to="/custom">
-                <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-border bg-transparent hover:bg-surface text-primary rounded-none uppercase tracking-wider font-bold">
+                <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-border bg-transparent hover:bg-surface text-primary rounded-none uppercase tracking-wider font-bold w-full sm:w-auto">
                   Custom Project
                 </Button>
               </Link>
@@ -100,7 +100,7 @@ export function LandingPage() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-text-muted"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-text-muted hidden md:block"
         >
           <ChevronDown className="w-6 h-6 text-primary" />
         </motion.div>
@@ -115,7 +115,7 @@ export function LandingPage() {
       </section>
 
       {/* Material Capabilities Section */}
-      <section className="py-24 bg-white text-text-primary overflow-hidden relative border-b border-border">
+      <section className="py-16 md:py-24 bg-white text-text-primary overflow-hidden relative border-b border-border">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-center">
             <h2 className="text-4xl font-heading font-bold mb-4 text-primary">Material Capabilities</h2>
@@ -144,7 +144,7 @@ export function LandingPage() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24 bg-surface-light relative border-b border-border">
+      <section className="py-16 md:py-24 bg-surface-light relative border-b border-border">
         <div className="container mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -156,7 +156,7 @@ export function LandingPage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {featuredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

@@ -49,10 +49,10 @@ function Header() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text - sm font - medium transition - colors hover: text - primary ${isActive
+                  `text-sm font-medium transition-colors hover:text-primary ${isActive
                     ? "text-primary font-semibold"
                     : "text-text-secondary"
-                  } `
+                  }`
                 }
               >
                 {link.name}
@@ -142,8 +142,8 @@ function Header() {
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text - 2xl font - heading font - medium transition - colors ${isActive ? "text-primary" : "text-text-secondary"
-                    } `
+                    `text-2xl font-heading font-medium transition-colors ${isActive ? "text-primary" : "text-text-secondary"
+                    }`
                   }
                 >
                   {link.name}

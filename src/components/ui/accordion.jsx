@@ -13,12 +13,12 @@ export function Accordion({ items }) {
     return (
         <div className="space-y-4">
             {items.map((item, index) => (
-                <div key={index} className="border border-border rounded-xl bg-surface overflow-hidden">
+                <div key={index} className="border border-border bg-surface overflow-hidden">
                     <button
                         onClick={() => toggle(index)}
                         className="w-full flex items-center justify-between p-6 text-left hover:bg-surface-light/50 transition-colors duration-300"
                     >
-                        <span className="text-lg font-heading font-semibold text-white">{item.title}</span>
+                        <span className="text-lg font-heading font-semibold text-primary">{item.title}</span>
                         <ChevronDown
                             className={cn(
                                 "w-5 h-5 text-primary transition-transform duration-300",
