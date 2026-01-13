@@ -3,87 +3,118 @@ import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export default function CustomProduct() {
-  const whatsappNumber = "919999999999"; // Replace with actual number
+  const whatsappNumber = "919999999999";
   const message = encodeURIComponent(
     "Hi Promethix3D, I have a custom 3D printing request."
   );
 
   return (
-    <div className="min-h-screen bg-background text-text-primary px-6 py-16">
-      <div className="text-center max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight text-primary">
-          Your Idea, <span className="text-text-secondary">Printed.</span>
-        </h1>
-        <p className="text-xl text-text-secondary">
-          From prototyping engineering parts to creating personalized gifts, we
-          bring your concepts to life with precision 3D printing.
-        </p>
+    <section className="min-h-screen bg-background text-text-primary">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+        {/* HERO TEXT */}
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold tracking-tight text-primary">
+            You Imagine It.
+            <span className="text-text-secondary block sm:inline">
+              We Print It Right.
+            </span>
+          </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left py-12">
+          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed">
+            From engineering prototypes to personalized creations, we turn your
+            ideas into precise, production-ready 3D printed parts.
+          </p>
+        </div>
+
+        {/* STEPS */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
           {[
             {
+              step: "01",
               title: "Share Your Design",
-              desc: "Send us your STL file or just a sketch of what you want to create.",
-              step: 1,
+              desc: "Upload an STL file or simply explain your idea. Even rough sketches work.",
             },
             {
+              step: "02",
               title: "Get a Quote",
-              desc: "We analyze the materials and time required and provide a transparent quote.",
-              step: 2,
+              desc: "We evaluate material, print time, and finishing to give you a clear quote.",
             },
             {
+              step: "03",
               title: "Receive Your Part",
-              desc: "We print, post-process, and ship your custom part directly to your door.",
-              step: 3,
+              desc: "We print, post-process, quality check, and ship directly to you.",
             },
           ].map((item) => (
             <div
               key={item.step}
-              className="p-6 bg-surface border border-border group hover:border-primary/50 transition-colors"
+              className="group relative bg-surface border border-border p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
             >
-              <div className="w-10 h-10 bg-white border border-border flex items-center justify-center text-primary font-bold mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+              <div className="text-sm font-mono text-text-secondary mb-6">
                 {item.step}
               </div>
-              <h3 className="text-lg font-bold text-primary mb-2">
+
+              <h3 className="text-lg font-semibold text-primary mb-3">
                 {item.title}
               </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
+
+              <p className="text-sm text-text-secondary leading-relaxed">
                 {item.desc}
               </p>
+
+              {/* hover accent */}
+              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </div>
           ))}
         </div>
 
-        <div className="bg-primary p-12 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-          <h2 className="text-3xl font-heading font-bold mb-6 relative z-10">
-            Ready to start?
-          </h2>
+        {/* CTA */}
+        <div className="relative mt-20 overflow-hidden rounded-xl border border-border bg-primary text-white">
+          {/* background glow */}
+          <div className="absolute inset-0">
+            <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-white/10 blur-[120px]" />
+            <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/5 blur-[120px]" />
+          </div>
 
-          <SignedIn>
-            <Button
-              size="lg"
-              className="h-14 px-8 text-lg bg-white text-primary hover:bg-slate-200 rounded-none relative z-10 font-bold uppercase tracking-widest"
-              onClick={() =>
-                window.open(
-                  `https://wa.me/${whatsappNumber}?text=${message}`,
-                  "_blank"
-                )
-              }
-            >
-              Start Custom Project via WhatsApp
-            </Button>
-          </SignedIn>
+          <div className="relative z-10 px-6 py-14 md:px-12 md:py-20 text-center space-y-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold">
+              Ready to start your custom print?
+            </h2>
 
-          <SignedOut>
-            <SignInButton mode="modal">
-              <Button size="lg" className="h-14 px-8 text-lg bg-white text-primary hover:bg-slate-200 rounded-none relative z-10 font-bold uppercase tracking-widest">
-                Sign In to Start Project
-              </Button>
-            </SignInButton>
-          </SignedOut>
+            <p className="max-w-xl mx-auto text-sm sm:text-base text-white/80">
+              Talk directly with our team, share your requirements, and get your
+              project moving today.
+            </p>
+
+            <div className="flex justify-center">
+              <SignedIn>
+                <Button
+                  size="lg"
+                  className="h-14 px-10 bg-white text-primary hover:bg-slate-200 font-semibold tracking-wide rounded-md"
+                  onClick={() =>
+                    window.open(
+                      `https://wa.me/${whatsappNumber}?text=${message}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  Start via WhatsApp
+                </Button>
+              </SignedIn>
+
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <Button
+                    size="lg"
+                    className="h-14 px-10 bg-white text-primary hover:bg-slate-200 font-semibold tracking-wide rounded-md"
+                  >
+                    Sign In to Start Project
+                  </Button>
+                </SignInButton>
+              </SignedOut>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

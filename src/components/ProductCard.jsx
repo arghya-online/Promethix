@@ -1,102 +1,102 @@
 import React from "react";
 import { useCart } from "@/context/cart-context";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Star } from "lucide-react";
+import { Star, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export function ProductCard({ product }) {
-  const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
-  const cartItem = cart.find((item) => item.id === product.id);
-  const quantity = cartItem ? cartItem.quantity : 0;
+  const { addToCart } = useCart();
+  const rating = 4.8;
+  const reviewCount = Math.floor(Math.random() * 500) + 50; // Valid use for just UI visual
 
-  const rating = 4;
-
-  const handleIncrement = (e) => {
-    e.preventDefault();
-    if (quantity === 0) addToCart(product);
-    else updateQuantity(product.id, quantity + 1);
-  };
-
-  const handleDecrement = (e) => {
-    e.preventDefault();
-    if (quantity > 1) updateQuantity(product.id, quantity - 1);
-    else removeFromCart(product.id);
-  };
+  // Calculate discount percentage if original price exists
+  const discount = product.originalPrice
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0;
 
   return (
     <motion.div
       layout
-      whileTap={{ scale: 0.97 }}
-      className="flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2 }}
+      className="group flex flex-col h-full bg-white border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 overflow-hidden rounded-none relative"
     >
-      {/* IMAGE */}
-      <Link
-        to={`/product/${product.id}`}
-        className="relative aspect-[4/3] sm:aspect-square bg-zinc-100"
-      >
+      {/* IMAGE CONTAINER */}
+      <Link to={`/product/${product.id}`} className="relative bg-slate-50 aspect-[4/5] p-6 flex items-center justify-center overflow-hidden">
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-full w-full object-cover"
+          className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
         />
 
-        <div className="absolute left-2 top-2 flex items-center gap-1 rounded bg-black/80 px-2 py-0.5 text-[10px] font-semibold text-white">
-          <Star className="h-3 w-3 fill-white" />
-          {rating}.0
+        {/* Quick Add Overlay (Desktop) */}
+        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              addToCart(product);
+            }}
+            className="w-full h-11 bg-slate-900 text-white font-bold uppercase tracking-wider shadow-xl dark:hover:bg-amber-600 transition-colors rounded-sm"
+          >
+            Quick Add <ShoppingCart className="ml-2 w-4 h-4" />
+          </Button>
         </div>
+
+        {discount > 0 && (
+          <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
+            {discount}% off
+          </span>
+        )}
       </Link>
 
       {/* CONTENT */}
-      <div className="flex grow flex-col px-3 py-2">
-        {/* Name */}
-        <h3 className="line-clamp-1 text-sm font-semibold text-zinc-900">
-          {product.name}
-        </h3>
+      <div className="flex flex-col flex-grow p-4 min-h-[140px]">
+        {/* Title */}
+        <Link to={`/product/${product.id}`} className="hover:text-amber-600 transition-colors">
+          <h3 className="text-slate-900 font-bold leading-tight mb-1 text-sm md:text-base line-clamp-2 min-h-[2.5em]">
+            {product.name}
+          </h3>
+        </Link>
 
-        {/* View Details Link */}
-        <div className="mb-2">
-          <Link to={`/product/${product.id}`} className="text-[10px] uppercase font-bold tracking-wider text-zinc-400 hover:text-black transition-colors">
-            View Details
-          </Link>
+        {/* Rating */}
+        <div className="flex items-center gap-1 mb-2">
+          <div className="flex text-amber-500 text-[10px]">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3 h-3 fill-current" />
+            ))}
+          </div>
+          <span className="text-xs text-slate-500 font-medium">{reviewCount}</span>
         </div>
 
-        {/* Price */}
-        <span className="mt-1 text-sm font-bold text-black">
-          ₹{product.price}
-        </span>
+        {/* Price Section */}
+        <div className="mt-auto">
+          <div className="flex items-baseline gap-2">
+            <span className="text-base align-top text-slate-700 font-medium">₹</span>
+            <span className="text-2xl font-bold text-slate-900 leading-none">{product.price}</span>
+            {product.originalPrice && (
+              <span className="text-xs text-slate-400 line-through decoration-slate-400">
+                ₹{product.originalPrice}
+              </span>
+            )}
+          </div>
+          <p className="text-[10px] text-slate-500 mt-1 font-medium">
+            Free Delivery by <span className="text-slate-800 font-bold">Promethix</span>
+          </p>
+        </div>
 
-        {/* CTA */}
-        <div className="mt-auto pt-2">
-          {cartItem ? (
-            <div className="flex items-center justify-between rounded-md border border-zinc-300 px-2 py-1">
-              <button
-                onClick={handleDecrement}
-                className="flex h-7 w-7 items-center justify-center rounded border border-zinc-300 text-zinc-700"
-              >
-                <Minus className="h-3 w-3" />
-              </button>
-
-              <span className="text-sm font-semibold">{quantity}</span>
-
-              <button
-                onClick={handleIncrement}
-                className="flex h-7 w-7 items-center justify-center rounded border border-zinc-300 text-zinc-700"
-              >
-                <Plus className="h-3 w-3" />
-              </button>
-            </div>
-          ) : (
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                addToCart(product);
-              }}
-              className="h-9 w-full rounded-md bg-black text-xs font-semibold text-white"
-            >
-              Add
-            </Button>
-          )}
+        {/* Mobile Add Visible */}
+        <div className="mt-3 md:hidden">
+          <Button
+            size="sm"
+            onClick={(e) => {
+              e.preventDefault();
+              addToCart(product);
+            }}
+            className="w-full bg-slate-900 text-white font-bold h-9 rounded-sm"
+          >
+            Add to Cart
+          </Button>
         </div>
       </div>
     </motion.div>

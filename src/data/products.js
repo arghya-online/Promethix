@@ -55,15 +55,19 @@ const CATEGORY_DATA = {
 
 export const PRODUCTS = Array.from({ length: 21 }).map((_, i) => {
   const category = CATEGORIES[i % CATEGORIES.length];
-  const data = CATEGORY_DATA[category];
+  const data = CATEGORY_DATA[category]; // Corrected access to CATEGORY_DATA
   const materials = ["PLA+", "PETG", "TPU", "Resin"];
   const material = materials[i % materials.length];
+
+  // Static original price calculation (approx 35% markup)
+  const originalPrice = Math.floor(data.price * 1.35);
 
   return {
     id: i + 1,
     name: `${category} Edition #${Math.floor(i / CATEGORIES.length) + 1}`,
     category: category,
     price: data.price,
+    originalPrice: originalPrice, // Added static original price
     rating: "4.9",
     reviews: 42,
     description:
@@ -84,21 +88,35 @@ export const PRODUCTS = Array.from({ length: 21 }).map((_, i) => {
       "Customizable Color Options",
     ],
     images: [
-      `https://images.unsplash.com/photo-${
-        [
-          "1581092160562-40aa08e78837",
-          "1505740420928-5e560c06d30e",
-          "1517646287270-a5a9ca602e5c",
-          "1550745165-9bc0b252726f",
-        ][i % 4]
+      `https://images.unsplash.com/photo-${[
+        "1581092160562-40aa08e78837",
+        "1505740420928-5e560c06d30e",
+        "1517646287270-a5a9ca602e5c",
+        "1550745165-9bc0b252726f",
+        "1593106577609-b67f136e053a",
+        "1615655406736-b37c4fabf923",
+        "1589820296156-2454dad33d94",
+      ][i % 7]
       }?auto=format&fit=crop&q=80&w=800`,
-      `https://images.unsplash.com/photo-${
-        [
-          "1615655406736-b37c4fabf923",
-          "1589820296156-2454dad33d94",
-          "1513519245088-0e12902e5a38",
-          "1593106577609-b67f136e053a",
-        ][i % 4]
+      `https://images.unsplash.com/photo-${[
+        "1615655406736-b37c4fabf923",
+        "1589820296156-2454dad33d94",
+        "1513519245088-0e12902e5a38",
+        "1505740420928-5e560c06d30e",
+        "1593106577609-b67f136e053a",
+        "1581092160562-40aa08e78837",
+        "1517646287270-a5a9ca602e5c",
+      ][i % 7]
+      }?auto=format&fit=crop&q=80&w=800`,
+      `https://images.unsplash.com/photo-${[
+        "1513519245088-0e12902e5a38",
+        "1593106577609-b67f136e053a",
+        "1581092160562-40aa08e78837",
+        "1505740420928-5e560c06d30e",
+        "1615655406736-b37c4fabf923",
+        "1589820296156-2454dad33d94",
+        "1517646287270-a5a9ca602e5c",
+      ][i % 7]
       }?auto=format&fit=crop&q=80&w=800`,
     ],
     customizable: i % 3 === 0,
