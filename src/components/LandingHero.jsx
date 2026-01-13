@@ -1,198 +1,104 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { gsap } from "gsap";
-import { Hexagon, Check, ArrowDown, ArrowRight } from "lucide-react";
-import heroImage from "../assets/heroImage.png";
-
-// Placeholder images for floating objects (using product images)
-import { PRODUCTS } from "../data/products";
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle2, Box, Sparkles } from "lucide-react";
 
 export function LandingHero() {
-  const lineRef = useRef(null);
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
-
-  // GSAP Animation for Accent Line
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        lineRef.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 0.8,
-          delay: 0.6,
-          ease: "power3.out",
-          transformOrigin: "left",
-        }
-      );
-    });
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-24 pb-16 md:pt-32 md:pb-24">
-      {/* Background Enhancement */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-slate-50 via-white to-white opacity-100 -z-10" />
+    <section className="relative w-full overflow-hidden bg-white pt-32 pb-24 md:pt-40 md:pb-32">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none opacity-40">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-100 rounded-full blur-3xl mix-blend-multiply animate-blob" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-10 left-1/2 w-96 h-96 bg-pink-100 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000" />
+      </div>
 
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* LEFT SECTION */}
-          <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-            {/* Brand Mark */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-2 mb-6"
-            >
-              <Hexagon className="w-4 h-4 text-slate-400" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
-                PROMETHIX 3D
-              </span>
-            </motion.div>
+      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
 
-            {/* Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-              className="space-y-2 mb-8"
-            >
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-serif font-semibold text-slate-900 leading-[0.9]">
-                PRECISION
-              </h1>
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-serif font-semibold text-orange-500 leading-[0.9]">
-                IN EVERY LAYER
-              </h1>
-            </motion.div>
+        {/* Status Chip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm mb-8"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span className="text-xs font-bold uppercase tracking-widest text-slate-600">
+            Ready to Ship | Custom Orders Open
+          </span>
+        </motion.div>
 
-            {/* Accent Line */}
-            <div ref={lineRef} className="w-24 h-1 bg-orange-500 mb-8" />
+        {/* Main Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+          className="max-w-4xl mx-auto space-y-4 mb-8"
+        >
+          <h1 className="text-5xl md:text-7xl font-serif font-black text-slate-900 tracking-tight leading-none">
+            Bring Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Ideas</span><br />
+            Dimensions.
+          </h1>
+        </motion.div>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-slate-600 text-base md:text-lg leading-relaxed max-w-lg mb-8 font-light"
-            >
-              Industrial-grade 3D printing for prototypes, art, and custom
-              engineering. Designed for impact. Built to last.
-            </motion.p>
+        {/* Sub-headline */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+        >
+          We sell premium 3D printed artifacts and offer custom engineering services.
+          <br className="hidden md:block" />
+          From prototypes to art - if you can model it, we can make it.
+        </motion.p>
 
-            {/* Micro Specs */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 md:gap-6 justify-center lg:justify-start mb-10"
-            >
-              {[
-                "Quality Artifacts",
-                "Industrial materials",
-                "Zero compromise",
-              ].map((spec, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 text-sm text-slate-500 font-medium"
-                >
-                  <Check className="w-4 h-4 text-emerald-500" />
-                  {spec}
-                </div>
-              ))}
-            </motion.div>
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16"
+        >
+          <Link to="/products" className="w-full sm:w-auto">
+            <Button className="w-full h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-full text-base font-bold tracking-wide shadow-xl shadow-slate-900/10 transition-transform active:scale-95">
+              Shop Collection
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+          <Link to="/custom" className="w-full sm:w-auto">
+            <Button variant="outline" className="w-full h-14 px-10 border-slate-300 text-slate-900 hover:border-slate-900 bg-white hover:bg-slate-50 rounded-full text-base font-bold tracking-wide transition-all">
+              Start Custom Order
+            </Button>
+          </Link>
+        </motion.div>
 
-            {/* CTA Group */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
-            >
-              <Link to="/products" className="w-full sm:w-auto">
-                <Button className="w-full h-14 px-8 bg-slate-900 text-white hover:bg-slate-800 rounded-md text-base font-bold tracking-wide shadow-xl shadow-slate-900/10">
-                  Shop Now
-                </Button>
-              </Link>
-              <Link to="/custom" className="w-full sm:w-auto">
-                <Button
-                  variant="outline"
-                  className="w-full h-14 px-8 border-slate-300 text-slate-900 hover:border-slate-400 hover:bg-slate-50 rounded-md text-base font-bold tracking-wide"
-                >
-                  Start Custom Build
-                </Button>
-              </Link>
-            </motion.div>
+        {/* Trust Indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 text-center border-t border-slate-100 pt-10"
+        >
+          <TrustBadge icon={<Box className="w-5 h-5 text-amber-500" />} text="Secure Packaging" />
+          <TrustBadge icon={<CheckCircle2 className="w-5 h-5 text-amber-500" />} text="Quality Checked" />
+          <TrustBadge icon={<Sparkles className="w-5 h-5 text-amber-500" />} text="Premium Materials" />
+        </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="mt-8 flex items-center gap-2 text-sm text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
-            >
-              <span>See how it’s made</span>
-              <ArrowDown className="w-4 h-4 animate-bounce" />
-            </motion.div>
-
-            {/* Trust Line */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="mt-12 text-xs uppercase tracking-wider text-slate-400 font-medium"
-            >
-              Trusted by makers, engineers, and startups
-            </motion.p>
-          </div>
-
-          {/* RIGHT SECTION - Visual */}
-          <div className="order-1 lg:order-2 relative flex justify-center perspective-1000">
-            {/* Main Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-md mx-auto"
-            >
-              <img
-                src={heroImage}
-                alt="Industrial 3D Printer"
-                className="w-full h-auto object-contain drop-shadow-2xl"
-              />
-
-              {/* Soft Shadow */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/10 blur-2xl rounded-full" />
-            </motion.div>
-
-            {/* Floating Objects (Parallax) */}
-            <motion.div
-              style={{ y: y1 }}
-              className="absolute top-0 right-0 w-24 h-24 hidden lg:block z-20 pointer-events-none"
-            >
-              <img
-                src="print-object-1.png"
-                className="w-full h-full object-contain drop-shadow-lg opacity-80"
-                alt="Floating Object 1"
-              />
-            </motion.div>
-
-            <motion.div
-              style={{ y: y2 }}
-              className="absolute bottom-10 left-0 w-32 h-32 hidden lg:block z-20 pointer-events-none"
-            >
-              <img
-                src="print-object-2.png"
-                className="w-full h-full object-contain drop-shadow-lg opacity-80"
-                alt="Floating Object 2"
-              />
-            </motion.div>
-          </div>
-        </div>
       </div>
     </section>
   );
+}
+
+function TrustBadge({ icon, text }) {
+  return (
+    <div className="flex items-center justify-center gap-2.5 text-slate-500 font-medium text-sm">
+      {icon}
+      <span>{text}</span>
+    </div>
+  )
 }

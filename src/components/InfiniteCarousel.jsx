@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { PRODUCTS } from "../data/products";
+import { ENRICHED_PRODUCTS as PRODUCTS } from "../data/products";
 
 export function InfiniteCarousel() {
     const [width, setWidth] = useState(0);

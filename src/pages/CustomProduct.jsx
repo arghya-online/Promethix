@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export default function CustomProduct() {
-  const whatsappNumber = "919999999999";
+  const whatsappNumber = "+919832769269";
   const message = encodeURIComponent(
     "Hi Promethix3D, I have a custom 3D printing request."
   );
@@ -15,6 +15,7 @@ export default function CustomProduct() {
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold tracking-tight text-primary">
             You Imagine It.
+            <span> </span>
             <span className="text-text-secondary block sm:inline">
               We Print It Right.
             </span>

@@ -12,7 +12,7 @@ export default function OrderCart() {
   const [notes, setNotes] = useState("");
 
   const handleCheckout = () => {
-    const whatsappNumber = "919999999999"; // Replace with actual number
+    const whatsappNumber = "+919832769269"; // Replace with actual number
 
     let message = `Hello Promethix3D,\nI want to place an order.\n\n`;
     message += `Name: ${user?.fullName || "Guest"}\n`;

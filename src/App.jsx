@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { ClerkProvider } from "@clerk/clerk-react";
+import { Toaster } from "sonner";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "./context/cart-context";
@@ -65,6 +66,7 @@ function App() {
     >
       <CartProvider>
         <RouterProvider router={router} />
+        <Toaster richColors position="top-center" />
       </CartProvider>
     </ClerkProvider>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { PRODUCTS, CATEGORIES } from "../data/products";
+import { ENRICHED_PRODUCTS as PRODUCTS, CATEGORIES } from "../data/products";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
@@ -12,12 +12,17 @@ export default function Products() {
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
+      // Create a URL-friendly slug from the category name for comparison
+      const categorySlug = product.category.toLowerCase().replace(/ /g, "-");
+
       const matchesCategory = slug
-        ? product.category.toLowerCase().replace(/ /g, "-") === slug
+        ? categorySlug === slug
         : true;
+
       const matchesSearch = product.name
         .toLowerCase()
         .includes(search.toLowerCase());
+
       return matchesCategory && matchesSearch;
     });
   }, [slug, search]);
@@ -52,7 +57,7 @@ export default function Products() {
           <Link to="/products">
             <Badge
               variant={!slug ? "default" : "outline"}
-              className={`cursor - pointer ${!slug ? "bg-primary text-white hover:bg-blue-600" : "text-text-secondary border-border hover:text-white hover:bg-surface-light"} `}
+              className={`cursor-pointer ${!slug ? "bg-primary text-white hover:bg-blue-600" : "text-text-secondary border-border hover:text-white hover:bg-surface-light"}`}
             >
               All
             </Badge>
@@ -61,10 +66,10 @@ export default function Products() {
             const catSlug = cat.toLowerCase().replace(/ /g, "-");
             const isActive = slug === catSlug;
             return (
-              <Link key={cat} to={`/ category / ${catSlug} `}>
+              <Link key={cat} to={`/category/${catSlug}`}>
                 <Badge
                   variant={isActive ? "default" : "outline"}
-                  className={`cursor - pointer transition - colors ${isActive ? "bg-primary text-white hover:bg-blue-600" : "text-text-secondary border-border hover:text-white hover:bg-surface-light"} `}
+                  className={`cursor-pointer transition-colors ${isActive ? "bg-primary text-white hover:bg-blue-600" : "text-text-secondary border-border hover:text-white hover:bg-surface-light"}`}
                 >
                   {cat}
                 </Badge>
@@ -75,7 +80,7 @@ export default function Products() {
 
         {/* Product Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 gap-y-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 gap-y-8 md:gap-y-12">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

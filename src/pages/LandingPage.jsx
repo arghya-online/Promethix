@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { PRODUCTS } from "../data/products";
+import { ENRICHED_PRODUCTS as PRODUCTS } from "../data/products";
 import { ArrowRight, Upload, Printer, Truck } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { MobileFeaturedCarousel } from "@/components/MobileFeaturedCarousel";

@@ -73,8 +73,7 @@ function Header() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-base font-bold uppercase tracking-wider transition-colors hover:text-amber-600 ${
-                    isActive ? "text-black" : "text-slate-500"
+                  `text-base font-bold uppercase tracking-wider transition-colors hover:text-amber-600 ${isActive ? "text-black" : "text-slate-500"
                   }`
                 }
               >
@@ -145,7 +144,7 @@ function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="fixed inset-0 z-60 bg-white p-6 md:hidden"
+            className="fixed inset-0 z-[60] bg-white p-6 md:hidden overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-12">
               <span className="text-2xl font-black font-heading tracking-tighter text-black">
@@ -166,8 +165,7 @@ function Header() {
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-4xl font-black font-heading transition-colors ${
-                      isActive ? "text-amber-500" : "text-black"
+                    `text-4xl font-black font-heading transition-colors ${isActive ? "text-amber-500" : "text-black"
                     }`
                   }
                 >
