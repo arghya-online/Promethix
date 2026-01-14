@@ -9,9 +9,7 @@ import { toast } from "sonner";
 export function ProductCard({ product }) {
   const { addToCart } = useCart();
   const rating = 4.8;
-  const reviewCount = Math.floor(Math.random() * 500) + 50; // Valid use for just UI visual
-
-  // Calculate discount percentage if original price exists
+  const reviewCount = Math.floor(Math.random() * 500) + 50;
   const discount = product.originalPrice
     ? Math.round(
       ((product.originalPrice - product.price) / product.originalPrice) * 100
@@ -28,7 +26,7 @@ export function ProductCard({ product }) {
       {/* IMAGE CONTAINER */}
       <Link
         to={`/product/${product.id}`}
-        className="relative bg-slate-50 aspect-[4/5] p-3 md:p-6 flex items-center justify-center overflow-hidden"
+        className="relative bg-slate-50 aspect-[4/5] p-2 flex items-center justify-center overflow-hidden"
       >
         <img
           src={product.images[0]}
