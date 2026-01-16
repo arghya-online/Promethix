@@ -12,7 +12,6 @@ export function LandingPage() {
 
   return (
     <main className="w-full bg-white text-slate-900 font-sans">
-
       {/* 1. HERO SECTION */}
       <LandingHero />
 
@@ -20,8 +19,12 @@ export function LandingPage() {
       <section className="py-20 bg-slate-50 border-y border-slate-100">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-600 mb-2 block">Simple Process</span>
-            <h2 className="text-3xl lg:text-4xl font-black text-slate-900">From File to Physical</h2>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-600 mb-2 block">
+              Simple Process
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900">
+              From File to Physical
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
@@ -49,17 +52,22 @@ export function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-3xl lg:text-5xl font-black text-slate-900 mb-4">Trending Now</h2>
+              <h2 className="text-3xl lg:text-5xl font-black text-slate-900 mb-4">
+                Trending Now
+              </h2>
               <div className="h-1 w-24 bg-amber-500" />
             </div>
-            <Link to="/products" className="hidden md:flex items-center gap-2 font-bold text-slate-900 hover:text-amber-600 transition-colors uppercase tracking-wider text-sm">
+            <Link
+              to="/products"
+              className="hidden md:flex items-center gap-2 font-bold text-slate-900 hover:text-amber-600 transition-colors uppercase tracking-wider text-sm"
+            >
               View Full Collection <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           {/* DESKTOP GRID */}
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.map(p => (
+            {featuredProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
@@ -71,7 +79,10 @@ export function LandingPage() {
 
           <div className="mt-12 text-center md:hidden">
             <Link to="/products">
-              <Button variant="outline" className="w-full h-12 border-slate-900 text-slate-900 font-bold uppercase tracking-widest">
+              <Button
+                variant="outline"
+                className="w-full h-12 border-slate-900 text-slate-900 font-bold uppercase tracking-widest"
+              >
                 View All
               </Button>
             </Link>
@@ -82,21 +93,29 @@ export function LandingPage() {
       {/* 4. CTA BANNER */}
       <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
         {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
 
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-tight">Got a custom idea?</h2>
+          <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-tight">
+            Got a custom idea?
+          </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-            We accept custom STL files for printing. Get a quote instantly for your unique project.
+            We accept custom STL files for printing. Get a quote instantly for
+            your unique project.
           </p>
           <Link to="/custom">
             <Button className="h-16 px-12 bg-amber-500 hover:bg-amber-400 text-black font-bold uppercase tracking-widest text-lg rounded-sm">
-              Start Custom Order
+              Start Custom Orderhe
             </Button>
           </Link>
         </div>
       </section>
-
     </main>
   );
 }
