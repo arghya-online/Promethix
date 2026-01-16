@@ -9,7 +9,12 @@ import { toast } from "sonner";
 export function ProductCard({ product }) {
   const { addToCart } = useCart();
   const rating = 4.8;
-  const reviewCount = Math.floor(Math.random() * 500) + 50;
+
+  // Consistent random review count
+  const reviewCount = React.useMemo(() => {
+    return 50 + ((typeof product.id === 'string' ? product.id.charCodeAt(0) : product.id) % 20) * 12;
+  }, [product.id]);
+
   const discount = product.originalPrice
     ? Math.round(
       ((product.originalPrice - product.price) / product.originalPrice) * 100
@@ -19,104 +24,66 @@ export function ProductCard({ product }) {
   return (
     <motion.div
       layout
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className="group flex flex-col h-full bg-white border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300 overflow-hidden rounded-none relative"
+      className="group flex flex-col h-full bg-white rounded-xl overflow-hidden border border-slate-100 hover:border-slate-300 shadow-sm hover:shadow-md transition-all duration-300 relative isolate"
     >
-      {/* IMAGE CONTAINER */}
-      <Link
-        to={`/product/${product.id}`}
-        className="relative bg-slate-50 aspect-[4/5] p-2 flex items-center justify-center overflow-hidden"
-      >
+      {/* FULL CARD LINK OVERLAY */}
+      <Link to={`/product/${product.id}`} className="absolute inset-0 z-0" aria-label={`View ${product.name}`} />
+
+      {/* 1. SQUARE IMAGE CONTAINER */}
+      <div className="relative block w-full aspect-square bg-slate-50 overflow-hidden z-10 pointer-events-none">
         <img
           src={product.images[0]}
           alt={product.name}
-          className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105"
         />
 
-        {/* Quick Add Overlay (Desktop) */}
-        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              addToCart(product);
-              toast.success(`Added ${product.name} to cart`);
-            }}
-            className="w-full h-11 bg-slate-900 text-white font-bold uppercase tracking-wider shadow-xl dark:hover:bg-amber-600 transition-colors rounded-sm"
-          >
-            Quick Add <ShoppingCart className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
+        {/* Wishlist Button (Top Right) - Pointer events allowed */}
+        <button className="absolute top-2 right-2 w-6 h-6 bg-white/70 hover:bg-white backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm pointer-events-auto z-20">
+          <Star className="w-3 h-3" />
+        </button>
+      </div>
 
-        {discount > 0 && (
-          <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
-            {discount}% off
-          </span>
-        )}
-      </Link>
+      {/* 2. COMPACT CONTENT */}
+      <div className="flex flex-col flex-grow p-2.5 sm:p-3 pointer-events-none z-10">
 
-      {/* CONTENT */}
-      <div className="flex flex-col flex-grow p-3 md:p-4 min-h-[120px]">
         {/* Title */}
-        <Link
-          to={`/product/${product.id}`}
-          className="hover:text-amber-600 transition-colors"
-        >
-          <h3 className="text-slate-900 font-bold leading-tight mb-1 text-xs md:text-base line-clamp-2 min-h-[2.5em]">
+        <div className="block mb-1">
+          <h3 className="text-slate-900 font-bold text-xs sm:text-sm leading-tight line-clamp-1 group-hover:text-amber-600 transition-colors">
             {product.name}
           </h3>
-        </Link>
+        </div>
 
-        {/* Rating */}
+        {/* Meta Row: Rating */}
         <div className="flex items-center gap-1 mb-2">
-          <div className="flex text-amber-500 text-[10px]">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-current" />
-            ))}
-          </div>
-          <span className="text-xs text-slate-500 font-medium">
-            {reviewCount}
+          <Star className="w-2.5 h-2.5 text-amber-500 fill-current" />
+          <span className="text-[10px] text-slate-500 font-medium leading-none mt-0.5">
+            {rating} ({reviewCount})
           </span>
         </div>
 
-        {/* Price Section */}
-        <div className="mt-auto">
-          <div className="flex items-baseline gap-2">
-            <span className="text-base align-top text-slate-700 font-medium">
-              ₹
-            </span>
-            <span className="text-lg md:text-2xl font-bold text-slate-900 leading-none">
-              {product.price}
-            </span>
+        {/* Bottom Row: Price & Add Button */}
+        <div className="mt-auto flex items-end justify-between pt-2 border-t border-slate-50/50 pointer-events-auto relative z-20">
+          <div className="flex flex-col leading-none">
+            <span className="text-sm font-black text-slate-900">₹{product.price}</span>
             {product.originalPrice && (
-              <span className="text-xs text-slate-400 line-through decoration-slate-400">
-                ₹{product.originalPrice}
-              </span>
+              <span className="text-[9px] text-slate-400 line-through mt-0.5">₹{product.originalPrice}</span>
             )}
           </div>
-          <p className="text-[10px] text-slate-500 mt-1 font-medium">
-            Delivery by{" "}
-            <span className="text-slate-800 font-bold">Promethix3D</span>
-          </p>
-        </div>
 
-        {/* Mobile Add Visible */}
-        <div className="mt-3 md:hidden">
           <Button
-            size="sm"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               addToCart(product);
-              toast.success(`Added ${product.name} to cart`);
+              toast.success(`Added to cart`);
             }}
-            className="w-full bg-slate-900 text-white font-bold h-8 text-xs uppercase tracking-wide rounded-sm"
+            className="h-7 px-3 bg-slate-900 hover:bg-black text-white text-[10px] font-bold uppercase tracking-wide rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-1 cursor-pointer"
           >
-            Add
+            + Add
           </Button>
         </div>
+
       </div>
-    </motion.div >
+    </motion.div>
   );
 }

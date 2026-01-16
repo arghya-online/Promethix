@@ -51,19 +51,21 @@ function Header() {
         }}
         animate={isHidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="sticky top-0 z-50 w-full border-b border-border bg-white text-primary"
+        className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-md text-primary supports-[backdrop-filter]:bg-white/60"
       >
-        <div className="container mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           {/* Left: Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <img
               src={Logo}
-              alt="Promethix Logo"
+              alt="PROMETHIX3D Logo"
               className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
             />
-            <span className="text-2xl font-black tracking-tighter text-black hidden sm:block font-heading">
-              PROMETHIX
-            </span>
+            <div className="hidden sm:block">
+              <span className="block text-2xl font-black tracking-tighter text-black font-heading leading-none">
+                PROMETHIX3D
+              </span>
+            </div>
           </Link>
 
           {/* Center: Navigation - Desktop */}
@@ -73,11 +75,23 @@ function Header() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-base font-bold uppercase tracking-wider transition-colors hover:text-amber-600 ${isActive ? "text-black" : "text-slate-500"
+                  `text-sm font-bold uppercase tracking-widest relative group ${isActive ? "text-black" : "text-slate-500 hover:text-black"
                   }`
                 }
               >
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    <span className="relative z-10">{link.name}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNav"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-amber-500"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out opacity-20" />
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
@@ -88,9 +102,9 @@ function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="relative text-black hover:bg-slate-100"
+                className="relative text-black hover:bg-black/5"
               >
-                <ShoppingBag className="w-6 h-6" />
+                <ShoppingBag className="w-5 h-5" />
                 {cartCount > 0 && (
                   <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-amber-500 text-black font-bold text-[10px] rounded-full border-2 border-white">
                     {cartCount}
@@ -148,7 +162,7 @@ function Header() {
           >
             <div className="flex items-center justify-between mb-12">
               <span className="text-2xl font-black font-heading tracking-tighter text-black">
-                PROMETHIX
+                PROMETHIX3D
               </span>
               <Button
                 variant="ghost"

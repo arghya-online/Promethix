@@ -14,7 +14,7 @@ export default function OrderCart() {
   const handleCheckout = () => {
     const whatsappNumber = "+919832769269"; // Replace with actual number
 
-    let message = `Hello Promethix3D,\nI want to place an order.\n\n`;
+    let message = `Hello PROMETHIX3D3D,\nI want to place an order.\n\n`;
     message += `Name: ${user?.fullName || "Guest"}\n`;
     message += `Email: ${user?.primaryEmailAddress?.emailAddress || "Not provided"
       }\n\n`;

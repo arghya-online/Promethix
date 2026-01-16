@@ -1,6 +1,6 @@
-# Promethix
+# PROMETHIX3D
 
-Promethix is a Kolkata-based 3D printing startup building and delivering custom 3D printed products including jewelry, home decor, academic models, mechanical components, and personalized designs.
+PROMETHIX3D is a Kolkata-based 3D printing startup building and delivering custom 3D printed products including jewelry, home decor, academic models, mechanical components, and personalized designs.
 
 ## Tech Stack
 

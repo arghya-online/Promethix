@@ -7,63 +7,118 @@ import {
     Twitter,
     CreditCard,
     Banknote,
-    Wallet
+    Wallet,
+    MapPin,
+    Phone,
+    Mail,
+    ArrowRight
 } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="bg-white border-t border-slate-100 text-slate-800 pt-20 pb-12">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                    {/* Brand */}
-                    <div className="col-span-1 space-y-6">
+        <footer className="relative bg-slate-950 text-slate-300 pt-24 pb-12 overflow-hidden">
+            {/* Decorative Background Blob */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[128px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-900/10 rounded-full blur-[128px] pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+
+                    {/* Brand & Description (4 cols) */}
+                    <div className="lg:col-span-4 space-y-8">
                         <Link to="/" className="flex items-center gap-3">
-                            <img src={Logo} alt="Promethix" className="h-10 w-auto" />
-                            <span className="text-2xl font-black font-heading tracking-tighter text-black">
-                                PROMETHIX
+                            <img src={Logo} alt="PROMETHIX3D" className="h-10 w-auto filter invert brightness-200" />
+                            <span className="text-2xl font-black font-heading tracking-tighter text-white">
+                                PROMETHIX3D
                             </span>
                         </Link>
-                        <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-                            Industrial-grade 3D printing services for everyone. From prototype to final product, we deliver precision.
+                        <p className="text-slate-400 text-sm leading-7 max-w-sm">
+                            Pioneering the future of manufacturing with industrial-grade 3D printing.
+                            From rapid prototyping to end-use production, we turn digital concepts into physical reality.
                         </p>
-                        <div className="flex gap-4 pt-2">
-                            <SocialLink icon={<Instagram className="w-5 h-5" />} />
-                            <SocialLink icon={<Twitter className="w-5 h-5" />} />
-                            <SocialLink icon={<Facebook className="w-5 h-5" />} />
+                        <div className="flex gap-4">
+                            <SocialLink icon={<Instagram className="w-5 h-5" />} href="#" />
+                            <SocialLink icon={<Twitter className="w-5 h-5" />} href="#" />
+                            <SocialLink icon={<Facebook className="w-5 h-5" />} href="#" />
                         </div>
                     </div>
 
-                    {/* Links 1 */}
-                    <div className="col-span-1">
-                        <h4 className="font-bold text-black uppercase tracking-wider mb-6 text-sm">Shop</h4>
-                        <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><Link to="/products" className="hover:text-amber-600 transition-colors">All Products</Link></li>
-                            <li><Link to="/custom" className="hover:text-amber-600 transition-colors">Custom Orders</Link></li>
-                            <li><Link to="/products" className="hover:text-amber-600 transition-colors">New Arrivals</Link></li>
+                    {/* Quick Links (2 cols) */}
+                    <div className="lg:col-span-2">
+                        <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Explore</h4>
+                        <ul className="space-y-4 text-sm font-medium">
+                            <li><Link to="/products" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> All Products</Link></li>
+                            <li><Link to="/custom" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> Custom Orders</Link></li>
+                            <li><Link to="/about" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> About Us</Link></li>
+                            <li><Link to="/support" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> Support Center</Link></li>
                         </ul>
                     </div>
 
-                    {/* Links 2 */}
-                    <div className="col-span-1">
-                        <h4 className="font-bold text-black uppercase tracking-wider mb-6 text-sm">Support</h4>
-                        <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                            <li><Link to="/support" className="hover:text-amber-600 transition-colors">Help Center</Link></li>
-                            <li><Link to="/support" className="hover:text-amber-600 transition-colors">Shipping & Returns</Link></li>
-                            <li><Link to="/about" className="hover:text-amber-600 transition-colors">About Us</Link></li>
+                    {/* Contact Info (3 cols) */}
+                    <div className="lg:col-span-3">
+                        <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Contact Us</h4>
+                        <ul className="space-y-6 text-sm">
+                            <li className="flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                    <MapPin className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <span className="block text-white font-medium mb-1">Headquarters</span>
+                                    <span className="text-slate-500 block">Innov8 Coworking, Koramangala</span>
+                                    <span className="text-slate-500">Bengaluru, KA 560095</span>
+                                </div>
+                            </li>
+                            <li className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                    <Phone className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <span className="block text-white font-medium mb-1">Phone</span>
+                                    <a href="tel:+919876543210" className="text-slate-500 hover:text-white transition-colors">+91 98765 43210</a>
+                                </div>
+                            </li>
+                            <li className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                    <Mail className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <span className="block text-white font-medium mb-1">Email</span>
+                                    <a href="mailto:hello@PROMETHIX3D3d.com" className="text-slate-500 hover:text-white transition-colors">hello@PROMETHIX3D3d.com</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Contact / Payments */}
-                    <div className="col-span-1">
-                        <h4 className="font-bold text-black uppercase tracking-wider mb-6 text-sm">We Accept</h4>
-                        <div className="flex flex-wrap gap-4 text-slate-400 mb-8">
-                            <PaymentIcon icon={<CreditCard />} />
-                            <PaymentIcon icon={<Wallet />} />
-                            <PaymentIcon icon={<Banknote />} />
+                    {/* Map (3 cols) */}
+                    <div className="lg:col-span-3">
+                        <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Location</h4>
+                        <div className="w-full h-64 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
+                            {/* Overlay for interaction hint */}
+                            <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.586111003425!2d77.6134593740498!3d12.934279987377507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144e69555555%3A0x6b8089335a022468!2sInnov8%20Koramangala!5e0!3m2!1sen!2sin!4v1705654321000!5m2!1sen!2sin"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(80%)" }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="PROMETHIX3D Location"
+                            ></iframe>
                         </div>
-                        <p className="text-xs text-slate-400">
-                            © 2025 Promethix3D. All rights reserved.
-                        </p>
+                    </div>
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <p className="text-xs text-slate-500">
+                        © 2025 PROMETHIX3D3D. All rights reserved.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                        <PaymentIcon icon={<CreditCard />} />
+                        <PaymentIcon icon={<Wallet />} />
+                        <PaymentIcon icon={<Banknote />} />
                     </div>
                 </div>
             </div>
@@ -71,17 +126,17 @@ export function Footer() {
     );
 }
 
-function SocialLink({ icon }) {
+function SocialLink({ icon, href }) {
     return (
-        <Link to="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600 hover:bg-black hover:text-white transition-all">
+        <a href={href} className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-all hover:scale-110">
             {icon}
-        </Link>
+        </a>
     );
 }
 
 function PaymentIcon({ icon }) {
     return (
-        <div className="p-2 border border-slate-200 rounded text-slate-500">
+        <div className="p-2 border border-slate-800 bg-slate-900 rounded text-slate-500">
             {icon}
         </div>
     );

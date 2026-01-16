@@ -5,92 +5,99 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 export default function CustomProduct() {
   const whatsappNumber = "+919832769269";
   const message = encodeURIComponent(
-    "Hi Promethix3D, I have a custom 3D printing request."
+    "Hi PROMETHIX3D3D, I have a custom 3D printing request."
   );
 
   return (
-    <section className="min-h-screen bg-background text-text-primary">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-        {/* HERO TEXT */}
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold tracking-tight text-primary">
-            You Imagine It.
-            <span> </span>
-            <span className="text-text-secondary block sm:inline">
-              We Print It Right.
-            </span>
-          </h1>
+    <section className="min-h-screen bg-slate-50 text-slate-900 pt-24 pb-20 font-sans">
+      <div className="max-w-[1100px] mx-auto px-6">
 
-          <p className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed">
-            From engineering prototypes to personalized creations, we turn your
-            ideas into precise, production-ready 3D printed parts.
+        {/* HERO HEADER */}
+        <div className="text-center mb-12 space-y-4">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900">
+            Want something unique?
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-500 font-medium">
+            This is where the fun begins.
           </p>
         </div>
 
-        {/* STEPS */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
-          {[
-            {
-              step: "01",
-              title: "Share Your Design",
-              desc: "Upload an STL file or simply explain your idea. Even rough sketches work.",
-            },
-            {
-              step: "02",
-              title: "Get a Quote",
-              desc: "We evaluate material, print time, and finishing to give you a clear quote.",
-            },
-            {
-              step: "03",
-              title: "Receive Your Part",
-              desc: "We print, post-process, quality check, and ship directly to you.",
-            },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="group relative bg-surface border border-border p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
-            >
-              <div className="text-sm font-mono text-text-secondary mb-6">
-                {item.step}
-              </div>
+        {/* CONSOLIDATED CARD */}
+        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
 
-              <h3 className="text-lg font-semibold text-primary mb-3">
-                {item.title}
+          {/* TOP GRID SECTION */}
+          <div className="grid grid-cols-1 md:grid-cols-2">
+
+            {/* LEFT: You can request */}
+            <div className="p-8 md:p-12 border-b md:border-b-0 md:border-r border-slate-100">
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2 uppercase tracking-wider text-slate-400">
+                <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                What You Can Request
               </h3>
-
-              <p className="text-sm text-text-secondary leading-relaxed">
-                {item.desc}
-              </p>
-
-              {/* hover accent */}
-              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              <ul className="space-y-4">
+                {[
+                  "Custom figurines (anime/cartoon/people)",
+                  "Personalized name models / gifts",
+                  "Mementoes & Idols",
+                  "Lithophanes (photo-to-3D prints)",
+                  "Engineering / academic project parts",
+                  "Mechanical components",
+                  "Prototypes for your product idea"
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-slate-700 font-medium">
+                    <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2.5 shrink-0" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
 
-        {/* CTA */}
-        <div className="relative mt-20 overflow-hidden rounded-xl border border-border bg-primary text-white">
-          {/* background glow */}
-          <div className="absolute inset-0">
-            <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-white/10 blur-[120px]" />
-            <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/5 blur-[120px]" />
+            {/* RIGHT: How to share */}
+            <div className="p-8 md:p-12 bg-slate-50/50">
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2 uppercase tracking-wider text-slate-400">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                How To Share
+              </h3>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Image references",
+                  "Rough sketch",
+                  "Measurements",
+                  "Or just explain in text"
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-xs">✓</span>
+                    <span className="font-bold text-slate-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-slate-500 italic leading-relaxed">
+                "Our designers will create the model, share a preview, and once you approve — we print and deliver."
+              </p>
+            </div>
+
           </div>
 
-          <div className="relative z-10 px-6 py-14 md:px-12 md:py-20 text-center space-y-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold">
-              Ready to start your custom print?
-            </h2>
+          {/* CTA STRIP (Joined) */}
+          <div className="bg-slate-900 border-t border-slate-800 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left relative overflow-hidden">
 
-            <p className="max-w-xl mx-auto text-sm sm:text-base text-white/80">
-              Talk directly with our team, share your requirements, and get your
-              project moving today.
-            </p>
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
 
-            <div className="flex justify-center">
+            <div className="relative z-10 max-w-xl">
+              <h2 className="text-2xl font-bold text-white mb-2">
+                Ready to start your custom print?
+              </h2>
+              <p className="text-slate-400">
+                Send your idea or STL file on WhatsApp and we’ll take it from there.
+              </p>
+            </div>
+
+            <div className="relative z-10 flex-shrink-0">
               <SignedIn>
                 <Button
                   size="lg"
-                  className="h-14 px-10 bg-white text-primary hover:bg-slate-200 font-semibold tracking-wide rounded-md"
+                  className="h-14 px-8 bg-amber-500 hover:bg-amber-400 text-black font-bold tracking-widest uppercase rounded-xl transition-all shadow-lg shadow-amber-900/20"
                   onClick={() =>
                     window.open(
                       `https://wa.me/${whatsappNumber}?text=${message}`,
@@ -98,7 +105,7 @@ export default function CustomProduct() {
                     )
                   }
                 >
-                  Start via WhatsApp
+                  Start on WhatsApp
                 </Button>
               </SignedIn>
 
@@ -106,15 +113,17 @@ export default function CustomProduct() {
                 <SignInButton mode="modal">
                   <Button
                     size="lg"
-                    className="h-14 px-10 bg-white text-primary hover:bg-slate-200 font-semibold tracking-wide rounded-md"
+                    className="h-14 px-8 bg-white hover:bg-slate-100 text-slate-900 font-bold tracking-widest uppercase rounded-xl transition-all"
                   >
-                    Sign In to Start Project
+                    Sign In to Start
                   </Button>
                 </SignInButton>
               </SignedOut>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

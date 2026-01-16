@@ -6,14 +6,62 @@ import { Button } from "@/components/ui/button";
 
 export default function Support() {
     const faqData = [
-        { title: "What materials do you print with?", content: "We primarily use PLA+ (biodegradable, high detail) and PETG (durable, heat resistant). We also offer TPU for flexible parts upon request." },
-        { title: "How long does shipping take?", content: "Orders are typically processed and printed within 3-5 business days. Shipping usually takes an additional 2-4 days depending on your location in India." },
-        { title: "Can I request a custom 3D model?", content: "Absolutely! Use our 'Custom Project' page to send us details. If you have an STL file, great! If not, we can help design it for you." },
+        { title: "1. Do I need to have a 3D file ready?", content: "Nope. You don’t need any 3D file. Just share your idea, a reference photo, sketch, or even explain it in text — we’ll design the 3D model for you." },
+        { title: "2. Can I directly buy models from your website?", content: "Yes. You can explore our product collection, pick the model you like, and place the order directly from the website." },
+        { title: "3. Do you take custom orders?", content: "Yes, absolutely. Custom work is our main thing — tell us what you want, and we’ll design + print it based on your requirements." },
+        { title: "4. What kind of products do you make?", content: "A lot of different things, like: home decor & artifacts, anime/cartoon figurines, customized gifts & mementoes, idols (gods and goddesses), lithophanes, mechanical parts for projects, prototypes & custom models. If it can be modelled, we can most likely print it." },
+        { title: "5. Can you print mechanical parts for my project?", content: "Yes. Students and makers order custom parts from us all the time. Just share your requirement or measurements and we’ll handle the rest." },
+        { title: "6. What materials do you use?", content: "We use high-quality 3D printing materials (PLA+, PETG, etc.) depending on the product type and usage. If your model needs extra strength or a certain finish, we’ll recommend the best option." },
+        { title: "7. How long does it take to complete an order?", content: "It depends on model size, detailing, design time (for custom orders), and delivery location. We always share an estimated timeline after confirming your order." },
+        { title: "8. Do you deliver outside your city?", content: "Yes. Delivery is available to your required location." },
+        { title: "9. Will I get to approve the design before printing?", content: "For custom orders — yes. We share the design preview/renders first, and printing starts only after your confirmation." },
+        { title: "10. Can I request changes in the design?", content: "Yes. Small changes are possible before printing begins. Just tell us clearly during the design approval stage." },
+        { title: "11. Is COD (Cash on Delivery) available?", content: "It depends on the product type and delivery location. For most custom orders, confirmation/payment is required before printing starts (since it’s made specifically for you)." },
+        { title: "12. Can I cancel my order?", content: "Ready-made shop products: cancellation possible if not shipped. Custom orders: only possible before printing starts. Once printing begins, cancellation isn’t possible." },
     ];
 
     const policyData = [
-        { title: "Shipping Policy", content: "We ship across India. All items are securely packed to prevent damage. Shipping is calculated at checkout based on weight and location. We offer free shipping on orders over ₹2000." },
-        { title: "Returns & Refunds", content: "Due to the custom nature of 3D printing, we do not accept returns for change of mind. However, if your item arrives damaged or defective, please contact us within 24 hours with photos for a replacement or refund." },
+        {
+            title: "Shipping & Delivery",
+            content: (
+                <div className="space-y-4">
+                    <p>We deliver products to your required location. Since 3D printed models can be delicate, we focus heavily on safe packaging so the model reaches you in perfect condition.</p>
+                    <div>
+                        <strong>Processing Time:</strong>
+                        <ul className="list-disc pl-5 mt-1">
+                            <li>Ready-made shop products: Usually dispatched within 2–5 working days.</li>
+                            <li>Custom orders: Time depends on design + printing complexity. We confirm estimated time clearly.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Delivery Time:</strong> After dispatch, 3–7 working days depending on location.
+                    </div>
+                    <p>Once shipped, we’ll share tracking details. Please ensure your address is correct. If returned due to wrong address, re-shipping charges may apply.</p>
+                    <div>
+                        <strong>Damaged Package?</strong>
+                        <p>If arrives damaged: record an unboxing video immediately, take photos, and contact us within 48 hours.</p>
+                    </div>
+                </div>
+            )
+        },
+        {
+            title: "Refund / Replacement Policy",
+            content: (
+                <div className="space-y-4">
+                    <p>We want you to love what you receive. But since most products are 3D printed/custom, refunds depend on the situation.</p>
+
+                    <div>
+                        <strong className="text-emerald-600 block mb-1">1) Ready-Made Products</strong>
+                        <p className="text-sm">Eligible for replacement/refund if: wrong product, damaged arrival, or clear manufacturing defect. (Request within 48 hrs with unboxing video).</p>
+                    </div>
+
+                    <div>
+                        <strong className="text-amber-600 block mb-1">2) Custom Orders</strong>
+                        <p className="text-sm">NOT eligible for refund if: you changed mind after printing started or don't like design after keeping it. <br />ELIGIBLE if: damaged in shipping, clearly different from design, or printing defect.</p>
+                    </div>
+                </div>
+            )
+        },
     ];
 
     return (
@@ -64,7 +112,7 @@ export default function Support() {
                                 <Mail className="w-6 h-6" />
                             </div>
                             <h3 className="font-semibold text-primary">Email Us</h3>
-                            <p className="text-text-secondary">support@promethix3d.com</p>
+                            <p className="text-text-secondary">support@PROMETHIX3D3d.com</p>
                         </div>
                         <div className="space-y-4">
                             <div className="w-12 h-12 bg-white border border-border flex items-center justify-center mx-auto text-primary">

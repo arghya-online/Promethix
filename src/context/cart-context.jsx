@@ -4,12 +4,12 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
     const [cart, setCart] = useState(() => {
-        const savedCart = localStorage.getItem("promethix_cart");
+        const savedCart = localStorage.getItem("PROMETHIX3D_cart");
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
     useEffect(() => {
-        localStorage.setItem("promethix_cart", JSON.stringify(cart));
+        localStorage.setItem("PROMETHIX3D_cart", JSON.stringify(cart));
     }, [cart]);
 
     const addToCart = (product, quantity = 1, notes = "") => {
