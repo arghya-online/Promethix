@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Box, Sparkles } from "lucide-react";
 import { ENRICHED_PRODUCTS as PRODUCTS } from "@/data/products";
+import ImgMain from "../assets/HeroImages/mainImage.png";
+import ImgSub1 from "../assets/HeroImages/subImage1.png";
+import ImgSub2 from "../assets/HeroImages/subImage2.png";
 
 export function LandingHero() {
   // Select specific images for the collage
-  const heroImage = PRODUCTS[0].image; // Vase
-  const subImage1 = PRODUCTS[2].image; // Ganesha
-  const subImage2 = PRODUCTS[5].image; // Moon Lamp
+  const heroImage = ImgMain;
+  const subImage1 = ImgSub1;
+  const subImage2 = ImgSub2;
+
+  const containerRef = useRef(null);
+  const heroRef = useRef(null);
+  const sub1Ref = useRef(null);
+  const sub2Ref = useRef(null);
+
+  useGSAP(() => {
+    const heroX = gsap.quickTo(heroRef.current, "x", { duration: 0.5, ease: "power3" });
+    const heroY = gsap.quickTo(heroRef.current, "y", { duration: 0.5, ease: "power3" });
+
+    const sub1X = gsap.quickTo(sub1Ref.current, "x", { duration: 0.4, ease: "power3" });
+    const sub1Y = gsap.quickTo(sub1Ref.current, "y", { duration: 0.4, ease: "power3" });
+
+    const sub2X = gsap.quickTo(sub2Ref.current, "x", { duration: 0.6, ease: "power3" });
+    const sub2Y = gsap.quickTo(sub2Ref.current, "y", { duration: 0.6, ease: "power3" });
+
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = (clientX / innerWidth - 0.5);
+      const y = (clientY / innerHeight - 0.5);
+
+      heroX(x * 30);
+      heroY(y * 30);
+
+      sub1X(x * -40); // Inverse movement for depth
+      sub1Y(y * -40);
+
+      sub2X(x * 60);
+      sub2Y(y * 60);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, { scope: containerRef });
 
   return (
     <section className="relative w-full overflow-hidden bg-slate-50 pt-16 pb-20 lg:pt-32 lg:pb-32 min-h-[90vh] flex items-center">
@@ -48,16 +88,19 @@ export function LandingHero() {
               </h1>
             </motion.div>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-600 mb-6 leading-relaxed font-medium"
+              className="text-lg md:text-xl text-slate-600 mb-6 font-medium space-y-4"
             >
-              We design and 3D print premium models, decor pieces, gifts, figurines, and project parts.
-              <br className="hidden md:block" />
-              Pick from our collection or send your custom requirement — we’ll take it from design to delivery.
-            </motion.p>
+              <p> We’re PROMETHIX3D, a 3D design and 3D printing startup based in India.</p>
+
+              <p>We make everything from decor, figurines, idols, gifts, and lithophanes to mechanical parts for projects.</p>
+              <p>You can order ready-made models from our shop, or send us your custom idea — even without a 3D file.</p>
+
+              <p>Just share your requirement. We’ll design it, print it cleanly, and deliver it safely to your location.</p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -109,53 +152,52 @@ export function LandingHero() {
             </motion.div>
           </div>
 
-          {/* RIGHT: Visual Collage */}
-          <div className="relative h-[500px] lg:h-[700px] hidden lg:block">
+          {/* RIGHT: Visual Collage (Redesigned) */}
+          <div className="relative h-[500px] lg:h-[700px] hidden lg:block perspective-1000">
 
-            {/* Main Hero Image */}
+            {/* Main Hero Image - Large & Dominant */}
             <motion.div
-              initial={{ opacity: 0, y: 40, rotate: 6 }}
-              animate={{ opacity: 1, y: 0, rotate: 3 }}
-              transition={{ duration: 1, delay: 0.2, type: "spring" }}
-              className="absolute top-10 right-10 w-[80%] h-[70%] bg-white p-3 rounded-[2rem] shadow-2xl shadow-slate-300/50 z-20"
+              ref={heroRef}
+              initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 50 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden z-20 border-[6px] border-white"
             >
-              <div className="w-full h-full rounded-[1.5rem] overflow-hidden">
-                <img src={heroImage} className="w-full h-full object-cover" alt="Hero 3D Print" />
-              </div>
+              <img src={heroImage} className="w-full h-full object-cover" alt="Hero 3D Print" />
             </motion.div>
 
-            {/* Floating Card 1 */}
+            {/* Floating Card 1 - Top Right - Glassmorphic */}
             <motion.div
-              initial={{ opacity: 0, x: -40, rotate: -6 }}
-              animate={{ opacity: 1, x: 0, rotate: -3 }}
+              ref={sub1Ref}
+              initial={{ opacity: 0, x: 50, y: -20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 1, delay: 0.5, type: "spring" }}
-              className="absolute bottom-20 left-10 w-[45%] h-[40%] bg-white p-3 rounded-[2rem] shadow-xl z-30"
+              className="absolute top-[10%] right-[5%] w-[35%] aspect-square rounded-[2rem] shadow-2xl overflow-hidden z-30 border-4 border-white/50 bg-white/20 backdrop-blur-sm"
             >
-              <div className="w-full h-full rounded-[1.5rem] overflow-hidden">
-                <img src={subImage1} className="w-full h-full object-cover" alt="Detail Print" />
-              </div>
+              <img src={subImage1} className="w-full h-full object-cover" alt="Detail Print" />
             </motion.div>
 
-            {/* Floating Card 2 */}
+            {/* Floating Card 2 - Bottom Left - Accent */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0, y: [0, -10, 0] }}
-              transition={{
-                opacity: { duration: 1, delay: 0.7 },
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-              }}
-              className="absolute top-1/2 right-0 w-[35%] h-[30%] bg-white p-2 rounded-[1.5rem] shadow-lg z-10 filter blur-[1px]"
+              ref={sub2Ref}
+              initial={{ opacity: 0, x: -50, scale: 0.8 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, delay: 0.7, type: "spring" }}
+              className="absolute bottom-[10%] left-[-5%] w-[30%] aspect-[4/5] rounded-[2rem] shadow-2xl overflow-hidden z-30 border-4 border-white"
             >
-              <div className="w-full h-full rounded-[1.2rem] overflow-hidden opacity-80">
-                <img src={subImage2} className="w-full h-full object-cover" alt="Background Element" />
-              </div>
+              <img src={subImage2} className="w-full h-full object-cover" alt="Background Element" />
             </motion.div>
 
-            {/* Backdrop Blob */}
+            {/* Decorative Elements */}
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 bg-gradient-to-tr from-amber-200 to-orange-100 rounded-full blur-[80px] opacity-40 -z-10 scale-90"
+              animate={{ scale: [1, 1.2, 1], rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute top-1/4 right-0 w-32 h-32 bg-amber-400/20 rounded-full blur-[40px] z-10"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.5, 1] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-1/4 left-10 w-40 h-40 bg-orange-500/10 rounded-full blur-[50px] z-10"
             />
 
           </div>

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MoveHorizontal } from "lucide-react";
+import cadImage from "../assets/sliderCad/cadImage.png";
+import realityImage from "../assets/sliderCad/realityImage.png";
 
 export function ComparisonSlider() {
     const [sliderPosition, setSliderPosition] = useState(50);
@@ -7,7 +9,8 @@ export function ComparisonSlider() {
     const containerRef = useRef(null);
 
     // Image to use (Geometric Vase works well for lines)
-    const imageSrc = "https://images.unsplash.com/photo-1541782814453-dc6f3d3b3c4e?auto=format&fit=crop&q=80&w=1200";
+    const imageSrc = cadImage;
+    const realityImageSrc = realityImage;
 
     const handleMove = (clientX) => {
         if (!containerRef.current) return;
@@ -65,9 +68,9 @@ export function ComparisonSlider() {
                 {/* This acts as the background layer */}
                 <div className="absolute inset-0 w-full h-full">
                     <img
-                        src={imageSrc}
+                        src={realityImageSrc}
                         alt="Reality"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         draggable="false"
                     />
                     <div className="absolute top-6 right-6 bg-black/50 backdrop-blur text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
@@ -81,26 +84,15 @@ export function ComparisonSlider() {
                     className="absolute inset-0 w-full h-full overflow-hidden bg-slate-100"
                     style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
                 >
-                    {/* "CAD" Simulation using CSS Filters: Blueprint Blue */}
+                    {/* "CAD" Simulation */}
                     <div className="w-full h-full relative">
                         <img
-                            src={imageSrc}
+                            src={cadImage}
                             alt="CAD Model"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                             draggable="false"
-                            style={{
-                                filter: "grayscale(100%) brightness(1.1) contrast(1.2) sepia(1) hue-rotate(190deg) saturate(300%)",
-                                mixBlendMode: "multiply"
-                            }}
                         />
-                        {/* Grid Overlay for technical feel */}
-                        <div
-                            className="absolute inset-0 opacity-30 pointer-events-none"
-                            style={{
-                                backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-                                backgroundSize: "40px 40px"
-                            }}
-                        />
+                        {/* NO Grid Overlay */}
                         <div className="absolute top-6 left-6 bg-blue-600 shadow-lg shadow-blue-600/20 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase z-10">
                             CAD Model
                         </div>

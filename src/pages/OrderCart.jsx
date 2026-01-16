@@ -149,7 +149,7 @@ export default function OrderCart() {
               <SignedIn>
                 <Button
                   size="lg"
-                  className="w-full h-14 text-lg bg-primary hover:bg-slate-800 text-white shadow-lg shadow-primary/25 rounded-none font-bold uppercase tracking-widest"
+                  className="w-full h-14 text-lg bg-[#25d366] hover:bg-[#20ba5a] text-white shadow-lg shadow-green-900/20 rounded-none font-bold uppercase tracking-widest"
                   onClick={handleCheckout}
                 >
                   Place Order <ArrowRight className="w-5 h-5 ml-2" />

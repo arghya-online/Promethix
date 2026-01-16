@@ -64,8 +64,8 @@ export function Footer() {
                                 </div>
                                 <div>
                                     <span className="block text-white font-medium mb-1">Headquarters</span>
-                                    <span className="text-slate-500 block">Innov8 Coworking, Koramangala</span>
-                                    <span className="text-slate-500">Bengaluru, KA 560095</span>
+                                    <span className="text-slate-500 block">IEM Management House, Salt Lake Sec V</span>
+                                    <span className="text-slate-500">Kolkata, WB 700091</span>
                                 </div>
                             </li>
                             <li className="flex items-center gap-4">
@@ -97,7 +97,7 @@ export function Footer() {
                             <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
 
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.586111003425!2d77.6134593740498!3d12.934279987377507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144e69555555%3A0x6b8089335a022468!2sInnov8%20Koramangala!5e0!3m2!1sen!2sin!4v1705654321000!5m2!1sen!2sin"
+                                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=IEM%20Management%20House,D%20-1,%20Street%20No.%2013,%20EP%20Block,%20Sector%20V,%20Bidhannagar,%20Kolkata,%20West%20Bengal%20700091&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(80%)" }}
@@ -113,7 +113,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
                     <p className="text-xs text-slate-500">
-                        © 2025 PROMETHIX3D3D. All rights reserved.
+                        © 2026 PROMETHIX3D. All rights reserved.
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <PaymentIcon icon={<CreditCard />} />
