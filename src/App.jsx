@@ -13,6 +13,7 @@ import CustomProduct from "./pages/CustomProduct";
 import OrderCart from "./pages/OrderCart";
 import AppLayout from "./layouts/app-layout.jsx";
 import Support from "./pages/Support";
+import HowWeWork from "./pages/HowWeWork";
 
 function App() {
   const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -51,6 +52,10 @@ function App() {
         {
           path: "/support",
           element: <Support />,
+        },
+        {
+          path: "/how-we-work",
+          element: <HowWeWork />,
         },
         {
           path: "/cart",

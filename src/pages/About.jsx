@@ -1,97 +1,287 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Users, Lightbulb, PenTool } from "lucide-react";
+import {
+  ArrowRight, CheckCircle, MessageCircle, Home,
+  Ghost, Gift, Hammer, Image as ImageIcon, Box,
+  ShieldCheck, PenTool, GraduationCap
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import printerImg from "../assets/about/printer.png";
+import filamentImg from "../assets/about/filament.png";
+import finishedImg from "../assets/about/finished.png";
 
 export default function About() {
 
+  // Animation Variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "919832769269";
+    const message = "Hi Promethix3D, I have an idea for a custom 3D print. Can you help me with the details?";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  };
 
   return (
-    <div className="min-h-screen bg-background text-text-primary">
-      {/* Main Content */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto space-y-12">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-amber-100 selection:text-amber-900">
 
-          <div className="text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary">
-              About PROMETHIX3D
-            </h1>
-            <div className="h-1 w-24 bg-amber-500 mx-auto rounded-full" />
-          </div>
+      {/* 1. HERO SECTION */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-32 px-6 max-w-[1200px] mx-auto overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <div className="space-y-6 text-lg text-text-secondary leading-relaxed font-medium">
+          {/* Left: Text */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="space-y-8"
+          >
+            <motion.span variants={fadeInUp} className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase block">
+              About Promethix3D
+            </motion.span>
+
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl font-black leading-[1.1] text-slate-900">
+              We design and 3D print custom products that actually feel premium.
+            </motion.h1>
+
+            <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-600 leading-relaxed max-w-lg">
               <p>
-                We’re PROMETHIX3D, a 3D design and 3D printing startup based in India.
+                We’re Promethix3D — a small 3D design + printing studio. We make everything from decor and figurines to gifts, idols, lithophanes, and even mechanical parts for student projects.
               </p>
               <p>
-                We create all kinds of 3D printed products — from <span className="text-primary font-bold">home decor and artifacts</span> to <span className="text-primary font-bold">anime figurines</span>, custom gifts, mementoes, idols, lithophanes, and even <span className="text-primary font-bold">mechanical parts</span> for student and engineering projects.
+                You can explore ready-made models from our shop, or send a custom request. Even if you don’t have a 3D file — no worries. Just share your idea and we’ll take it from there.
               </p>
-              <p>
-                You can browse our ready-made models in the shop and order directly.
-                And if you want something custom, just message us your idea - even if you don’t have a 3D file.
-              </p>
-              <div className="bg-slate-50 border border-slate-100 p-6 rounded-xl mt-6">
-                <p className="font-bold text-primary text-base">
-                  Just tell us what you need. <br />
-                  <span className="font-normal text-slate-600">We’ll design it, print it with clean finishing, and deliver it safely to your location.</span>
-                </p>
-              </div>
-            </div>
+            </motion.div>
 
-            {/* Visual Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4 pt-8">
-                <div className="relative aspect-[3/4] bg-surface-light border border-border rounded-2xl overflow-hidden shadow-sm rotate-2 hover:rotate-0 transition-transform duration-500 group">
-                  <img src="https://images.unsplash.com/photo-1581093458791-9f302e6d8a7a?auto=format&fit=crop&q=80&w=400" alt="3D Printer" className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent text-white text-[10px] font-bold uppercase tracking-widest text-center opacity-0 group-hover:opacity-100 transition-opacity">3D Printer</div>
-                </div>
-                <div className="relative aspect-square bg-surface-light border border-border rounded-2xl overflow-hidden shadow-sm -rotate-2 hover:rotate-0 transition-transform duration-500 group">
-                  <img src="https://images.unsplash.com/photo-1631541909061-71e349d1f203?auto=format&fit=crop&q=80&w=400" alt="Design Process" className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent text-white text-[10px] font-bold uppercase tracking-widest text-center opacity-0 group-hover:opacity-100 transition-opacity">Design Process</div>
-                </div>
+            <motion.div variants={fadeInUp} className="bg-amber-50 border border-amber-100 p-6 rounded-2xl max-w-md">
+              <p className="font-medium text-amber-900 text-sm leading-relaxed">
+                Just tell us what you need. We’ll design it, print it cleanly, and deliver it safely to your location.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4">
+              <Link to="/products">
+                <Button className="h-12 px-8 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 hover:scale-105 transition-all shadow-lg hover:shadow-xl">
+                  Browse Products
+                </Button>
+              </Link>
+              <Button onClick={handleWhatsAppClick} variant="outline" className="h-12 px-8 border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 hover:text-slate-900">
+                Start Custom Order
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: Collage */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[500px] hidden lg:block"
+          >
+            {/* Card 1: Printer */}
+            <motion.div
+              whileHover={{ y: -10, rotate: -2, scale: 1.02 }}
+              className="absolute top-0 right-10 w-64 aspect-[4/5] bg-white p-2 rounded-2xl shadow-xl z-10 rotate-3 border border-slate-100"
+            >
+              <img
+                src={printerImg}
+                alt="3D Printer"
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+                3D Printer
               </div>
-              <div className="space-y-4">
-                <div className="relative aspect-square bg-surface-light border border-border rounded-2xl overflow-hidden shadow-sm rotate-2 hover:rotate-0 transition-transform duration-500 group">
-                  <img src="https://images.unsplash.com/photo-1565514020125-99d799f9217e?auto=format&fit=crop&q=80&w=400" alt="Filament Material" className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent text-white text-[10px] font-bold uppercase tracking-widest text-center opacity-0 group-hover:opacity-100 transition-opacity">Filament Material</div>
-                </div>
-                <div className="relative aspect-[3/4] bg-surface-light border border-border rounded-2xl overflow-hidden shadow-sm -rotate-2 hover:rotate-0 transition-transform duration-500 group">
-                  <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=400" alt="Final Product" className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent text-white text-[10px] font-bold uppercase tracking-widest text-center opacity-0 group-hover:opacity-100 transition-opacity">Final Product</div>
-                </div>
+            </motion.div>
+
+            {/* Card 2: Filament */}
+            <motion.div
+              whileHover={{ y: -10, rotate: 2, scale: 1.02 }}
+              className="absolute top-40 left-10 w-56 aspect-square bg-white p-2 rounded-2xl shadow-xl z-20 -rotate-6 border border-slate-100"
+            >
+              <img
+                src={filamentImg}
+                alt="Filament"
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+                Filament Material
               </div>
-            </div>
-          </div>
+            </motion.div>
+
+            {/* Card 3: Finished Print */}
+            <motion.div
+              whileHover={{ y: -10, scale: 1.05 }}
+              className="absolute bottom-10 right-20 w-60 aspect-square bg-white p-2 rounded-2xl shadow-2xl z-30 rotate-6 border border-slate-100"
+            >
+              <img
+                src={finishedImg}
+                alt="Finished Print"
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+                Finished Print
+              </div>
+            </motion.div>
+          </motion.div>
 
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-surface text-text-primary border-t border-border">
-        <div className="max-w-7xl mx-auto px-6">
+
+      {/* 2. WHAT WE MAKE */}
+      <section className="py-20 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-heading font-bold text-primary">Why PROMETHIX3D?</h2>
-            <p className="text-text-secondary mt-4">We keep things simple, and we focus on what really matters.</p>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">What we make</h2>
+            <p className="text-slate-500 font-medium">Some popular things people order from us.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Home, text: "Home Decor & Artifacts" },
+              { icon: Ghost, text: "Anime / Cartoon Figurines" },
+              { icon: Gift, text: "Custom Gifts & Nameplates" },
+              { icon: Hammer, text: "Idols & Miniature Models" },
+              { icon: ImageIcon, text: "Lithophanes (Photo Prints)" },
+              { icon: Box, text: "Project Parts & Prototypes" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, boxShadow: "0 10px 30px -5px rgba(0,0,0,0.05)" }}
+                className="bg-white p-6 rounded-2xl border border-slate-200 flex items-center gap-4 transition-all hover:border-amber-200 group cursor-default"
+              >
+                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <span className="font-bold text-slate-700 group-hover:text-slate-900">{item.text}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="text-center text-slate-400 text-sm font-medium mt-12 bg-white inline-block px-6 py-2 rounded-full border border-slate-100 mx-auto block w-max">
+            If you can describe it, we can probably design and print it.
+          </p>
+        </div>
+      </section>
+
+
+      {/* 3. HOW CUSTOM ORDERS WORK */}
+      <section className="py-20 md:py-32 max-w-[1200px] mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Custom orders are super simple.</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {[
+            { step: "01", title: "Send your idea", desc: "WhatsApp us a photo, sketch, link, dimensions, or STL file." },
+            { step: "02", title: "We design it", desc: "Our team prepares the model and shares a preview for approval." },
+            { step: "03", title: "We print it", desc: "We print with clean detailing and strength (material depends on use)." },
+            { step: "04", title: "Packed & delivered", desc: "We quality check, pack safely, and ship to your location." },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+              className="relative"
+            >
+              <div className="text-6xl font-black text-slate-100 absolute -top-8 -left-2 -z-10 select-none">
+                {s.step}
+              </div>
+              <div className="bg-white pt-4">
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{s.title}</h3>
+                <p className="text-slate-500 leading-relaxed text-sm">
+                  {s.desc}
+                </p>
+              </div>
+              {i < 3 && (
+                <div className="hidden md:block absolute top-8 -right-4 text-slate-200">
+                  <ArrowRight className="w-6 h-6" />
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-slate-600 mb-6 font-medium">Have something in mind? Start your custom order on WhatsApp.</p>
+          <Button onClick={handleWhatsAppClick} className="bg-green-600 hover:bg-green-700 text-white font-bold h-12 px-8 rounded-xl shadow-lg hover:shadow-green-200 transition-all hover:-translate-y-1">
+            <MessageCircle className="w-4 h-4 mr-2" /> Chat on WhatsApp
+          </Button>
+        </div>
+      </section>
+
+
+      {/* 4. WHY PROMETHIX3D */}
+      <section className="py-20 bg-slate-900 text-white">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-black mb-4">Why people choose Promethix3D</h2>
+            <p className="text-slate-400 text-lg">We’re small, but we take quality seriously.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Award, title: "Quality First", desc: "Every print is checked properly. If it doesn’t look right, we don’t ship it." },
-              { icon: Lightbulb, title: "Smart Design Support", desc: "We don’t just print files - we help improve the design so the final output looks better and works better." },
-              { icon: Users, title: "Community Driven", desc: "We love building for students, creators, and makers. We’re here to support learning and help people bring ideas to life." }
-            ].map((item, i) => (
-              <div key={i} className="bg-white p-8 border border-border group hover:border-primary/50 transition-colors">
-                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-none mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
-                  <item.icon className="w-6 h-6" />
+              { icon: ShieldCheck, title: "Quality First", text: "Every print is checked properly. If it doesn’t look right, we don’t ship it." },
+              { icon: PenTool, title: "Design Support", text: "We don’t just print files. We help improve the design so it looks better and works better." },
+              { icon: GraduationCap, title: "Friendly for Students", text: "A lot of our customers are students and makers. We keep the process simple and guide you properly." },
+            ].map((card, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors"
+              >
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-amber-400">
+                  <card.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
-              </div>
+                <h3 className="text-xl font-bold mb-3">{card.title}</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  {card.text}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+
+      {/* 5. FINAL CTA Footer Strip */}
+      <section className="py-16 bg-amber-500">
+        <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <div>
+            <h2 className="text-3xl font-black text-slate-900 mb-2">Ready to print your idea?</h2>
+            <p className="text-amber-900 font-medium">Send your requirement on WhatsApp and we’ll reply with pricing + timeline.</p>
+          </div>
+          <Button onClick={handleWhatsAppClick} className="bg-slate-900 hover:bg-black text-white px-8 h-14 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition-all">
+            Start on WhatsApp
+          </Button>
+        </div>
+      </section>
+
     </div>
   );
 }

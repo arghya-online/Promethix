@@ -1,3 +1,22 @@
+import vaseImage from "../assets/productImages/vaseImage.png";
+import lithophane from "../assets/productImages/lithophane.jpeg";
+import shivaStatue from "../assets/productImages/shivaStatue.png";
+import lionStand from "../assets/productImages/LionStand.png";
+import ganesha from "../assets/productImages/ganesha.png";
+import planter from "../assets/productImages/planter.png";
+import mechanicalParts from "../assets/productImages/mechanical_parts.png";
+import moonLamp from "../assets/productImages/moon_lamp.png";
+import animeFigurine from "../assets/productImages/anime_figurine.png";
+import penStand from "../assets/productImages/pen_stand.png";
+import nameplate from "../assets/productImages/nameplate.png";
+import wallArt from "../assets/productImages/wall_art.png";
+import lithophanePortrait from "../assets/productImages/lithophane_portrait.png";
+import keychain from "../assets/productImages/keychain.png";
+import rocket from "../assets/productImages/rocket.png";
+import organizer from "../assets/productImages/organizer.png";
+import gearbox from "../assets/productImages/gearbox.png";
+import trophy from "../assets/productImages/trophy.png";
+
 export const PRODUCTS = [
   {
     id: 1,
@@ -7,12 +26,8 @@ export const PRODUCTS = [
     discountPercent: 15,
     rating: 4.9,
     reviews: 124,
-    image: "https://images.unsplash.com/photo-1589820296156-2454dad33d94?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1589820296156-2454dad33d94?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1541782814453-dc6f3d3b3c4e?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: vaseImage,
+    images: [vaseImage],
     description: "Modern spiral design vase, perfect for dried flowers or minimal decor setups.",
     details: [
       "Spiral geometry design that looks premium even without flowers.",
@@ -33,11 +48,8 @@ export const PRODUCTS = [
     discountPercent: 0,
     rating: 5.0,
     reviews: 89,
-    image: "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1520975958225-29fef49d34c9?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: lithophane,
+    images: [lithophane],
     description: "Custom lithophane cube that glows beautifully when lit. A unique gift idea.",
     details: [
       "Your photo becomes a 3D lithophane that reveals detail when backlit.",
@@ -58,11 +70,8 @@ export const PRODUCTS = [
     discountPercent: 20,
     rating: 4.8,
     reviews: 215,
-    image: "https://images.unsplash.com/photo-1600250395178-40fe752e5189?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1600250395178-40fe752e5189?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1601379262141-85bd0baf2c56?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: ganesha,
+    images: [ganesha],
     description: "Detailed Lord Ganesha miniature with premium metallic finish and smooth detailing.",
     details: [
       "High-detail miniature with sharp features and smooth curves.",
@@ -83,11 +92,8 @@ export const PRODUCTS = [
     discountPercent: 10,
     rating: 4.7,
     reviews: 56,
-    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1519710887727-8d66ff59bb26?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: planter,
+    images: [planter],
     description: "Cute low-poly planter for succulents, desk plants and small indoor greens.",
     details: [
       "Low-poly design that instantly upgrades any desk setup.",
@@ -108,11 +114,8 @@ export const PRODUCTS = [
     discountPercent: 0,
     rating: 4.9,
     reviews: 32,
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1581092919535-7146c4a1b8d7?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: mechanicalParts,
+    images: [mechanicalParts],
     description: "Functional prototype parts printed in PETG/ABS/Nylon based on requirement.",
     details: [
       "Designed for functional use in engineering and prototype builds.",
@@ -133,11 +136,8 @@ export const PRODUCTS = [
     discountPercent: 25,
     rating: 4.8,
     reviews: 340,
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1541782814453-dc6f3d3b3c4e?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: moonLamp,
+    images: [moonLamp],
     description: "Realistic moon lamp with touch control and multiple color modes. Cozy vibes.",
     details: [
       "Detailed moon surface texture for a realistic look.",
@@ -150,7 +150,6 @@ export const PRODUCTS = [
       dimensions: "15cm diameter",
     }
   },
-
   {
     id: 7,
     name: "Anime Figurine - Chibi Hero",
@@ -159,11 +158,8 @@ export const PRODUCTS = [
     discountPercent: 10,
     rating: 4.7,
     reviews: 188,
-    image: "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1604147495790-2eb06b1e0dab?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: animeFigurine,
+    images: [animeFigurine],
     description: "Cute chibi-style figure with premium detailing. Perfect for collectors and gifts.",
     details: [
       "Chibi character proportions with smooth detailing.",
@@ -184,11 +180,8 @@ export const PRODUCTS = [
     discountPercent: 5,
     rating: 4.6,
     reviews: 94,
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: penStand,
+    images: [penStand],
     description: "Minimal pen stand for a clean desk setup. Lightweight and super practical.",
     details: [
       "Minimal grid look for clean modern desk setups.",
@@ -209,11 +202,8 @@ export const PRODUCTS = [
     discountPercent: 20,
     rating: 4.8,
     reviews: 210,
-    image: "https://images.unsplash.com/photo-1526566762798-8fac9c07aa9e?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1526566762798-8fac9c07aa9e?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: nameplate,
+    images: [nameplate],
     description: "Custom nameplate for your desk. Great for gifts, office tables, and study setup.",
     details: [
       "Personalized nameplate with a premium desktop look.",
@@ -234,11 +224,8 @@ export const PRODUCTS = [
     discountPercent: 10,
     rating: 4.9,
     reviews: 71,
-    image: "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d4b?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d4b?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1544739313-6fad02872337?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: wallArt,
+    images: [wallArt],
     description: "Aesthetic 3D wall art panel with an abstract wave texture. Looks premium on any wall.",
     details: [
       "Abstract wave texture gives a premium 3D wall decor vibe.",
@@ -259,11 +246,8 @@ export const PRODUCTS = [
     discountPercent: 5,
     rating: 4.9,
     reviews: 132,
-    image: "https://images.unsplash.com/photo-1520975867597-0f49e21a2b5c?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1520975867597-0f49e21a2b5c?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1520975941232-2c44f3dbe9d5?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: lithophanePortrait,
+    images: [lithophanePortrait],
     description: "Your favourite photo converted into a lithophane frame. Looks insane when backlit.",
     details: [
       "Photo-to-3D conversion with detailed lithophane layers.",
@@ -284,11 +268,8 @@ export const PRODUCTS = [
     discountPercent: 0,
     rating: 4.6,
     reviews: 260,
-    image: "https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1549921296-3cceab9e0c4d?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: keychain,
+    images: [keychain],
     description: "Personalized keychain pack. Add names, initials, or custom icons.",
     details: [
       "Custom keychains for couples, friends and gifting.",
@@ -309,11 +290,8 @@ export const PRODUCTS = [
     discountPercent: 15,
     rating: 4.8,
     reviews: 68,
-    image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1520975958225-29fef49d34c9?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: rocket,
+    images: [rocket],
     description: "A premium desk rocket model. Great for space lovers and clean desk setups.",
     details: [
       "Clean rocket model with premium desk decor vibe.",
@@ -334,11 +312,8 @@ export const PRODUCTS = [
     discountPercent: 10,
     rating: 4.7,
     reviews: 47,
-    image: "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: organizer,
+    images: [organizer],
     description: "Modular organizer kit for pens, notes, tools, and accessories. Clean storage.",
     details: [
       "Modular compartments for stationery, tools and desk accessories.",
@@ -359,11 +334,8 @@ export const PRODUCTS = [
     discountPercent: 15,
     rating: 4.9,
     reviews: 143,
-    image: "https://images.unsplash.com/photo-1544739313-6fad02872337?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1544739313-6fad02872337?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d4b?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: shivaStatue,
+    images: [shivaStatue],
     description: "Premium Shiva bust model with stone-style finish. Looks amazing as decor.",
     details: [
       "Stone-textured finish gives it a premium sculpture look.",
@@ -384,11 +356,8 @@ export const PRODUCTS = [
     discountPercent: 0,
     rating: 4.8,
     reviews: 39,
-    image: "https://images.unsplash.com/photo-1581092919535-7146c4a1b8d7?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1581092919535-7146c4a1b8d7?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: gearbox,
+    images: [gearbox],
     description: "Mechanical demo model for academics. Perfect for practical learning and presentations.",
     details: [
       "Ideal for mechanical demos, presentations and lab models.",
@@ -409,11 +378,8 @@ export const PRODUCTS = [
     discountPercent: 10,
     rating: 4.9,
     reviews: 92,
-    image: "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: trophy,
+    images: [trophy],
     description: "Custom trophy/memento for events, competitions and college fests.",
     details: [
       "Perfect for college fests, competitions and award ceremonies.",
@@ -434,11 +400,8 @@ export const PRODUCTS = [
     discountPercent: 0,
     rating: 4.5,
     reviews: 310,
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800",
-    images: [
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=800"
-    ],
+    image: lionStand,
+    images: [lionStand],
     description: "Minimal foldable phone stand for desk setup. Perfect for study and work mode.",
     details: [
       "Foldable minimal stand for any desk setup.",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Star, Minus, Plus, ShoppingCart, Truck, ShieldCheck,
@@ -13,10 +13,12 @@ import { ENRICHED_PRODUCTS as PRODUCTS } from "@/data/products";
 
 export function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
+  const [isAdded, setIsAdded] = useState(false); // Track if item is added
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -32,9 +34,19 @@ export function ProductDetail() {
   if (!product) return <div className="min-h-screen grid place-items-center">Loading...</div>;
 
   const handleAddToCart = () => {
+    if (isAdded) {
+      navigate("/cart");
+      return;
+    }
     addToCart(product, quantity);
     toast.success(`Added ${quantity} x ${product.name} to cart`);
+    setIsAdded(true);
   };
+
+  const handleBuyNow = () => {
+    addToCart(product, quantity);
+    navigate("/cart");
+  }
 
   const discountedPrice = product.discountPercent
     ? Math.round(product.price * (1 - product.discountPercent / 100))
@@ -83,10 +95,10 @@ export function ProductDetail() {
                 <button
                   key={idx}
                   onClick={() => setActiveImage(img)}
-                  className={`relative flex - shrink - 0 w - 16 h - 16 rounded - xl overflow - hidden border - 2 transition - all ${activeImage === img ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-100 hover:border-slate-300'
-                    } `}
+                  className={`relative flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${activeImage === img ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-100 hover:border-slate-300'
+                    }`}
                 >
-                  <img src={img} alt={`View ${idx} `} className="w-full h-full object-cover" />
+                  <img src={img} alt={`View ${idx}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -109,7 +121,7 @@ export function ProductDetail() {
             <div className="flex items-center gap-2 mb-6 text-sm">
               <div className="flex text-amber-500">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className={`w - 4 h - 4 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-slate-200'} `} />
+                  <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-slate-200'}`} />
                 ))}
               </div>
               <span className="font-bold text-slate-900">{product.rating}</span>
@@ -193,13 +205,18 @@ export function ProductDetail() {
                 {/* Add to Cart */}
                 <Button
                   onClick={handleAddToCart}
-                  className="flex-1 h-[52px] text-base font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                  className={`flex-1 h-[52px] text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-white ${isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-slate-900 hover:bg-slate-800'}`}
                 >
-                  Add to Cart - ₹{(discountedPrice * quantity).toLocaleString()}
+                  {isAdded ? "Go to Order Cart" : `Add to Cart - ₹${(discountedPrice * quantity).toLocaleString()}`}
+                  {isAdded && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
               </div>
 
-              <Button variant="outline" className="w-full h-12 font-semibold border-slate-200 hover:bg-slate-50 hover:text-slate-900 text-slate-600">
+              <Button
+                variant="outline"
+                onClick={handleBuyNow}
+                className="w-full h-12 font-semibold border-slate-200 hover:bg-slate-50 hover:text-slate-900 text-slate-600"
+              >
                 Buy Now
               </Button>
             </div>
@@ -225,10 +242,10 @@ export function ProductDetail() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb - 4 text - sm font - bold uppercase tracking - wide transition - all ${activeTab === tab
+                className={`pb-4 text-sm font-bold uppercase tracking-wide transition-all ${activeTab === tab
                   ? 'text-slate-900 border-b-2 border-slate-900'
                   : 'text-slate-400 hover:text-slate-600 border-b-2 border-transparent'
-                  } `}
+                  }`}
               >
                 {tab === 'description' ? 'Product Description' : tab === 'specs' ? 'Specifications' : 'Shipping & Returns'}
               </button>
@@ -307,12 +324,28 @@ export function ProductDetail() {
       {/* --- MOBILE STICKY BOTTOM BAR --- */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] md:hidden">
         <div className="flex gap-4 items-center">
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-slate-400">Total Price</span>
-            <span className="text-xl font-black text-slate-900">₹{discountedPrice}</span>
+          {/* Mobile Quantity */}
+          <div className="flex items-center border border-slate-200 rounded-lg h-12 bg-slate-50">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="w-10 h-full flex items-center justify-center text-slate-500 hover:text-slate-900"
+            >
+              <Minus className="w-4 h-4" />
+            </button>
+            <span className="font-bold text-slate-900 w-6 text-center text-sm">{quantity}</span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="w-10 h-full flex items-center justify-center text-slate-500 hover:text-slate-900"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
           </div>
-          <Button onClick={handleAddToCart} className="flex-1 h-12 bg-slate-900 text-white font-bold rounded-xl shadow-lg">
-            Add to Cart <ArrowRight className="ml-2 w-4 h-4 opacity-50" />
+
+          <Button
+            onClick={handleAddToCart}
+            className={`flex-1 h-12 text-white font-bold rounded-xl shadow-lg ${isAdded ? 'bg-green-600' : 'bg-slate-900'}`}
+          >
+            {isAdded ? "Go to Cart" : `Add - ₹${discountedPrice * quantity}`}
           </Button>
         </div>
       </div>
