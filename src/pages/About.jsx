@@ -61,14 +61,14 @@ export default function About() {
 
             <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-600 leading-relaxed max-w-lg">
               <p>
-                We’re Promethix3D — a small 3D design + printing studio. We make everything from decor and figurines to gifts, idols, lithophanes, and even mechanical parts for student projects.
+                We’re Promethix3D - a small 3D design + printing studio. We make everything from decor and figurines to gifts, idols, lithophanes, and even mechanical parts for student projects.
               </p>
               <p>
-                You can explore ready-made models from our shop, or send a custom request. Even if you don’t have a 3D file — no worries. Just share your idea and we’ll take it from there.
+                You can explore ready-made models from our shop, or send a custom request. Even if you don’t have a 3D file - no worries. Just share your idea and we’ll take it from there.
               </p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="bg-amber-50 border border-amber-100 p-6 rounded-2xl max-w-md">
+            <motion.div variants={fadeInUp} className="bg-amber-50 border border-amber-100 p-6 rounded-none max-w-md">
               <p className="font-medium text-amber-900 text-sm leading-relaxed">
                 Just tell us what you need. We’ll design it, print it cleanly, and deliver it safely to your location.
               </p>
@@ -76,11 +76,11 @@ export default function About() {
 
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4">
               <Link to="/products">
-                <Button className="h-12 px-8 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 hover:scale-105 transition-all shadow-lg hover:shadow-xl">
+                <Button className="h-12 px-8 bg-slate-900 text-white font-bold rounded-none hover:bg-slate-800 hover:scale-105 transition-all shadow-lg hover:shadow-xl">
                   Browse Products
                 </Button>
               </Link>
-              <Button onClick={handleWhatsAppClick} variant="outline" className="h-12 px-8 border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 hover:text-slate-900">
+              <Button onClick={handleWhatsAppClick} variant="outline" className="h-12 px-8 border-slate-200 text-slate-700 font-bold rounded-none hover:bg-slate-50 hover:text-slate-900">
                 Start Custom Order
               </Button>
             </motion.div>
@@ -97,14 +97,14 @@ export default function About() {
             {/* Card 1: Printer */}
             <motion.div
               whileHover={{ y: -10, rotate: -2, scale: 1.02 }}
-              className="absolute top-0 right-10 w-64 aspect-[4/5] bg-white p-2 rounded-2xl shadow-xl z-10 rotate-3 border border-slate-100"
+              className="absolute top-0 right-10 w-64 aspect-[4/5] bg-white p-2 rounded-none shadow-xl z-10 rotate-3 border border-slate-100"
             >
               <img
                 src={printerImg}
                 alt="3D Printer"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-none"
               />
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-none text-xs font-bold text-slate-900 shadow-sm">
                 3D Printer
               </div>
             </motion.div>
@@ -112,14 +112,14 @@ export default function About() {
             {/* Card 2: Filament */}
             <motion.div
               whileHover={{ y: -10, rotate: 2, scale: 1.02 }}
-              className="absolute top-40 left-10 w-56 aspect-square bg-white p-2 rounded-2xl shadow-xl z-20 -rotate-6 border border-slate-100"
+              className="absolute top-40 left-10 w-56 aspect-square bg-white p-2 rounded-none shadow-xl z-20 -rotate-6 border border-slate-100"
             >
               <img
                 src={filamentImg}
                 alt="Filament"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-none"
               />
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-none text-xs font-bold text-slate-900 shadow-sm">
                 Filament Material
               </div>
             </motion.div>
@@ -127,14 +127,14 @@ export default function About() {
             {/* Card 3: Finished Print */}
             <motion.div
               whileHover={{ y: -10, scale: 1.05 }}
-              className="absolute bottom-10 right-20 w-60 aspect-square bg-white p-2 rounded-2xl shadow-2xl z-30 rotate-6 border border-slate-100"
+              className="absolute bottom-10 right-20 w-60 aspect-square bg-white p-2 rounded-none shadow-2xl z-30 rotate-6 border border-slate-100"
             >
               <img
                 src={finishedImg}
                 alt="Finished Print"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-none"
               />
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-slate-900 shadow-sm">
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-none text-xs font-bold text-slate-900 shadow-sm">
                 Finished Print
               </div>
             </motion.div>
@@ -168,9 +168,9 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5, boxShadow: "0 10px 30px -5px rgba(0,0,0,0.05)" }}
-                className="bg-white p-6 rounded-2xl border border-slate-200 flex items-center gap-4 transition-all hover:border-amber-200 group cursor-default"
+                className="bg-white p-6 rounded-none border border-slate-200 flex items-center gap-4 transition-all hover:border-amber-200 group cursor-default"
               >
-                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors">
+                <div className="w-12 h-12 rounded-none bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors">
                   <item.icon className="w-6 h-6" />
                 </div>
                 <span className="font-bold text-slate-700 group-hover:text-slate-900">{item.text}</span>
@@ -178,7 +178,7 @@ export default function About() {
             ))}
           </div>
 
-          <p className="text-center text-slate-400 text-sm font-medium mt-12 bg-white inline-block px-6 py-2 rounded-full border border-slate-100 mx-auto block w-max">
+          <p className="text-center text-slate-400 text-sm font-medium mt-12 bg-white inline-block px-6 py-2 rounded-none border border-slate-100 mx-auto block w-max">
             If you can describe it, we can probably design and print it.
           </p>
         </div>
@@ -226,7 +226,7 @@ export default function About() {
 
         <div className="mt-16 text-center">
           <p className="text-slate-600 mb-6 font-medium">Have something in mind? Start your custom order on WhatsApp.</p>
-          <Button onClick={handleWhatsAppClick} className="bg-green-600 hover:bg-green-700 text-white font-bold h-12 px-8 rounded-xl shadow-lg hover:shadow-green-200 transition-all hover:-translate-y-1">
+          <Button onClick={handleWhatsAppClick} className="bg-green-600 hover:bg-green-700 text-white font-bold h-12 px-8 rounded-none shadow-lg hover:shadow-green-200 transition-all hover:-translate-y-1">
             <MessageCircle className="w-4 h-4 mr-2" /> Chat on WhatsApp
           </Button>
         </div>
@@ -253,9 +253,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors"
+                className="bg-white/5 border border-white/10 p-8 rounded-none hover:bg-white/10 transition-colors"
               >
-                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-amber-400">
+                <div className="w-12 h-12 bg-white/10 rounded-none flex items-center justify-center mb-6 text-amber-400">
                   <card.icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{card.title}</h3>
@@ -276,7 +276,7 @@ export default function About() {
             <h2 className="text-3xl font-black text-slate-900 mb-2">Ready to print your idea?</h2>
             <p className="text-amber-900 font-medium">Send your requirement on WhatsApp and we’ll reply with pricing + timeline.</p>
           </div>
-          <Button onClick={handleWhatsAppClick} className="bg-slate-900 hover:bg-black text-white px-8 h-14 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition-all">
+          <Button onClick={handleWhatsAppClick} className="bg-slate-900 hover:bg-black text-white px-8 h-14 rounded-none font-bold text-lg shadow-xl hover:scale-105 transition-all">
             Start on WhatsApp
           </Button>
         </div>

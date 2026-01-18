@@ -72,7 +72,7 @@ export function ProductDetail() {
           <div className="flex flex-col gap-4">
 
             {/* Main Image */}
-            <div className="relative group w-full aspect-square md:aspect-[4/5] lg:aspect-square max-h-[520px] bg-slate-50 rounded-[18px] overflow-hidden border border-slate-100">
+            <div className="relative group w-full aspect-square md:aspect-[4/5] lg:aspect-square max-h-[520px] bg-slate-50 rounded-none overflow-hidden border border-slate-100">
               <motion.img
                 key={activeImage}
                 initial={{ opacity: 0.9 }}
@@ -83,7 +83,7 @@ export function ProductDetail() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
               />
               <div className="absolute top-4 right-4 z-10">
-                <button className="p-2.5 bg-white/90 backdrop-blur rounded-full shadow-sm hover:shadow-md transition-all text-slate-600 hover:text-red-500">
+                <button className="p-2.5 bg-white/90 backdrop-blur rounded-none shadow-sm hover:shadow-md transition-all text-slate-600 hover:text-red-500">
                   <Heart className="w-5 h-5" />
                 </button>
               </div>
@@ -95,7 +95,7 @@ export function ProductDetail() {
                 <button
                   key={idx}
                   onClick={() => setActiveImage(img)}
-                  className={`relative flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${activeImage === img ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-100 hover:border-slate-300'
+                  className={`relative flex-shrink-0 w-16 h-16 rounded-none overflow-hidden border-2 transition-all ${activeImage === img ? 'border-amber-500 ring-1 ring-amber-500/20' : 'border-slate-100 hover:border-slate-300'
                     }`}
                 >
                   <img src={img} alt={`View ${idx}`} className="w-full h-full object-cover" />
@@ -162,19 +162,19 @@ export function ProductDetail() {
               {/* 2. Technical Specs (Compact Grid) */}
               <div className="grid grid-cols-3 gap-2 pt-4 border-t border-slate-100">
                 {product.specs?.material && (
-                  <div className="bg-slate-50 rounded-lg p-2.5 flex flex-col items-center justify-center text-center">
+                  <div className="bg-slate-50 rounded-none p-2.5 flex flex-col items-center justify-center text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 mb-1">Material</span>
                     <span className="text-xs font-bold text-slate-900 leading-tight">{product.specs.material}</span>
                   </div>
                 )}
                 {product.specs?.dimensions && (
-                  <div className="bg-slate-50 rounded-lg p-2.5 flex flex-col items-center justify-center text-center">
+                  <div className="bg-slate-50 rounded-none p-2.5 flex flex-col items-center justify-center text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 mb-1">Dimensions</span>
                     <span className="text-xs font-bold text-slate-900 leading-tight">{product.specs.dimensions}</span>
                   </div>
                 )}
                 {product.specs?.weight && (
-                  <div className="bg-slate-50 rounded-lg p-2.5 flex flex-col items-center justify-center text-center">
+                  <div className="bg-slate-50 rounded-none p-2.5 flex flex-col items-center justify-center text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 mb-1">Weight</span>
                     <span className="text-xs font-bold text-slate-900 leading-tight">{product.specs.weight}</span>
                   </div>
@@ -186,7 +186,7 @@ export function ProductDetail() {
             <div className="hidden md:block space-y-4">
               <div className="flex items-center gap-4">
                 {/* Qty */}
-                <div className="flex items-center border border-slate-200 rounded-lg h-[52px]">
+                <div className="flex items-center border border-slate-200 rounded-none h-[52px]">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="w-12 h-full flex items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors"
@@ -224,9 +224,9 @@ export function ProductDetail() {
             {/* H) Trust Line */}
             <div className="flex items-center gap-4 mt-8 text-xs font-medium text-slate-400">
               <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" /> Safe Packaging</span>
-              <span className="w-1 h-1 rounded-full bg-slate-300" />
+              <span className="w-1 h-1 rounded-none bg-slate-300" />
               <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-green-500" /> Quality Checked</span>
-              <span className="w-1 h-1 rounded-full bg-slate-300" />
+              <span className="w-1 h-1 rounded-none bg-slate-300" />
               <span>WhatsApp Support</span>
             </div>
 
@@ -325,7 +325,7 @@ export function ProductDetail() {
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] md:hidden">
         <div className="flex gap-4 items-center">
           {/* Mobile Quantity */}
-          <div className="flex items-center border border-slate-200 rounded-lg h-12 bg-slate-50">
+          <div className="flex items-center border border-slate-200 rounded-none h-12 bg-slate-50">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               className="w-10 h-full flex items-center justify-center text-slate-500 hover:text-slate-900"
@@ -343,7 +343,7 @@ export function ProductDetail() {
 
           <Button
             onClick={handleAddToCart}
-            className={`flex-1 h-12 text-white font-bold rounded-xl shadow-lg ${isAdded ? 'bg-green-600' : 'bg-slate-900'}`}
+            className={`flex-1 h-12 text-white font-bold rounded-none shadow-lg ${isAdded ? 'bg-green-600' : 'bg-slate-900'}`}
           >
             {isAdded ? "Go to Cart" : `Add - ₹${discountedPrice * quantity}`}
           </Button>
@@ -358,7 +358,7 @@ export function ProductDetail() {
 function HighlightItem({ icon, label, text }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="mt-0.5 w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+      <div className="mt-0.5 w-6 h-6 rounded-none bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
         {icon}
       </div>
       <p className="text-sm text-slate-600">
@@ -381,7 +381,7 @@ function SpecRow({ label, value }) {
 function AccordionItem({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border border-slate-100 rounded-xl overflow-hidden">
+    <div className="border border-slate-100 rounded-none overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-4 bg-slate-50/50 hover:bg-slate-50 transition-colors"

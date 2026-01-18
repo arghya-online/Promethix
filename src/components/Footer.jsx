@@ -18,8 +18,8 @@ export function Footer() {
     return (
         <footer className="relative bg-slate-950 text-slate-300 pt-24 pb-12 overflow-hidden">
             {/* Decorative Background Blob */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[128px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-900/10 rounded-full blur-[128px] pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-900/20 rounded-none blur-[128px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-900/10 rounded-none blur-[128px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
@@ -33,8 +33,7 @@ export function Footer() {
                             </span>
                         </Link>
                         <p className="text-slate-400 text-sm leading-7 max-w-sm">
-                            Pioneering the future of manufacturing with industrial-grade 3D printing.
-                            From rapid prototyping to end-use production, we turn digital concepts into physical reality.
+                            We design and 3D print custom products like prototypes, project parts, decor, gifts, and figurines. Share your idea or STL file and we will turn it into a clean, finished model and deliver it safely.
                         </p>
                         <div className="flex gap-4">
                             <SocialLink icon={<Instagram className="w-5 h-5" />} href="#" />
@@ -47,10 +46,10 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Explore</h4>
                         <ul className="space-y-4 text-sm font-medium">
-                            <li><Link to="/products" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> All Products</Link></li>
-                            <li><Link to="/custom" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> Custom Orders</Link></li>
-                            <li><Link to="/about" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> About Us</Link></li>
-                            <li><Link to="/support" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" /> Support Center</Link></li>
+                            <li><Link to="/products" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> All Products</Link></li>
+                            <li><Link to="/custom" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> Custom Orders</Link></li>
+                            <li><Link to="/about" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> About Us</Link></li>
+                            <li><Link to="/support" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> Support Center</Link></li>
                         </ul>
                     </div>
 
@@ -59,7 +58,7 @@ export function Footer() {
                         <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Contact Us</h4>
                         <ul className="space-y-6 text-sm">
                             <li className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                <div className="w-10 h-10 rounded-none bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
                                     <MapPin className="w-5 h-5" />
                                 </div>
                                 <div>
@@ -69,16 +68,16 @@ export function Footer() {
                                 </div>
                             </li>
                             <li className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                <div className="w-10 h-10 rounded-none bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
                                     <Phone className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <span className="block text-white font-medium mb-1">Phone</span>
-                                    <a href="tel:+919876543210" className="text-slate-500 hover:text-white transition-colors">+91 98765 43210</a>
+                                    <a href="tel:+919876543210" className="text-slate-500 hover:text-white transition-colors">+91 9832769269</a>
                                 </div>
                             </li>
                             <li className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
+                                <div className="w-10 h-10 rounded-none bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0 text-amber-500">
                                     <Mail className="w-5 h-5" />
                                 </div>
                                 <div>
@@ -92,7 +91,7 @@ export function Footer() {
                     {/* Map (3 cols) */}
                     <div className="lg:col-span-3">
                         <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Location</h4>
-                        <div className="w-full h-64 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
+                        <div className="w-full h-64 rounded-none overflow-hidden border border-slate-800 shadow-2xl relative group">
                             {/* Overlay for interaction hint */}
                             <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
 
@@ -128,7 +127,7 @@ export function Footer() {
 
 function SocialLink({ icon, href }) {
     return (
-        <a href={href} className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-all hover:scale-110">
+        <a href={href} className="w-10 h-10 rounded-none bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-all hover:scale-110">
             {icon}
         </a>
     );

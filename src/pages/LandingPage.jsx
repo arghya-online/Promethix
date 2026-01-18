@@ -8,7 +8,7 @@ import { MobileFeaturedCarousel } from "@/components/MobileFeaturedCarousel";
 import { LandingHero } from "@/components/LandingHero";
 import { Marquee } from "@/components/Marquee";
 import { ComparisonSlider } from "@/components/ComparisonSlider";
-import { IdeaToDelivery } from "@/components/IdeaToDelivery";
+import { CustomOrderSection } from "@/components/CustomOrderSection";
 
 export function LandingPage() {
   const featuredProducts = PRODUCTS.slice(0, 4);
@@ -24,8 +24,8 @@ export function LandingPage() {
       {/* 2. CAD COMPARISON SLIDER */}
       <ComparisonSlider />
 
-      {/* 2. IDEA TO DELIVERY (Horizontal Scroll) */}
-      <IdeaToDelivery />
+      {/* 2. CUSTOM ORDER SECTION (Redesigned) */}
+      <CustomOrderSection />
 
       {/* 3. FEATURED COLLECTION */}
       <section className="py-24 bg-white">

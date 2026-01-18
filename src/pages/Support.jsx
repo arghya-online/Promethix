@@ -6,15 +6,15 @@ import { Button } from "@/components/ui/button";
 
 export default function Support() {
     const faqData = [
-        { title: "Do I need to have a 3D file ready?", content: "Nope. You don’t need any 3D file. Just share your idea, a reference photo, sketch, or even explain it in text — we’ll design the 3D model for you." },
+        { title: "Do I need to have a 3D file ready?", content: "Nope. You don’t need any 3D file. Just share your idea, a reference photo, sketch, or even explain it in text - we’ll design the 3D model for you." },
         { title: "Can I directly buy models from your website?", content: "Yes. You can explore our product collection, pick the model you like, and place the order directly from the website." },
-        { title: "Do you take custom orders?", content: "Yes, absolutely. Custom work is our main thing — tell us what you want, and we’ll design + print it based on your requirements." },
+        { title: "Do you take custom orders?", content: "Yes, absolutely. Custom work is our main thing - tell us what you want, and we’ll design + print it based on your requirements." },
         { title: "What kind of products do you make?", content: "A lot of different things, like: home decor & artifacts, anime/cartoon figurines, customized gifts & mementoes, idols (gods and goddesses), lithophanes, mechanical parts for projects, prototypes & custom models. If it can be modelled, we can most likely print it." },
         { title: "Can you print mechanical parts for my project?", content: "Yes. Students and makers order custom parts from us all the time. Just share your requirement or measurements and we’ll handle the rest." },
         { title: "What materials do you use?", content: "We use high-quality 3D printing materials (PLA+, PETG, etc.) depending on the product type and usage. If your model needs extra strength or a certain finish, we’ll recommend the best option." },
         { title: "How long does it take to complete an order?", content: "It depends on model size, detailing, design time (for custom orders), and delivery location. We always share an estimated timeline after confirming your order." },
         { title: "Do you deliver outside your city?", content: "Yes. Delivery is available to your required location." },
-        { title: "Will I get to approve the design before printing?", content: "For custom orders — yes. We share the design preview/renders first, and printing starts only after your confirmation." },
+        { title: "Will I get to approve the design before printing?", content: "For custom orders - yes. We share the design preview/renders first, and printing starts only after your confirmation." },
         { title: "Can I request changes in the design?", content: "Yes. Small changes are possible before printing begins. Just tell us clearly during the design approval stage." },
         { title: "Is COD (Cash on Delivery) available?", content: "It depends on the product type and delivery location. For most custom orders, confirmation/payment is required before printing starts (since it’s made specifically for you)." },
         { title: "Can I cancel my order?", content: "Ready-made shop products: cancellation possible if not shipped. Custom orders: only possible before printing starts. Once printing begins, cancellation isn’t possible." }
@@ -43,7 +43,7 @@ export default function Support() {
                         <span className="text-text-secondary">3–7 working days after dispatch (location dependent).</span>
                     </div>
 
-                    <div className="rounded-xl border border-border bg-white p-4 text-sm">
+                    <div className="rounded-none border border-border bg-white p-4 text-sm">
                         <p className="font-semibold text-primary mb-1">Package damaged?</p>
                         <p className="text-text-secondary">
                             Please record an unboxing video immediately, take photos, and contact us within <b>48 hours</b>.
@@ -61,7 +61,7 @@ export default function Support() {
                         situation.
                     </p>
 
-                    <div className="rounded-xl border border-border bg-white p-4">
+                    <div className="rounded-none border border-border bg-white p-4">
                         <p className="font-semibold text-primary mb-1">Ready-made products</p>
                         <p className="text-sm text-text-secondary">
                             Eligible for replacement/refund if: wrong product, damaged arrival, or clear manufacturing defect.
@@ -69,7 +69,7 @@ export default function Support() {
                         </p>
                     </div>
 
-                    <div className="rounded-xl border border-border bg-white p-4">
+                    <div className="rounded-none border border-border bg-white p-4">
                         <p className="font-semibold text-primary mb-1">Custom orders</p>
                         <p className="text-sm text-text-secondary">
                             Not eligible if printing has started or you changed your mind. Eligible only if damaged in shipping,
@@ -121,7 +121,7 @@ export default function Support() {
 
                 {/* SEARCH */}
                 <div className="mt-10 max-w-3xl mx-auto">
-                    <div className="flex items-center gap-3 border border-border bg-white px-4 h-12 rounded-2xl shadow-sm">
+                    <div className="flex items-center gap-3 border border-border bg-white px-4 h-12 rounded-none shadow-sm">
                         <Search className="w-5 h-5 text-text-secondary" />
                         <input
                             value={query}
@@ -139,7 +139,7 @@ export default function Support() {
                     <div className="space-y-10">
 
                         {/* FAQ */}
-                        <section className="rounded-2xl border border-border bg-surface p-6 md:p-8">
+                        <section className="rounded-none border border-border bg-surface p-6 md:p-8">
                             <div className="flex items-end justify-between gap-4 flex-wrap mb-6">
                                 <div>
                                     <h2 className="text-2xl font-heading font-bold text-primary">
@@ -158,7 +158,7 @@ export default function Support() {
                         </section>
 
                         {/* POLICIES */}
-                        <section className="rounded-2xl border border-border bg-surface p-6 md:p-8">
+                        <section className="rounded-none border border-border bg-surface p-6 md:p-8">
                             <h2 className="text-2xl font-heading font-bold text-primary mb-2">
                                 Shipping & Policies
                             </h2>
@@ -173,17 +173,17 @@ export default function Support() {
 
                     {/* RIGHT: CONTACT CARD */}
                     <aside className="lg:sticky lg:top-8">
-                        <div className="rounded-2xl border border-border bg-white p-6 md:p-8 shadow-sm">
+                        <div className="rounded-none border border-border bg-white p-6 md:p-8 shadow-sm">
                             <h3 className="text-xl font-heading font-bold text-primary">
                                 Contact Support
                             </h3>
                             <p className="text-sm text-text-secondary mt-2">
-                                For custom orders, changes, delivery queries — message us directly.
+                                For custom orders, changes, delivery queries - message us directly.
                             </p>
 
                             <div className="mt-7 space-y-5">
                                 <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-none border border-border flex items-center justify-center">
                                         <Phone className="w-5 h-5 text-primary" />
                                     </div>
                                     <div className="text-sm">
@@ -193,7 +193,7 @@ export default function Support() {
                                 </div>
 
                                 <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-none border border-border flex items-center justify-center">
                                         <Mail className="w-5 h-5 text-primary" />
                                     </div>
                                     <div className="text-sm">
@@ -203,7 +203,7 @@ export default function Support() {
                                 </div>
 
                                 <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-none border border-border flex items-center justify-center">
                                         <MapPin className="w-5 h-5 text-primary" />
                                     </div>
                                     <div className="text-sm">
@@ -214,7 +214,7 @@ export default function Support() {
                             </div>
 
                             <div className="mt-8">
-                                <Button onClick={handleWhatsAppClick} className="w-full h-12 rounded-xl bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold tracking-wide uppercase shadow-lg shadow-green-900/20">
+                                <Button onClick={handleWhatsAppClick} className="w-full h-12 rounded-none bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold tracking-wide uppercase shadow-lg shadow-green-900/20">
                                     <MessageCircle className="w-4 h-4 mr-2" />
                                     Chat on WhatsApp
                                 </Button>
@@ -226,7 +226,7 @@ export default function Support() {
                         </div>
 
                         {/* SMALL TRUST STRIP */}
-                        <div className="mt-5 rounded-2xl border border-border bg-surface p-5 text-sm text-text-secondary">
+                        <div className="mt-5 rounded-none border border-border bg-surface p-5 text-sm text-text-secondary">
                             <p className="font-semibold text-primary mb-1">Tip</p>
                             For faster custom orders, send:
                             <span className="text-primary font-semibold"> reference images</span>,
@@ -238,7 +238,7 @@ export default function Support() {
 
                 {/* MOBILE STICKY CTA */}
                 <div className="fixed bottom-4 left-0 right-0 px-4 lg:hidden">
-                    <Button onClick={handleWhatsAppClick} className="w-full h-12 rounded-2xl bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold tracking-wide uppercase shadow-lg">
+                    <Button onClick={handleWhatsAppClick} className="w-full h-12 rounded-none bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold tracking-wide uppercase shadow-lg">
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Chat on WhatsApp
                     </Button>

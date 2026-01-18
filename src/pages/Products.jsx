@@ -48,7 +48,7 @@ export default function Products() {
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
       {/* HEADER SECTION with Ambient Background */}
       <div className="relative bg-white border-b border-slate-100 pt-32 pb-12 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-50" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 rounded-none blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-50" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-slate-900 mb-6 font-heading">
@@ -66,7 +66,7 @@ export default function Products() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <Input
                 placeholder="Search catalog..."
-                className="pl-11 h-12 bg-slate-100 border-transparent rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-slate-200 focus:shadow-lg transition-all"
+                className="pl-11 h-12 bg-slate-100 border-transparent rounded-none text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-slate-200 focus:shadow-lg transition-all"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -80,7 +80,7 @@ export default function Products() {
             </label>
             <div className="relative">
               <select
-                className="w-full h-12 pl-4 pr-10 bg-slate-100 border-transparent rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-slate-900 focus:bg-white transition-all appearance-none"
+                className="w-full h-12 pl-4 pr-10 bg-slate-100 border-transparent rounded-none text-slate-900 font-bold focus:ring-2 focus:ring-slate-900 focus:bg-white transition-all appearance-none"
                 value={slug || "all"}
                 onChange={(e) => {
                   const val = e.target.value;
@@ -107,7 +107,7 @@ export default function Products() {
             <Link to="/products" preventScrollReset>
               <Badge
                 variant={!slug ? "default" : "outline"}
-                className={`h-9 px-6 rounded-full text-xs font-bold uppercase tracking-wide transition-all ${!slug
+                className={`h-9 px-6 rounded-none text-xs font-bold uppercase tracking-wide transition-all ${!slug
                   ? "bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20"
                   : "bg-white text-slate-500 border-slate-200 hover:border-slate-900 hover:text-slate-900"}`}
               >
@@ -121,7 +121,7 @@ export default function Products() {
                 <Link key={cat} to={`/category/${catSlug}`} preventScrollReset>
                   <Badge
                     variant={isActive ? "default" : "outline"}
-                    className={`h-9 px-6 rounded-full text-xs font-bold uppercase tracking-wide transition-all ${isActive
+                    className={`h-9 px-6 rounded-none text-xs font-bold uppercase tracking-wide transition-all ${isActive
                       ? "bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20"
                       : "bg-white text-slate-500 border-slate-200 hover:border-slate-900 hover:text-slate-900"}`}
                   >
@@ -159,7 +159,7 @@ export default function Products() {
           </motion.div>
         ) : (
           <div className="min-h-[40vh] flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-slate-100 rounded-none flex items-center justify-center mb-4">
               <Search className="w-6 h-6 text-slate-400" />
             </div>
             <h3 className="text-lg font-bold text-slate-900 mb-2">No products found</h3>

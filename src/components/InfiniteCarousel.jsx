@@ -34,7 +34,7 @@ export function InfiniteCarousel() {
                 {displayProducts.map((product, index) => (
                     <motion.div
                         key={`${product.id}-${index}`}
-                        className="min-w-[200px] md:min-w-[280px] aspect-[3/4] rounded-xl overflow-hidden relative group border border-surface-light bg-surface"
+                        className="min-w-[200px] md:min-w-[280px] aspect-[3/4] rounded-none overflow-hidden relative group border border-surface-light bg-surface"
                     >
                         <img
                             src={product.images[0]}

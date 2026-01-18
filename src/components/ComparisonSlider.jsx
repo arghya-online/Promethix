@@ -58,7 +58,7 @@ export function ComparisonSlider() {
 
             <div
                 ref={containerRef}
-                className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl overflow-hidden cursor-ew-resize select-none shadow-2xl ring-1 ring-slate-900/5"
+                className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-none overflow-hidden cursor-ew-resize select-none shadow-2xl ring-1 ring-slate-900/5"
                 onMouseDown={(e) => handleInteractionStart(e.clientX)}
                 onTouchStart={(e) => handleInteractionStart(e.touches[0].clientX)}
                 onMouseMove={onMouseMove}
@@ -73,7 +73,7 @@ export function ComparisonSlider() {
                         className="w-full h-full object-contain"
                         draggable="false"
                     />
-                    <div className="absolute top-6 right-6 bg-black/50 backdrop-blur text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                    <div className="absolute top-6 right-6 bg-black/50 backdrop-blur text-white px-4 py-1 rounded-none text-xs font-bold tracking-widest uppercase">
                         Reality
                     </div>
                 </div>
@@ -93,7 +93,7 @@ export function ComparisonSlider() {
                             draggable="false"
                         />
                         {/* NO Grid Overlay */}
-                        <div className="absolute top-6 left-6 bg-blue-600 shadow-lg shadow-blue-600/20 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase z-10">
+                        <div className="absolute top-6 left-6 bg-blue-600 shadow-lg shadow-blue-600/20 text-white px-4 py-1 rounded-none text-xs font-bold tracking-widest uppercase z-10">
                             CAD Model
                         </div>
                     </div>
@@ -104,7 +104,7 @@ export function ComparisonSlider() {
                     className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
                     style={{ left: `${sliderPosition}%` }}
                 >
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg transform active:scale-95 transition-transform text-slate-900">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-none flex items-center justify-center shadow-lg transform active:scale-95 transition-transform text-slate-900">
                         <MoveHorizontal className="w-5 h-5" />
                     </div>
                 </div>

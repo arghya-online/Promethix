@@ -106,7 +106,7 @@ function Header() {
               >
                 <ShoppingBag className="w-5 h-5" />
                 {cartCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-amber-500 text-black font-bold text-[10px] rounded-full border-2 border-white">
+                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-amber-500 text-black font-bold text-[10px] rounded-none border-2 border-white">
                     {cartCount}
                   </Badge>
                 )}
@@ -158,10 +158,10 @@ function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="fixed inset-0 z-[60] bg-white p-6 md:hidden overflow-y-auto"
+            className="fixed top-0 right-0 bottom-0 z-[60] bg-white p-6 md:hidden w-3/4 max-w-xs shadow-2xl border-l border-slate-100 overflow-y-auto"
           >
-            <div className="flex items-center justify-between mb-12">
-              <span className="text-2xl font-black font-heading tracking-tighter text-black">
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-xl font-black font-heading tracking-tighter text-black">
                 PROMETHIX3D
               </span>
               <Button
@@ -169,34 +169,34 @@ function Header() {
                 size="icon"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <X className="w-8 h-8 text-black" />
+                <X className="w-6 h-6 text-black" />
               </Button>
             </div>
-            <nav className="flex flex-col gap-8">
+            <nav className="flex flex-col gap-6">
               {links.map((link) => (
                 <NavLink
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-4xl font-black font-heading transition-colors ${isActive ? "text-amber-500" : "text-black"
+                    `text-lg font-bold font-heading uppercase tracking-wider transition-colors border-b border-slate-50 pb-2 ${isActive ? "text-amber-500" : "text-slate-700 hover:text-black"
                     }`
                   }
                 >
                   {link.name}
                 </NavLink>
               ))}
-              <div className="mt-8 pt-8 border-t border-slate-100">
+              <div className="mt-4 pt-4">
                 <Link
                   to="/cart"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-bold flex items-center gap-4 text-slate-600 mb-6"
+                  className="text-lg font-bold flex items-center gap-3 text-slate-700 mb-6"
                 >
-                  <ShoppingBag className="w-6 h-6" /> Cart ({cartCount})
+                  <ShoppingBag className="w-5 h-5" /> Cart ({cartCount})
                 </Link>
                 <SignedOut>
                   <SignInButton mode="modal">
-                    <Button className="w-full h-14 text-xl font-bold bg-black text-white uppercase rounded-none">
+                    <Button className="w-full h-12 text-sm font-bold bg-black text-white uppercase rounded-none tracking-widest">
                       Sign In
                     </Button>
                   </SignInButton>
