@@ -38,6 +38,9 @@ export function ProductCard({ product }) {
         <img
           src={product.images[0]}
           alt={product.name}
+          width="500"
+          height="500"
+          loading="lazy"
           className="w-full h-full object-cover mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110"
         />
 

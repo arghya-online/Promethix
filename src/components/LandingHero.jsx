@@ -148,7 +148,14 @@ export function LandingHero() {
               transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 50 }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] rounded-none shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden z-20 border-[6px] border-white"
             >
-              <img src={heroImage} className="w-full h-full object-cover" alt="Hero 3D Print" />
+              <img
+                src={heroImage}
+                className="w-full h-full object-cover"
+                alt="3D Printed Geometric Vase"
+                width="800"
+                height="800"
+                fetchPriority="high"
+              />
             </motion.div>
 
             {/* Floating Card 1 - Top Right - Glassmorphic */}
@@ -159,7 +166,13 @@ export function LandingHero() {
               transition={{ duration: 1, delay: 0.5, type: "spring" }}
               className="absolute top-[10%] right-[5%] w-[35%] aspect-square rounded-none shadow-2xl overflow-hidden z-30 border-4 border-white/50 bg-white/20 backdrop-blur-sm"
             >
-              <img src={subImage1} className="w-full h-full object-cover" alt="Detail Print" />
+              <img
+                src={subImage1}
+                className="w-full h-full object-cover"
+                alt="Detailed 3D Print Close-up"
+                width="400"
+                height="400"
+              />
             </motion.div>
 
             {/* Floating Card 2 - Bottom Left - Accent */}
@@ -170,7 +183,13 @@ export function LandingHero() {
               transition={{ duration: 1, delay: 0.7, type: "spring" }}
               className="absolute bottom-[10%] left-[-5%] w-[30%] aspect-[4/5] rounded-none shadow-2xl overflow-hidden z-30 border-4 border-white"
             >
-              <img src={subImage2} className="w-full h-full object-cover" alt="Background Element" />
+              <img
+                src={subImage2}
+                className="w-full h-full object-cover"
+                alt="3D Printed Art Piece"
+                width="300"
+                height="375"
+              />
             </motion.div>
 
             {/* Decorative Elements */}
