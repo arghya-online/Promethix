@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import { Toaster } from "sonner";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { CartProvider } from "./context/cart-context";
 import AppLayout from "./layouts/app-layout.jsx";
 
@@ -117,6 +118,7 @@ function App() {
       <CartProvider>
         <RouterProvider router={router} />
         <Toaster richColors position="top-center" />
+        <Analytics />
       </CartProvider>
     </ClerkProvider>
   );
