@@ -95,7 +95,9 @@ export function LandingHero() {
               className="text-lg text-slate-600 mb-8 font-medium leading-relaxed max-w-lg"
             >
               <p>
-                We turn concepts into physical products. Whether it’s a prototype, a unique gift, or a mechanical part-we design and print it with precision. <span className="text-slate-900 font-bold">No 3D file? No problem.</span>
+                We turn concepts into physical products. Whether it’s a prototype, a unique gift, or a mechanical part-we design and print it with precision.
+                <br />
+                <span className="text-slate-900 font-bold">No 3D file? No problem.</span>
               </p>
             </motion.div>
 
