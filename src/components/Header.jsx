@@ -51,7 +51,7 @@ function Header() {
         }}
         animate={isHidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-md text-primary supports-[backdrop-filter]:bg-white/60"
+        className="sticky top-0 z-50 w-full border-b border-white/10 bg-white text-primary"
       >
         <div className="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           {/* Left: Logo */}

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { ENRICHED_PRODUCTS as PRODUCTS } from "../data/products";
 import { ArrowRight } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
-import { MobileFeaturedCarousel } from "@/components/MobileFeaturedCarousel";
 import { LandingHero } from "@/components/LandingHero";
 import { Marquee } from "@/components/Marquee";
-import { ComparisonSlider } from "@/components/ComparisonSlider";
 import { CustomOrderSection } from "@/components/CustomOrderSection";
+import { FeaturedGallery } from "@/components/FeaturedGallery";
+import { Testimonials } from "@/components/Testimonials";
 
 export function LandingPage() {
   const featuredProducts = PRODUCTS.slice(0, 4);
@@ -21,14 +21,8 @@ export function LandingPage() {
       {/* 1.5 MARQUEE */}
       <Marquee />
 
-      {/* 2. CAD COMPARISON SLIDER */}
-      <ComparisonSlider />
-
-      {/* 2. CUSTOM ORDER SECTION (Redesigned) */}
-      <CustomOrderSection />
-
-      {/* 3. FEATURED COLLECTION */}
-      <section className="py-24 bg-white">
+      {/* 2. TRENDING NOW (Moved Up) */}
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
@@ -53,8 +47,6 @@ export function LandingPage() {
             ))}
           </div>
 
-          {/* Mobile Carousel Removed in favor of Grid */}
-
           <div className="mt-12 text-center md:hidden">
             <Link to="/products">
               <Button
@@ -67,10 +59,12 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* 3. CUSTOM ORDER SECTION */}
+      <CustomOrderSection />
+
     </main>
   );
 }
-
-
 
 export default LandingPage;

@@ -198,7 +198,7 @@ export default function Support() {
                                     </div>
                                     <div className="text-sm">
                                         <p className="font-semibold text-primary">Email</p>
-                                        <p className="text-text-secondary">support@promethix3d.com</p>
+                                        <p className="text-text-secondary">promethix3d@gmail.com</p>
                                     </div>
                                 </div>
 

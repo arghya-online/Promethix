@@ -1,213 +1,158 @@
-import React, { useRef } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Box, Sparkles } from "lucide-react";
-import { ENRICHED_PRODUCTS as PRODUCTS } from "@/data/products";
-import ImgMain from "../assets/HeroImages/mainImage.png";
-import ImgSub1 from "../assets/HeroImages/subImage1.png";
-import ImgSub2 from "../assets/HeroImages/subImage2.png";
+import { ArrowRight, CheckCircle2, Box, Sparkles, Cpu, Crosshair, Zap } from "lucide-react";
+import HeroBg from "../assets/HeroImages/hero-bg-engineering.png"; // Anime Engineering background
 
 export function LandingHero() {
-  // Select specific images for the collage
-  const heroImage = ImgMain;
-  const subImage1 = ImgSub1;
-  const subImage2 = ImgSub2;
-
-  const containerRef = useRef(null);
-  const heroRef = useRef(null);
-  const sub1Ref = useRef(null);
-  const sub2Ref = useRef(null);
-
-  useGSAP(() => {
-    const heroX = gsap.quickTo(heroRef.current, "x", { duration: 0.5, ease: "power3" });
-    const heroY = gsap.quickTo(heroRef.current, "y", { duration: 0.5, ease: "power3" });
-
-    const sub1X = gsap.quickTo(sub1Ref.current, "x", { duration: 0.4, ease: "power3" });
-    const sub1Y = gsap.quickTo(sub1Ref.current, "y", { duration: 0.4, ease: "power3" });
-
-    const sub2X = gsap.quickTo(sub2Ref.current, "x", { duration: 0.6, ease: "power3" });
-    const sub2Y = gsap.quickTo(sub2Ref.current, "y", { duration: 0.6, ease: "power3" });
-
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5);
-      const y = (clientY / innerHeight - 0.5);
-
-      heroX(x * 30);
-      heroY(y * 30);
-
-      sub1X(x * -40); // Inverse movement for depth
-      sub1Y(y * -40);
-
-      sub2X(x * 60);
-      sub2Y(y * 60);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, { scope: containerRef });
-
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 pt-6 pb-8 lg:pt-10 lg:pb-16 min-h-[85vh] flex items-center">
+    <section className="relative w-full overflow-hidden min-h-[95vh] flex items-center justify-center">
 
-      {/* Background Ambience */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vh] bg-amber-200/40 rounded-none blur-[120px] mix-blend-multiply"
+      {/* 1. Cinematic Anime Engineering Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={HeroBg}
+          alt="Futuristic 3D Printing Engineering Workshop Anime Style"
+          className="w-full h-full object-cover scale-105" // Slight scale for parallax feel if we added it, but just static for now
         />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.4, 0.3] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vh] bg-orange-100/40 rounded-none blur-[100px] mix-blend-multiply"
-        />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+        {/* Darker Cinematic Overlay for "Darker Filter" */}
+        <div className="absolute inset-0 bg-slate-950/60 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-900/30"></div>
+        {/* Fine Grain for Texture */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+      {/* 2. Floating 3D Printing Manufacturing Elements */}
+      <div className="absolute inset-0 z-1 pointer-events-none overflow-hidden select-none">
+        {/* Build Plate Grid - 3D Perspective */}
+        <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] [transform:perspective(500px)_rotateX(60deg)_scale(2)] origin-bottom"></div>
 
-          {/* LEFT: Content */}
-          <div className="flex flex-col items-start text-left max-w-xl">
+        {/* Floating Badge: Extruder Stats */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 0.8 }}
+          className="absolute top-32 left-8 md:left-16 hidden md:flex flex-col gap-2"
+        >
+          <div className="flex items-center gap-3 px-3 py-2 rounded-sm bg-slate-900/90 backdrop-blur-md border border-white/10 shadow-lg">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nozzle Temp</span>
+              <span className="text-sm font-mono text-amber-500">210°C</span>
+            </div>
+            <div className="w-[1px] h-6 bg-white/10"></div>
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Bed Temp</span>
+              <span className="text-sm font-mono text-cyan-500">60°C</span>
+            </div>
+          </div>
+        </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1] mb-6">
-                Bring Ideas <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">
-                  Into Reality.
-                </span>
-              </h1>
-            </motion.div>
+        {/* Floating Badge: Print Progress */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-40 right-8 md:right-16 hidden md:flex flex-col items-end gap-1"
+        >
+          <div className="flex flex-col items-end gap-1 px-4 py-2 rounded-sm bg-slate-900/90 backdrop-blur-md border border-white/10 shadow-lg">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] uppercase tracking-widest text-slate-300 font-bold">Print Progress</span>
+              <span className="text-xs font-mono text-sky-400">98%</span>
+            </div>
+            <div className="w-32 h-1 bg-slate-700 rounded-full overflow-hidden">
+              <div className="w-[98%] h-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+            </div>
+            <div className="text-[9px] text-slate-500 font-mono mt-1">LAYER: 2405 / 2450</div>
+          </div>
+        </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg text-slate-600 mb-8 font-medium leading-relaxed max-w-lg"
-            >
-              <p>
-                We turn concepts into physical products. Whether it’s a prototype, a unique gift, or a mechanical part-we design and print it with precision.
-                <br />
-                <span className="text-slate-900 font-bold">No 3D file? No problem.</span>
-              </p>
-            </motion.div>
+        {/* Filament Path Animation */}
+        <svg className="absolute top-0 right-0 w-full h-full opacity-20" style={{ mixBlendMode: 'screen' }}>
+          <motion.path
+            d="M 100 100 C 200 200 400 0 500 100 S 800 100 900 300"
+            fill="none"
+            stroke="#fbbf24"
+            strokeWidth="2"
+            strokeDasharray="10 10"
+            animate={{ strokeDashoffset: [0, 100] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="hidden lg:block"
+          />
+        </svg>
+      </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto"
-            >
-              <Link to="/products">
-                <Button className="h-12 px-8 bg-slate-900 text-white hover:bg-black rounded-none text-sm font-bold tracking-widest uppercase shadow-xl hover:shadow-2xl hover:shadow-slate-900/20 transition-all hover:-translate-y-1 w-full sm:w-auto">
-                  Shop Collection <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link to="/custom">
-                <Button variant="outline" className="h-12 px-8 border-slate-300 text-slate-700 hover:border-slate-900 hover:bg-white/50 backdrop-blur rounded-none text-sm font-bold tracking-widest uppercase transition-all w-full sm:w-auto">
-                  Start Custom Order
-                </Button>
-              </Link>
-            </motion.div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center flex flex-col items-center pt-16">
 
-            {/* Trust Points */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="flex flex-wrap gap-6 pt-8 border-t border-slate-200/60 w-full"
-            >
-              {[
-                { icon: <Box className="w-4 h-4" />, text: "Safe Packaging" },
-                { icon: <CheckCircle2 className="w-4 h-4" />, text: "Quality Checked" },
-                { icon: <Sparkles className="w-4 h-4" />, text: "Premium Materials" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-wide">
-                  <div className="text-amber-600">{item.icon}</div>
-                  {item.text}
-                </div>
-              ))}
-            </motion.div>
+        {/* Main Title Area */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-slate-900/50 border border-white/10 text-amber-100/90 text-[11px] uppercase tracking-[0.2em] font-medium mb-8 backdrop-blur-md shadow-lg">
+            <span className="w-1 h-1 bg-amber-400 rounded-full box-shadow-amber shadow-[0_0_10px_rgba(251,191,36,0.8)]"></span>
+            Next-Gen Fabrication
+            <span className="w-1 h-1 bg-amber-400 rounded-full box-shadow-amber shadow-[0_0_10px_rgba(251,191,36,0.8)]"></span>
           </div>
 
-          {/* RIGHT: Visual Collage (Redesigned) */}
-          <div className="relative h-[500px] lg:h-[700px] hidden lg:block perspective-1000">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium text-slate-100 tracking-tight leading-[0.95] mb-8 drop-shadow-lg">
+            Engineer Your <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500 filter drop-shadow-[0_2px_20px_rgba(245,158,11,0.2)] font-semibold">
+              Vision
+            </span>
+          </h1>
+        </motion.div>
 
-            {/* Main Hero Image - Large & Dominant */}
-            <motion.div
-              ref={heroRef}
-              initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 50 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] rounded-none shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden z-20 border-[6px] border-white"
-            >
-              <img
-                src={heroImage}
-                className="w-full h-full object-cover"
-                alt="3D Printed Geometric Vase"
-                width="800"
-                height="800"
-                fetchPriority="high"
-              />
-            </motion.div>
+        {/* Subtitle Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative text-lg md:text-xl text-slate-300 mb-12 font-light leading-relaxed max-w-2xl mx-auto"
+        >
+          <p>
+            From <span className="text-white font-medium border-b border-white/20 pb-0.5">CAD files</span> to high-fidelity artifacts.
+            <br className="hidden md:block" />
+            Premium 3D printing for creators who demand precision.
+          </p>
+        </motion.div>
 
-            {/* Floating Card 1 - Top Right - Glassmorphic */}
-            <motion.div
-              ref={sub1Ref}
-              initial={{ opacity: 0, x: 50, y: -20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1, delay: 0.5, type: "spring" }}
-              className="absolute top-[10%] right-[5%] w-[35%] aspect-square rounded-none shadow-2xl overflow-hidden z-30 border-4 border-white/50 bg-white/20 backdrop-blur-sm"
-            >
-              <img
-                src={subImage1}
-                className="w-full h-full object-cover"
-                alt="Detailed 3D Print Close-up"
-                width="400"
-                height="400"
-              />
-            </motion.div>
+        {/* CTA Buttons - Toned Down Colors */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col sm:flex-row gap-6 mb-20"
+        >
+          <Link to="/products">
+            <Button className="h-14 px-8 bg-slate-100 text-slate-900 hover:bg-white rounded-full text-sm font-bold tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all hover:-translate-y-1">
+              Explore Collection
+            </Button>
+          </Link>
+          <Link to="/custom">
+            <Button variant="outline" className="h-14 px-8 border-white/20 text-white hover:bg-white/5 bg-transparent backdrop-blur-sm rounded-full text-sm font-bold tracking-widest uppercase transition-all hover:border-white/40">
+              Custom Order
+            </Button>
+          </Link>
+        </motion.div>
 
-            {/* Floating Card 2 - Bottom Left - Accent */}
-            <motion.div
-              ref={sub2Ref}
-              initial={{ opacity: 0, x: -50, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.7, type: "spring" }}
-              className="absolute bottom-[10%] left-[-5%] w-[30%] aspect-[4/5] rounded-none shadow-2xl overflow-hidden z-30 border-4 border-white"
-            >
-              <img
-                src={subImage2}
-                className="w-full h-full object-cover"
-                alt="3D Printed Art Piece"
-                width="300"
-                height="375"
-              />
-            </motion.div>
+        {/* Trust Points - Simple & Clean */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="flex flex-wrap justify-center gap-8 w-full max-w-4xl mx-auto border-t border-white/10 pt-8"
+        >
+          {[
+            { icon: <Box className="w-4 h-4" />, text: "Secure Packaging" },
+            { icon: <CheckCircle2 className="w-4 h-4" />, text: "0.1mm Precision" },
+            { icon: <Sparkles className="w-4 h-4" />, text: "Premium Resin" }
+          ].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-2 text-slate-400 font-medium text-xs uppercase tracking-[0.1em]">
+              <div className="text-white">{item.icon}</div>
+              {item.text}
+            </div>
+          ))}
+        </motion.div>
 
-            {/* Decorative Elements */}
-            <motion.div
-              animate={{ scale: [1, 1.2, 1], rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/4 right-0 w-32 h-32 bg-amber-400/20 rounded-none blur-[40px] z-10"
-            />
-            <motion.div
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-1/4 left-10 w-40 h-40 bg-orange-500/10 rounded-none blur-[50px] z-10"
-            />
-
-          </div>
-        </div>
       </div>
     </section>
   );

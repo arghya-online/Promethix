@@ -36,7 +36,7 @@ export function Footer() {
                             We design and 3D print custom products like prototypes, project parts, decor, gifts, and figurines. Share your idea or STL file and we will turn it into a clean, finished model and deliver it safely.
                         </p>
                         <div className="flex gap-4">
-                            <SocialLink icon={<Instagram className="w-5 h-5" />} href="#" />
+                            <SocialLink icon={<Instagram className="w-5 h-5" />} href="https://instagram.com/promethix3d" />
                             <SocialLink icon={<Twitter className="w-5 h-5" />} href="#" />
                             <SocialLink icon={<Facebook className="w-5 h-5" />} href="#" />
                         </div>
@@ -82,7 +82,7 @@ export function Footer() {
                                 </div>
                                 <div>
                                     <span className="block text-white font-medium mb-1">Email</span>
-                                    <a href="mailto:hello@PROMETHIX3D3d.com" className="text-slate-500 hover:text-white transition-colors">hello@PROMETHIX3D3d.com</a>
+                                    <a href="mailto:promethix3d@gmail.com" className="text-slate-500 hover:text-white transition-colors">promethix3d@gmail.com</a>
                                 </div>
                             </li>
                         </ul>
