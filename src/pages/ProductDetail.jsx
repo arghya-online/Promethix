@@ -10,6 +10,9 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { useCart } from "@/context/cart-context";
 import { ENRICHED_PRODUCTS as PRODUCTS } from "@/data/products";
+import { ProductReviews } from "@/components/ProductReviews";
+import { db } from "../firebase";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 export function ProductDetail() {
   const { id } = useParams();
@@ -31,7 +34,24 @@ export function ProductDetail() {
     }
   }, [id]);
 
+
+  const [realReviewCount, setRealReviewCount] = useState(0);
+
+  useEffect(() => {
+    if (!product) return;
+    const q = query(
+      collection(db, "reviews"),
+      where("productId", "==", product.id)
+    );
+    const unsubscribe = onSnapshot(q, (snap) => {
+      setRealReviewCount(snap.size);
+    });
+    return () => unsubscribe();
+  }, [product]);
+
   if (!product) return <div className="min-h-screen grid place-items-center">Loading...</div>;
+
+  // ... (AddToCart logic remains) ...
 
   const handleAddToCart = () => {
     if (isAdded) {
@@ -70,7 +90,7 @@ export function ProductDetail() {
 
           {/* --- LEFT COLUMN: GALLERY --- */}
           <div className="flex flex-col gap-4">
-
+            {/* ... Gallery code ... */}
             {/* Main Image */}
             <div className="relative group w-full aspect-square md:aspect-[4/5] lg:aspect-square max-h-[520px] bg-slate-50 rounded-none overflow-hidden border border-slate-100">
               <motion.img
@@ -125,7 +145,7 @@ export function ProductDetail() {
                 ))}
               </div>
               <span className="font-bold text-slate-900">{product.rating}</span>
-              <span className="text-slate-400">({product.reviews} reviews)</span>
+              <span className="text-slate-400">({realReviewCount} reviews)</span>
             </div>
 
             {/* D) Price */}
@@ -319,6 +339,9 @@ export function ProductDetail() {
           </div>
 
         </div>
+
+        {/* --- PRODUCT REVIEWS --- */}
+        <ProductReviews productId={product.id} />
       </main>
 
       {/* --- MOBILE STICKY BOTTOM BAR --- */}

@@ -1,10 +1,10 @@
 import React, { useState, lazy, Suspense } from "react";
 import "./App.css";
-import { ClerkProvider } from "@clerk/clerk-react";
 import { Toaster } from "sonner";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "./context/cart-context";
+import { AuthProvider } from "./context/auth-context";
 import AppLayout from "./layouts/app-layout.jsx";
 
 // Lazy Load Pages
@@ -14,6 +14,10 @@ const LandingPage = lazy(() => import("./pages/LandingPage"));
 const About = lazy(() => import("./pages/About"));
 const CustomProduct = lazy(() => import("./pages/CustomProduct"));
 const OrderCart = lazy(() => import("./pages/OrderCart"));
+const Orders = lazy(() => import("./pages/Orders"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const Support = lazy(() => import("./pages/Support"));
 const HowWeWork = lazy(() => import("./pages/HowWeWork"));
 
@@ -25,11 +29,6 @@ const PageLoader = () => (
 );
 
 function App() {
-  const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-
-  if (!PUBLISHABLE_KEY) {
-    throw new Error("Missing Clerk publishable key");
-  }
   const router = createBrowserRouter([
     {
       element: <AppLayout />,
@@ -106,19 +105,48 @@ function App() {
             </Suspense>
           ),
         },
+        {
+          path: "/orders",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Orders />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/profile",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Profile />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/wishlist",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Wishlist />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/admin",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <AdminDashboard />
+            </Suspense>
+          ),
+        },
       ],
     },
   ]);
   return (
-    <ClerkProvider
-      appearance={{ theme: "simple" }}
-      publishableKey={PUBLISHABLE_KEY}
-    >
+    <AuthProvider>
       <CartProvider>
         <RouterProvider router={router} />
         <Toaster richColors position="top-center" />
       </CartProvider>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }
 

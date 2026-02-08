@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { useAuth } from "@/context/auth-context";
 import { Button } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AuthModal from "@/components/AuthModal";
 import {
   FileUp,
   Ruler,
@@ -25,8 +26,10 @@ export default function CustomProduct() {
   const sectionRef = useRef(null);
   const heroRef = useRef(null);
   const timelineRef = useRef(null);
+  const { user: currentUser } = useAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  const whatsappNumber = "+919832769269";
+  const whatsappNumber = "+919832769269"; // Replace with actual number
   const message = encodeURIComponent(
     "Hi PROMETHIX3D, I have a custom 3D printing request."
   );
@@ -124,6 +127,8 @@ export default function CustomProduct() {
       ref={sectionRef}
       className="min-h-screen relative overflow-hidden"
     >
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0 fixed">
         <img
@@ -173,21 +178,18 @@ export default function CustomProduct() {
           {/* HERO CTA ROW */}
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-              <SignedIn>
+              {currentUser ? (
                 <Button
                   onClick={openWhatsApp}
                   className="h-14 px-8 w-full md:w-auto bg-[#25d366] hover:bg-[#20ba5a] text-white font-black uppercase tracking-widest text-sm rounded-full shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:scale-[1.03] transition-all duration-300 border-0"
                 >
                   Start on WhatsApp <MessageCircle className="ml-3 w-5 h-5" />
                 </Button>
-              </SignedIn>
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <Button className="h-14 px-8 w-full md:w-auto bg-[#25d366] hover:bg-[#20ba5a] text-white font-black uppercase tracking-widest text-sm rounded-full shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:scale-[1.03] transition-all duration-300 border-0">
-                    Sign In to Start
-                  </Button>
-                </SignInButton>
-              </SignedOut>
+              ) : (
+                <Button onClick={() => setIsAuthModalOpen(true)} className="h-14 px-8 w-full md:w-auto bg-[#25d366] hover:bg-[#20ba5a] text-white font-black uppercase tracking-widest text-sm rounded-full shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:scale-[1.03] transition-all duration-300 border-0">
+                  Sign In to Start
+                </Button>
+              )}
 
               <Link to="/products" className="w-full md:w-auto">
                 <Button variant="outline" className="h-14 px-8 w-full md:w-auto bg-transparent border-white/20 text-white hover:bg-white/10 hover:border-white/40 font-bold uppercase tracking-widest text-sm rounded-full backdrop-blur-sm">
@@ -301,22 +303,18 @@ export default function CustomProduct() {
 
       {/* MOBILE STICKY CTA */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-slate-900/90 backdrop-blur-xl border-t border-white/10 md:hidden z-50">
-        <SignedIn>
+        {currentUser ? (
           <Button
             onClick={openWhatsApp}
             className="w-full h-12 bg-[#25d366] hover:bg-[#20ba5a] text-white font-black uppercase tracking-widest rounded-full shadow-lg"
           >
             <MessageCircle className="mr-2 w-5 h-5" /> Chat on WhatsApp
           </Button>
-        </SignedIn>
-
-        <SignedOut>
-          <SignInButton mode="modal">
-            <Button className="w-full h-12 bg-white text-slate-900 hover:bg-slate-200 font-black uppercase tracking-widest rounded-full">
-              Sign In to Start
-            </Button>
-          </SignInButton>
-        </SignedOut>
+        ) : (
+          <Button onClick={() => setIsAuthModalOpen(true)} className="w-full h-12 bg-white text-slate-900 hover:bg-slate-200 font-black uppercase tracking-widest rounded-full">
+            Sign In to Start
+          </Button>
+        )}
       </div>
     </section>
   );

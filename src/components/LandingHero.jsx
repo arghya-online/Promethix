@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Box, Sparkles, Cpu, Crosshair, Zap } from "lucide-react";
-import HeroBg from "../assets/HeroImages/hero-bg-engineering.png"; // Anime Engineering background
+import HeroBg from "../assets/HeroImages/hero-bg-engineering-minimal.png"; // Premium Minimal Engineering background
 
 export function LandingHero() {
   return (

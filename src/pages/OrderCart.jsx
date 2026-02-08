@@ -2,38 +2,73 @@ import React, { useState } from "react";
 import { useCart } from "@/context/cart-context";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Trash2, Plus, Minus, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useUser, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { Trash2, Plus, Minus, ArrowRight, Loader2 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/auth-context";
+import { db } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import AuthModal from "@/components/AuthModal";
 
 export default function OrderCart() {
-  const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
-  const { user } = useUser();
+  const { cart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+  const { user: currentUser } = useAuth();
   const [notes, setNotes] = useState("");
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleCheckout = () => {
-    const whatsappNumber = "+919832769269"; // Replace with actual number
+  const handleCheckout = async () => {
+    if (!currentUser) {
+      setIsAuthModalOpen(true);
+      return;
+    }
 
-    let message = `Hello PROMETHIX3D3D,\nI want to place an order.\n\n`;
-    message += `Name: ${user?.fullName || "Guest"}\n`;
-    message += `Email: ${user?.primaryEmailAddress?.emailAddress || "Not provided"
-      }\n\n`;
-    message += `Items:\n`;
+    setLoading(true);
 
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} (x${item.quantity}) - ₹${item.price * item.quantity
-        }\n`;
-    });
+    try {
+      // 1. Save Order to Firestore
+      const orderData = {
+        userId: currentUser.uid,
+        items: cart,
+        total: cartTotal,
+        notes: notes,
+        status: "Pending", // Pending, Processing, Shipped, Delivered, Cancelled
+        createdAt: serverTimestamp(),
+        paymentMethod: "WhatsApp/Pending",
+      };
 
-    message += `\nTotal Value: ₹${cartTotal}\n`;
-    if (notes) message += `Notes: ${notes}\n`;
-    message += `\nPlease guide me with payment and delivery.`;
+      const docRef = await addDoc(collection(db, "orders"), orderData);
 
-    const encodedMessage = encodeURIComponent(message);
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-      "_blank"
-    );
+      // 2. Clear Cart
+      clearCart();
+
+      // 3. Redirect to WhatsApp
+      const whatsappNumber = "+919832769269"; // Replace with actual number
+      let message = `Hello PROMETHIX3D,\nI have placed a new order (ID: ${docRef.id.slice(0, 8)}).\n\n`;
+      message += `Name: ${currentUser.displayName || "Customer"}\n`;
+      message += `Email: ${currentUser.email}\n\n`;
+      message += `Items:\n`;
+
+      cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} (x${item.quantity}) - ₹${item.price * item.quantity}\n`;
+      });
+
+      message += `\nTotal Value: ₹${cartTotal}\n`;
+      if (notes) message += `Notes: ${notes}\n`;
+      message += `\nPlease guide me with payment and delivery.`;
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+
+      // 4. Redirect to Orders Page
+      navigate("/orders");
+
+    } catch (error) {
+      console.error("Error placing order: ", error);
+      alert("Failed to place order. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (cart.length === 0) {
@@ -146,31 +181,24 @@ export default function OrderCart() {
                 />
               </div>
 
-              <SignedIn>
-                <Button
-                  size="lg"
-                  className="w-full h-14 text-lg bg-[#25d366] hover:bg-[#20ba5a] text-white shadow-lg shadow-green-900/20 rounded-none font-bold uppercase tracking-widest"
-                  onClick={handleCheckout}
-                >
-                  Place Order <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </SignedIn>
-
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <Button size="lg" className="w-full h-14 text-lg bg-white text-primary border border-primary hover:bg-slate-50 rounded-none font-bold uppercase tracking-widest">
-                    Sign in to Checkout
-                  </Button>
-                </SignInButton>
-              </SignedOut>
+              <Button
+                size="lg"
+                className="w-full h-14 text-lg bg-[#25d366] hover:bg-[#20ba5a] text-white shadow-lg shadow-green-900/20 rounded-none font-bold uppercase tracking-widest"
+                onClick={handleCheckout}
+                disabled={loading}
+              >
+                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ArrowRight className="w-5 h-5 mr-2" />}
+                {currentUser ? "Place Order" : "Sign in to Order"}
+              </Button>
 
               <p className="text-xs text-center text-text-muted mt-4">
-                Secure checkout via WhatsApp. No payment gateway required.
+                Secure checkout via WhatsApp. Order details will be saved to your account.
               </p>
             </div>
           </div>
         </div>
       </div>
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </div>
   );
 }
