@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../context/cart-context";
 import { useAuth } from "../context/auth-context";
-import { Heart, Star } from "lucide-react";
+import { Heart, Star, Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 export function ProductCard({ product }) {
@@ -43,6 +43,29 @@ export function ProductCard({ product }) {
         className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-slate-400 hover:text-red-500 transition-all z-20 shadow-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300"
       >
         <Heart className={`w-4 h-4 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
+      </button>
+
+
+
+      {/* Share Button - Absolute Positioned (Below Wishlist) */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          const url = `${window.location.origin}/product/${product.id}`;
+          if (navigator.share) {
+            navigator.share({
+              title: product.name,
+              text: `Check out this ${product.name}`,
+              url: url,
+            }).catch((error) => console.log('Error sharing', error));
+          } else {
+            navigator.clipboard.writeText(url);
+            toast.success("Link copied to clipboard");
+          }
+        }}
+        className="absolute top-12 right-3 p-2 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-slate-400 hover:text-blue-500 transition-all z-20 shadow-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300 delay-75"
+      >
+        <Share2 className="w-4 h-4" />
       </button>
 
       {/* Content */}

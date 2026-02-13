@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, Package, Truck, CheckCircle, Clock } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -47,6 +47,7 @@ export default function AdminDashboard() {
         }
     };
 
+
     const updateStatus = async (orderId, newStatus) => {
         try {
             const orderRef = doc(db, "orders", orderId);
@@ -85,6 +86,9 @@ export default function AdminDashboard() {
                     </Button>
                 </div>
 
+            </div>
+
+            <div className="space-y-6 max-w-7xl mx-auto">
                 {/* Stats Cards (Simple) */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Card>
@@ -116,7 +120,6 @@ export default function AdminDashboard() {
                         </CardContent>
                     </Card>
                 </div>
-
                 <Card>
                     <CardHeader>
                         <CardTitle>Recent Orders</CardTitle>
@@ -188,6 +191,7 @@ export default function AdminDashboard() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </div >
+
     );
 }

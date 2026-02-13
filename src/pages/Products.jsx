@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ENRICHED_PRODUCTS as PRODUCTS, CATEGORIES } from "../data/products";
 import { Input } from "@/components/ui/input";
@@ -11,8 +11,13 @@ export default function Products() {
   const { slug } = useParams();
   const [search, setSearch] = useState("");
 
+
+  const allProducts = useMemo(() => {
+    return PRODUCTS;
+  }, []);
+
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    return allProducts.filter((product) => {
       // Create a URL-friendly slug from the category name for comparison
       const categorySlug = product.category.toLowerCase().replace(/ /g, "-");
 

@@ -89,14 +89,14 @@ export function LandingHero() {
         >
           <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-slate-900/50 border border-white/10 text-amber-100/90 text-[11px] uppercase tracking-[0.2em] font-medium mb-8 backdrop-blur-md shadow-lg">
             <span className="w-1 h-1 bg-amber-400 rounded-full box-shadow-amber shadow-[0_0_10px_rgba(251,191,36,0.8)]"></span>
-            Next-Gen Fabrication
+            Promethix3D
             <span className="w-1 h-1 bg-amber-400 rounded-full box-shadow-amber shadow-[0_0_10px_rgba(251,191,36,0.8)]"></span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium text-slate-100 tracking-tight leading-[0.95] mb-8 drop-shadow-lg">
-            Engineer Your <br />
+            Premium 3D <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500 filter drop-shadow-[0_2px_20px_rgba(245,158,11,0.2)] font-semibold">
-              Vision
+              Printed Gifts
             </span>
           </h1>
         </motion.div>
@@ -109,9 +109,9 @@ export function LandingHero() {
           className="relative text-lg md:text-xl text-slate-300 mb-12 font-light leading-relaxed max-w-2xl mx-auto"
         >
           <p>
-            From <span className="text-white font-medium border-b border-white/20 pb-0.5">CAD files</span> to high-fidelity artifacts.
+            Unique, high-quality 3D prints for your home and desk.
             <br className="hidden md:block" />
-            Premium 3D printing for creators who demand precision.
+            Shop our collection or request a custom design.
           </p>
         </motion.div>
 

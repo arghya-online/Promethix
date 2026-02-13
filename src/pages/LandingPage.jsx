@@ -9,6 +9,7 @@ import { Marquee } from "@/components/Marquee";
 import { CustomOrderSection } from "@/components/CustomOrderSection";
 import { FeaturedGallery } from "@/components/FeaturedGallery";
 import { Testimonials } from "@/components/Testimonials";
+import { ShopByCategory } from "@/components/ShopByCategory";
 
 export function LandingPage() {
   const featuredProducts = PRODUCTS.slice(0, 4);
@@ -20,6 +21,11 @@ export function LandingPage() {
 
       {/* 1.5 MARQUEE */}
       <Marquee />
+
+
+
+      {/* 1.8 SHOP BY CATEGORY */}
+      <ShopByCategory />
 
       {/* 2. TRENDING NOW (Moved Up) */}
       <section className="py-16 md:py-24 bg-white">

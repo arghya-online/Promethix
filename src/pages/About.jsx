@@ -43,15 +43,16 @@ export default function About() {
               Our Story
             </span>
             <h1 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight drop-shadow-xl">
-              Crafting the future, <br />
+              Crafting happiness, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
                 one layer at a time.
               </span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 leading-relaxed font-light drop-shadow-md">
-              Promethix3D bridges the gap between digital imagination and physical reality.
-              We are a team of precision engineers and designers dedicated to making
-              3D printing accessible, premium, and reliable.
+              At Promethix3D, we turn your ideas into something you can hold.
+              Whether it’s a quirky gift for a friend or a custom part for your project,
+              we make sure it looks great and lasts long.
+              Made with ❤️ in India.
             </p>
           </motion.div>
         </section>
@@ -61,9 +62,9 @@ export default function About() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { icon: <Zap className="w-6 h-6" />, title: "Precision Engineering", desc: "Industrial-grade calibration for flawless prints with 0.1mm accuracy." },
-                { icon: <Heart className="w-6 h-6" />, title: "Passion for Design", desc: "We don't just print; we refine designs to ensure they look and work perfectly." },
-                { icon: <ShieldCheck className="w-6 h-6" />, title: "Quality Guaranteed", desc: "Every print is hand-inspected. If it's not perfect, we reprint it." }
+                { icon: <Zap className="w-6 h-6" />, title: "Super Detailed", desc: "We obsess over the little details so your print looks exactly like it should." },
+                { icon: <Heart className="w-6 h-6" />, title: "Made with Love", desc: "We don't just print; we pour our heart into making every piece special." },
+                { icon: <ShieldCheck className="w-6 h-6" />, title: "Top Quality", desc: "If you don't love it, we'll fix it. Simple as that." }
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -88,8 +89,8 @@ export default function About() {
         <section className="py-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-black text-white mb-4">How it works</h2>
-              <p className="text-slate-400">From concept to doorstep in 4 simple steps.</p>
+              <h2 className="text-3xl font-black text-white mb-4">How we do it?</h2>
+              <p className="text-slate-400">Easy peasy. Just 4 steps.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
@@ -97,10 +98,10 @@ export default function About() {
               <div className="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-slate-700 -z-10 transform translate-y-0"></div>
 
               {[
-                { step: "01", title: "Idea", icon: MessageCircle, desc: "Message us your sketch or concept." },
-                { step: "02", title: "Design", icon: PenTool, desc: "We create the 3D model for you." },
-                { step: "03", title: "Print", icon: Printer, desc: "High-fidelity printing begins." },
-                { step: "04", title: "Deliver", icon: Package, desc: "Shipped safely to your door." }
+                { step: "01", title: "Idea", icon: MessageCircle, desc: "Just text us your idea." },
+                { step: "02", title: "Design", icon: PenTool, desc: "We'll design it for you." },
+                { step: "03", title: "Print", icon: Printer, desc: "The magic happens here." },
+                { step: "04", title: "Deliver", icon: Package, desc: "Straight to your home." }
               ].map((process, idx) => (
                 <motion.div
                   key={idx}
@@ -128,10 +129,10 @@ export default function About() {
         <section className="py-24 text-center">
           <div className="max-w-2xl mx-auto px-6 space-y-8 bg-slate-900/60 backdrop-blur-md p-10 rounded-3xl border border-white/10">
             <h2 className="text-4xl font-black text-white tracking-tight">
-              Ready to build something?
+              Got an idea?
             </h2>
             <p className="text-lg text-slate-300">
-              No 3D files required. Just bring your imagination.
+              You don't need fancy files. Just tell us what you want!
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button onClick={handleWhatsAppClick} className="h-14 px-10 bg-amber-500 text-white hover:bg-amber-600 rounded-full text-base font-bold shadow-lg shadow-amber-900/20 hover:-translate-y-1 transition-all">

@@ -120,14 +120,13 @@ export function CustomOrderSection() {
                     </p>
 
                     <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
-                        Tell us your idea.
+                        You imagine it.
                         <br className="hidden md:block" />
-                        We design and print it.
+                        We print it.
                     </h2>
 
                     <p className="text-slate-300 text-base md:text-lg leading-relaxed">
-                        No STL needed. Send a photo, sketch, or message and we will guide you
-                        from preview to delivery.
+                        Don't stress about files. Just define what you need, and we'll handle the rest.
                     </p>
                 </div>
 
@@ -139,22 +138,22 @@ export function CustomOrderSection() {
                     {/* LEFT */}
                     <div className="border border-white/10 rounded-none p-7 md:p-9 bg-slate-900/50 backdrop-blur-md">
                         <h3 className="text-lg font-black text-white mb-1">
-                            Send any of these
+                            Just share whatever you have
                         </h3>
                         <p className="text-sm text-slate-400 mb-6">
-                            Even rough inputs are fine.
+                            Seriously, we can work with anything.
                         </p>
 
                         <div className="space-y-4">
-                            <ChecklistItem icon={<FileUp />} text="STL or CAD file (optional)" />
-                            <ChecklistItem icon={<ImageIcon />} text="Reference images or links" />
-                            <ChecklistItem icon={<PenTool />} text="Rough sketch" />
-                            <ChecklistItem icon={<Ruler />} text="Measurements" />
-                            <ChecklistItem icon={<MessageSquare />} text="Or explain in text" />
+                            <ChecklistItem icon={<FileUp />} text="Have a 3D file? Great!" />
+                            <ChecklistItem icon={<ImageIcon />} text="Photo from Pinterest/Instagram" />
+                            <ChecklistItem icon={<PenTool />} text="A rough doodle on paper" />
+                            <ChecklistItem icon={<Ruler />} text="Rough size/dimensions" />
+                            <ChecklistItem icon={<MessageSquare />} text="Or just explain in voice note" />
                         </div>
 
                         <p className="mt-6 text-sm text-slate-500">
-                            We handle design, printing, and finishing.
+                            We'll figure out the technical stuff.
                         </p>
                     </div>
 
@@ -174,18 +173,18 @@ export function CustomOrderSection() {
                             <div className="space-y-6">
                                 <TimelineItem
                                     number="01"
-                                    title="You message us"
-                                    desc="Share your idea on WhatsApp."
+                                    title="Chat with us"
+                                    desc="WhatsApp us your idea."
                                 />
                                 <TimelineItem
                                     number="02"
-                                    title="We share a preview"
-                                    desc="You approve the design before printing."
+                                    title="See a preview"
+                                    desc="We show you how it looks first."
                                 />
                                 <TimelineItem
                                     number="03"
-                                    title="We print and deliver"
-                                    desc="Packed safely and shipped to you."
+                                    title="Get it delivered"
+                                    desc="We print and ship it to you."
                                 />
                             </div>
                         </div>

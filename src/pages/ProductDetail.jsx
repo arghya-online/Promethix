@@ -3,12 +3,13 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Star, Minus, Plus, ShoppingCart, Truck, ShieldCheck,
-  Share2, Heart, ChevronDown, Check, ArrowRight, Box, Ruler, Weight
+  Share2, Heart, ChevronDown, Check, ArrowRight, Box, Ruler
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { useCart } from "@/context/cart-context";
+import { useAuth } from "../context/auth-context";
 import { ENRICHED_PRODUCTS as PRODUCTS } from "@/data/products";
 import { ProductReviews } from "@/components/ProductReviews";
 import { db } from "../firebase";
@@ -23,14 +24,20 @@ export function ProductDetail() {
   const [activeTab, setActiveTab] = useState("description");
   const [isAdded, setIsAdded] = useState(false); // Track if item is added
   const { addToCart } = useCart();
+  const { toggleWishlist, wishlist } = useAuth();
+  const isWishlisted = product && wishlist ? wishlist.includes(product.id) : false;
 
   useEffect(() => {
     // Scroll to top on load
     window.scrollTo(0, 0);
-    const found = PRODUCTS.find((p) => p.id === parseInt(id));
+
+    const found = PRODUCTS.find((p) => p.id == id); // Use == to match string/number
     if (found) {
       setProduct(found);
       setActiveImage(found.image);
+    } else {
+      toast.error("Product not found");
+      // navigate("/products");
     }
   }, [id]);
 
@@ -68,9 +75,9 @@ export function ProductDetail() {
     navigate("/cart");
   }
 
-  const discountedPrice = product.discountPercent
-    ? Math.round(product.price * (1 - product.discountPercent / 100))
-    : product.price;
+  // const discountedPrice = product.discountPercent
+  //   ? Math.round(product.price * (1 - product.discountPercent / 100))
+  //   : product.price;
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans pb-32 md:pb-20">
@@ -102,9 +109,30 @@ export function ProductDetail() {
                 alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-zoom-in"
               />
-              <div className="absolute top-4 right-4 z-10">
-                <button className="p-2.5 bg-white/90 backdrop-blur rounded-none shadow-sm hover:shadow-md transition-all text-slate-600 hover:text-red-500">
-                  <Heart className="w-5 h-5" />
+              <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+                <button
+                  onClick={() => toggleWishlist(product.id)}
+                  className="p-2.5 bg-white/90 backdrop-blur rounded-none shadow-sm hover:shadow-md transition-all text-slate-600 hover:text-red-500"
+                >
+                  <Heart className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
+                </button>
+                <button
+                  onClick={() => {
+                    const url = window.location.href;
+                    if (navigator.share) {
+                      navigator.share({
+                        title: product.name,
+                        text: `Check out this ${product.name}`,
+                        url: url,
+                      }).catch((error) => console.log('Error sharing', error));
+                    } else {
+                      navigator.clipboard.writeText(url);
+                      toast.success("Link copied to clipboard");
+                    }
+                  }}
+                  className="p-2.5 bg-white/90 backdrop-blur rounded-none shadow-sm hover:shadow-md transition-all text-slate-600 hover:text-blue-500"
+                >
+                  <Share2 className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -150,10 +178,10 @@ export function ProductDetail() {
 
             {/* D) Price */}
             <div className="flex items-baseline gap-3 mb-6 border-b border-slate-100 pb-6">
-              <span className="text-3xl font-black text-slate-900">₹{discountedPrice}</span>
-              {product.discountPercent > 0 && (
+              <span className="text-3xl font-black text-slate-900">₹{product.price}</span>
+              {product.originalPrice && product.originalPrice > product.price && (
                 <>
-                  <span className="text-lg text-slate-400 line-through decoration-slate-300">₹{product.price}</span>
+                  <span className="text-lg text-slate-400 line-through decoration-slate-300">₹{product.originalPrice}</span>
                   <span className="text-red-600 font-bold text-sm bg-red-50 px-2 py-0.5 rounded">-{product.discountPercent}%</span>
                 </>
               )}
@@ -193,12 +221,7 @@ export function ProductDetail() {
                     <span className="text-xs font-bold text-slate-900 leading-tight">{product.specs.dimensions}</span>
                   </div>
                 )}
-                {product.specs?.weight && (
-                  <div className="bg-slate-50 rounded-none p-2.5 flex flex-col items-center justify-center text-center">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-1">Weight</span>
-                    <span className="text-xs font-bold text-slate-900 leading-tight">{product.specs.weight}</span>
-                  </div>
-                )}
+
               </div>
             </div>
 
@@ -227,7 +250,7 @@ export function ProductDetail() {
                   onClick={handleAddToCart}
                   className={`flex-1 h-[52px] text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-white ${isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-slate-900 hover:bg-slate-800'}`}
                 >
-                  {isAdded ? "Go to Order Cart" : `Add to Cart - ₹${(discountedPrice * quantity).toLocaleString()}`}
+                  {isAdded ? "Go to Order Cart" : `Add to Cart - ₹${(product.price * quantity).toLocaleString()}`}
                   {isAdded && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
               </div>
@@ -296,7 +319,7 @@ export function ProductDetail() {
                   <div className="grid grid-cols-2 gap-x-12 gap-y-4 max-w-lg">
                     <SpecRow label="Material" value={product.specs.material} />
                     <SpecRow label="Dimensions" value={product.specs.dimensions} />
-                    <SpecRow label="Weight" value={product.specs.weight} />
+
                   </div>
                 </motion.div>
               )}
@@ -326,7 +349,7 @@ export function ProductDetail() {
               <div className="grid grid-cols-1 gap-3">
                 <SpecRow label="Material" value={product.specs.material} />
                 <SpecRow label="Dimensions" value={product.specs.dimensions} />
-                <SpecRow label="Weight" value={product.specs.weight} />
+
               </div>
             </AccordionItem>
             <AccordionItem title="Shipping & Returns">
@@ -368,7 +391,7 @@ export function ProductDetail() {
             onClick={handleAddToCart}
             className={`flex-1 h-12 text-white font-bold rounded-none shadow-lg ${isAdded ? 'bg-green-600' : 'bg-slate-900'}`}
           >
-            {isAdded ? "Go to Cart" : `Add - ₹${discountedPrice * quantity}`}
+            {isAdded ? "Go to Cart" : `Add - ₹${(product.price * quantity).toLocaleString()}`}
           </Button>
         </div>
       </div>
@@ -410,7 +433,7 @@ function AccordionItem({ title, children }) {
         className="w-full flex items-center justify-between p-4 bg-slate-50/50 hover:bg-slate-50 transition-colors"
       >
         <span className="font-bold text-slate-700 font-sm">{title}</span>
-        <ChevronDown className={`w - 4 h - 4 text - slate - 400 transition - transform ${isOpen ? 'rotate-180' : ''} `} />
+        <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''} `} />
       </button>
       {isOpen && (
         <div className="p-4 bg-white border-t border-slate-100 animate-in slide-in-from-top-2 fade-in">
