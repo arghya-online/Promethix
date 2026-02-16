@@ -37,15 +37,7 @@ function App() {
           path: "/",
           element: (
             <Suspense fallback={<PageLoader />}>
-              <LandingPage />
-            </Suspense>
-          ),
-        },
-        {
-          path: "/about",
-          element: (
-            <Suspense fallback={<PageLoader />}>
-              <About />
+              <Products />
             </Suspense>
           ),
         },
@@ -70,6 +62,14 @@ function App() {
           element: (
             <Suspense fallback={<PageLoader />}>
               <ProductDetail />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/about",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <About />
             </Suspense>
           ),
         },

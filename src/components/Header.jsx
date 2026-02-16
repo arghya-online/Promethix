@@ -24,7 +24,7 @@ import {
 import { useCart } from "@/context/cart-context";
 
 function Header() {
-  const { cart } = useCart();
+  const { cart, toggleCart } = useCart();
   const { user: currentUser, logout, userData: userProfile } = useAuth();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -124,20 +124,20 @@ function Header() {
               </Button>
             </Link>
 
-            <Link to="/cart">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative text-black hover:bg-black/5"
-              >
-                <ShoppingBag className="w-5 h-5" />
-                {cartCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-amber-500 text-black font-bold text-[10px] rounded-none border-2 border-white">
-                    {cartCount}
-                  </Badge>
-                )}
-              </Button>
-            </Link>
+            {/* Cart Button - Opens Drawer */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleCart}
+              className="relative text-black hover:bg-black/5"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-amber-500 text-black font-bold text-[10px] rounded-none border-2 border-white">
+                  {cartCount}
+                </Badge>
+              )}
+            </Button>
 
             <div className="h-8 w-px bg-slate-200 hidden sm:block" />
 
@@ -261,13 +261,15 @@ function Header() {
                 </NavLink>
               ))}
               <div className="mt-4 pt-4">
-                <Link
-                  to="/cart"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-bold flex items-center gap-3 text-slate-700 mb-6"
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    toggleCart();
+                  }}
+                  className="text-lg font-bold flex items-center gap-3 text-slate-700 mb-6 w-full text-left"
                 >
                   <ShoppingBag className="w-5 h-5" /> Cart ({cartCount})
-                </Link>
+                </button>
                 {!currentUser ? (
                   <Button
                     onClick={() => {

@@ -1,47 +1,44 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useMemo } from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { ENRICHED_PRODUCTS as PRODUCTS, CATEGORIES } from "../data/products";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Search, ChevronDown, Sparkles, Box, ArrowRight, PenTool } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ShopByCategory } from "@/components/ShopByCategory";
+import { CommunityHero } from "@/components/CommunityHero";
+import { CustomOrderSection } from "@/components/CustomOrderSection";
+
 
 export default function Products() {
   const { slug } = useParams();
+  const location = useLocation();
   const [search, setSearch] = useState("");
 
+  const allProducts = useMemo(() => PRODUCTS, []);
 
-  const allProducts = useMemo(() => {
-    return PRODUCTS;
-  }, []);
+  const isHomePage = location.pathname === "/";
 
   const filteredProducts = useMemo(() => {
-    return allProducts.filter((product) => {
-      // Create a URL-friendly slug from the category name for comparison
+    let products = allProducts.filter((product) => {
       const categorySlug = product.category.toLowerCase().replace(/ /g, "-");
-
-      const matchesCategory = slug
-        ? categorySlug === slug
-        : true;
-
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
+      const matchesCategory = slug ? categorySlug === slug : true;
+      const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [slug, search]);
 
-  // Stagger container variants
+    // Limit to 6 products ONLY on homepage and when no search/filter is active
+    if (isHomePage && !slug && !search) {
+      return products.slice(0, 6);
+    }
+    return products;
+  }, [slug, search, isHomePage, allProducts]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
@@ -50,130 +47,135 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
-      {/* HEADER SECTION with Ambient Background */}
-      <div className="relative bg-white border-b border-slate-100 pt-32 pb-12 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-50 rounded-none blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-50" />
+    <div className="min-h-screen bg-slate-50 text-slate-900 pb-20 font-sans">
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-slate-900 mb-6 font-heading">
-            {slug ? slug.split("-").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ") : "All Collections"}
-          </h1>
+      {/* --- COMMUNITY HERO SECTION --- */}
+      {isHomePage && !slug && !search && (
+        <CommunityHero />
+      )}
 
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-            <p className="text-slate-500 max-w-lg text-lg leading-relaxed">
-              Explore our premium range of industrial-grade 3D printed artifacts.
-              Designed for durability, optimized for performance.
-            </p>
+      {/* --- FILTER & SEARCH BAR (Sticky) --- */}
+      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-slate-200 shadow-sm transition-all">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between gap-4">
 
-            {/* Search Input */}
-            <div className="relative w-full md:w-96">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input
-                placeholder="Search catalog..."
-                className="pl-11 h-12 bg-slate-100 border-transparent rounded-none text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-slate-200 focus:shadow-lg transition-all"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-          </div>
-
-          {/* Mobile Category Dropdown - Visible only on small screens */}
-          <div className="md:hidden mt-12">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">
-              Browsing Category
-            </label>
-            <div className="relative">
-              <select
-                className="w-full h-12 pl-4 pr-10 bg-slate-100 border-transparent rounded-none text-slate-900 font-bold focus:ring-2 focus:ring-slate-900 focus:bg-white transition-all appearance-none"
-                value={slug || "all"}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  if (val === "all") window.location.href = "/products";
-                  else window.location.href = `/category/${val}`;
-                }}
-              >
-                <option value="all">All Collection</option>
-                {CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat.toLowerCase().replace(/ /g, "-")}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-              {/* Custom Arrow */}
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-                <ChevronDown className="w-5 h-5" />
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop Filter Pills - Hidden on mobile */}
-          <div className="hidden md:flex flex-wrap gap-2 mt-12">
-            <Link to="/products" preventScrollReset>
-              <Badge
-                variant={!slug ? "default" : "outline"}
-                className={`h-9 px-6 rounded-none text-xs font-bold uppercase tracking-wide transition-all ${!slug
-                  ? "bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20"
-                  : "bg-white text-slate-500 border-slate-200 hover:border-slate-900 hover:text-slate-900"}`}
-              >
-                All Items
-              </Badge>
+          {/* Desktop Categories */}
+          <div className="hidden md:flex items-center gap-1 overflow-x-auto no-scrollbar">
+            <Link to="/products">
+              <Button variant={!slug ? "secondary" : "ghost"} className="rounded-full text-xs font-bold uppercase tracking-wide h-9">
+                All
+              </Button>
             </Link>
-            {CATEGORIES.map((cat) => {
+            {CATEGORIES.map(cat => {
               const catSlug = cat.toLowerCase().replace(/ /g, "-");
-              const isActive = slug === catSlug;
               return (
-                <Link key={cat} to={`/category/${catSlug}`} preventScrollReset>
-                  <Badge
-                    variant={isActive ? "default" : "outline"}
-                    className={`h-9 px-6 rounded-none text-xs font-bold uppercase tracking-wide transition-all ${isActive
-                      ? "bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20"
-                      : "bg-white text-slate-500 border-slate-200 hover:border-slate-900 hover:text-slate-900"}`}
-                  >
+                <Link key={cat} to={`/category/${catSlug}`}>
+                  <Button variant={slug === catSlug ? "secondary" : "ghost"} className={`rounded-full text-xs font-bold uppercase tracking-wide h-9 ${slug === catSlug ? 'bg-slate-900 text-white hover:bg-slate-800' : 'text-slate-500'}`}>
                     {cat}
-                  </Badge>
+                  </Button>
                 </Link>
-              );
+              )
             })}
           </div>
+
+          {/* Mobile Category Dropdown */}
+          <div className="md:hidden relative w-1/2 max-w-[180px]">
+            <select
+              className="w-full h-10 pl-3 pr-8 bg-slate-100 rounded-lg text-xs font-bold uppercase tracking-wide text-slate-900 appearance-none focus:ring-2 focus:ring-slate-900 outline-none"
+              value={slug || ""}
+              onChange={(e) => {
+                const val = e.target.value;
+                window.location.href = val ? `/category/${val}` : "/products";
+              }}
+            >
+              <option value="">All Collection</option>
+              {CATEGORIES.map(cat => (
+                <option key={cat} value={cat.toLowerCase().replace(/ /g, "-")}>{cat}</option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" />
+          </div>
+
+          {/* Search */}
+          <div className="relative flex-1 md:max-w-xs">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Input
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-9 h-10 bg-slate-100 border-transparent focus:bg-white transition-all rounded-full text-sm"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-12">
-        {/* Results Count */}
-        <div className="flex items-center justify-between mb-8">
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
-            Showing {filteredProducts.length} Results
-          </span>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+        {/* Results Header */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+            {slug ? (
+              <>
+                <span className="text-slate-400 font-normal">Category:</span>
+                {slug.split("-").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ")}
+              </>
+            ) : (
+              isHomePage ? "Featured Products" : "All Products"
+            )}
+          </h2>
+
+          {/* View All Logic - Top Right */}
+          {isHomePage ? (
+            <Link to="/products" className="group flex items-center gap-2 text-xs md:text-sm font-bold text-slate-500 hover:text-amber-600 transition-colors uppercase tracking-widest border-b border-transparent hover:border-amber-600 pb-0.5">
+              View All <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          ) : (
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{filteredProducts.length} Items</span>
+          )}
         </div>
 
-        {/* Product Grid - Staggered */}
-        {filteredProducts.length > 0 ? (
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-            layout
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 gap-y-8"
-          >
-            {filteredProducts.map((product) => (
-              <motion.div key={product.id} variants={itemVariants}>
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <div className="min-h-[40vh] flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-slate-100 rounded-none flex items-center justify-center mb-4">
-              <Search className="w-6 h-6 text-slate-400" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">No products found</h3>
-            <p className="text-slate-500 max-w-xs mx-auto">
-              We couldn't find any items matching your search. Try different keywords or filters.
-            </p>
+        {/* Product Grid */}
+        <AnimatePresence mode="wait">
+          {filteredProducts.length > 0 ? (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="show"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"
+            >
+              {filteredProducts.map((product) => (
+                <motion.div key={product.id} variants={itemVariants}>
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-20 text-center">
+              <Box className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-900">No products found</h3>
+              <p className="text-slate-500">Try adjusting your search or category.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* HOMEPAGE BUTTONS: JUST CUSTOM DESIGN (View All is now at top) */}
+        {isHomePage && !slug && !search && (
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12 mb-8">
+            <Link to="/custom">
+              <Button size="lg" className="h-14 px-10 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold uppercase tracking-widest shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                Start Custom Design <PenTool className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         )}
+
       </div>
+
+      {/* CUSTOM ORDER SECTION (Only on Homepage) */}
+      {isHomePage && !slug && !search && (
+        <div className="mt-20">
+          <CustomOrderSection />
+        </div>
+      )}
+
     </div>
   );
 }
