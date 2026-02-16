@@ -23,6 +23,7 @@ export default function AdminDashboard() {
 
     // Offline Order Form State
     const [customerName, setCustomerName] = useState("");
+    const [broughtBy, setBroughtBy] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("cash"); // cash | online
     const [cartItems, setCartItems] = useState([]);
 
@@ -138,8 +139,8 @@ export default function AdminDashboard() {
 
     const handleAddOfflineOrder = async (e) => {
         e.preventDefault();
-        if (!customerName || cartItems.length === 0) {
-            toast.error("Customer name and at least one item are required");
+        if (!customerName || cartItems.length === 0 || !broughtBy) {
+            toast.error("Customer name, brought by, and at least one item are required");
             return;
         }
 
@@ -152,6 +153,7 @@ export default function AdminDashboard() {
                 total: orderTotal,
                 status: "delivered", // Usually offline orders are immediate
                 paymentMethod: paymentMethod,
+                broughtBy: broughtBy,
                 source: "offline",
                 isPaid: true,
                 createdAt: serverTimestamp(),
@@ -159,6 +161,7 @@ export default function AdminDashboard() {
             toast.success("Offline order added successfully");
             setIsOfflineModalOpen(false);
             setCustomerName("");
+            setBroughtBy("");
             setCartItems([]);
             setPaymentMethod("cash");
             fetchOrders();
@@ -176,6 +179,32 @@ export default function AdminDashboard() {
         cancelled: "bg-red-100 text-red-800",
     };
 
+    // Stats Calculations
+    const totalRevenue = orders.reduce((acc, curr) => acc + (curr.total || 0), 0);
+    const offlineRevenue = orders.filter(o => o.source === 'offline').reduce((acc, curr) => acc + (curr.total || 0), 0);
+    const onlineRevenue = totalRevenue - offlineRevenue;
+
+
+
+    // Calculate Sales by Product
+    const salesByProduct = useMemo(() => {
+        const stats = {};
+        orders.forEach(order => {
+            if (order.items && Array.isArray(order.items)) {
+                order.items.forEach(item => {
+                    const itemName = item.name || "Unknown Item";
+                    if (!stats[itemName]) {
+                        stats[itemName] = { name: itemName, quantity: 0 };
+                    }
+                    stats[itemName].quantity += (parseInt(item.quantity) || 0);
+                });
+            }
+        });
+        return Object.values(stats).sort((a, b) => b.quantity - a.quantity);
+    }, [orders]);
+
+    const maxProductQty = salesByProduct.length > 0 ? salesByProduct[0].quantity : 0;
+
     if (authLoading || loading) {
         return (
             <div className="min-h-screen flex items-center justify-center pt-20">
@@ -184,10 +213,7 @@ export default function AdminDashboard() {
         );
     }
 
-    // Stats Calculations
-    const totalRevenue = orders.reduce((acc, curr) => acc + (curr.total || 0), 0);
-    const offlineRevenue = orders.filter(o => o.source === 'offline').reduce((acc, curr) => acc + (curr.total || 0), 0);
-    const onlineRevenue = totalRevenue - offlineRevenue;
+
 
     return (
         <div className="min-h-screen pt-24 pb-12 px-6 bg-slate-50 relative">
@@ -246,6 +272,35 @@ export default function AdminDashboard() {
                     </Card>
                 </div>
 
+
+
+                {/* Sales by Product Chart */}
+                {salesByProduct.length > 0 && (
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Product Sales Volume</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                {salesByProduct.map((product) => (
+                                    <div key={product.name} className="space-y-1">
+                                        <div className="flex justify-between text-sm">
+                                            <span className="font-medium truncate pr-4">{product.name}</span>
+                                            <span className="text-slate-500 shrink-0">{product.quantity} sold</span>
+                                        </div>
+                                        <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full bg-emerald-500 rounded-full"
+                                                style={{ width: `${(product.quantity / maxProductQty) * 100}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                )}
+
                 <Card>
                     <CardHeader>
                         <CardTitle>Recent Orders</CardTitle>
@@ -256,6 +311,7 @@ export default function AdminDashboard() {
                                 <TableRow>
                                     <TableHead>Order ID</TableHead>
                                     <TableHead>Customer</TableHead>
+                                    <TableHead>Brought By</TableHead>
                                     <TableHead>Source</TableHead>
                                     <TableHead>Date</TableHead>
                                     <TableHead>Items</TableHead>
@@ -274,6 +330,9 @@ export default function AdminDashboard() {
                                                 <span className="font-medium text-sm">{order.userName || "Guest"}</span>
                                                 <span className="text-xs text-slate-500">{order.userId !== 'offline_customer' ? order.userId : 'In-Store'}</span>
                                             </div>
+                                        </TableCell>
+                                        <TableCell className="text-xs font-medium text-slate-600">
+                                            {order.broughtBy || "-"}
                                         </TableCell>
                                         <TableCell>
                                             {order.source === 'offline' ?
@@ -345,16 +404,32 @@ export default function AdminDashboard() {
                         </div>
 
                         <div className="p-6 space-y-6">
-                            {/* 1. Customer Info */}
-                            <div className="space-y-2">
-                                <Label htmlFor="customerName" className="font-bold">Customer Name</Label>
-                                <Input
-                                    id="customerName"
-                                    placeholder="Enter customer name..."
-                                    value={customerName}
-                                    onChange={(e) => setCustomerName(e.target.value)}
-                                    className="bg-slate-50/50"
-                                />
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="customerName" className="font-bold">Customer Name</Label>
+                                    <Input
+                                        id="customerName"
+                                        placeholder="Enter customer name..."
+                                        value={customerName}
+                                        onChange={(e) => setCustomerName(e.target.value)}
+                                        className="bg-slate-50/50"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="broughtBy" className="font-bold">Brought By</Label>
+                                    <Select value={broughtBy} onValueChange={setBroughtBy}>
+                                        <SelectTrigger className="bg-slate-50/50">
+                                            <SelectValue placeholder="Select..." />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="Arghya">Arghya</SelectItem>
+                                            <SelectItem value="Arnab">Arnab</SelectItem>
+                                            <SelectItem value="Souratya">Souratya</SelectItem>
+                                            <SelectItem value="Maam">Maam</SelectItem>
+                                            <SelectItem value="NirbanDa">NirbanDa</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
 
                             {/* 2. Add Items Section */}
