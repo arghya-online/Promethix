@@ -51,6 +51,7 @@ function Header() {
   const links = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
+    { name: "Showcase", path: "/showcase" },
     { name: "Custom", path: "/custom" },
     { name: "About", path: "/about" },
   ];

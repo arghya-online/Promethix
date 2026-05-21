@@ -117,3 +117,12 @@ h6 {
         perspective: 1000px;
     }
 }
+
+/* Global click-to-fullscreen zoom cursor */
+main img:not(.no-zoom):not(button img) {
+    cursor: zoom-in;
+    transition: opacity 0.3s ease;
+}
+main img:not(.no-zoom):not(button img):hover {
+    opacity: 0.9;
+}

@@ -20,6 +20,7 @@ const Wishlist = lazy(() => import("./pages/Wishlist"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const Support = lazy(() => import("./pages/Support"));
 const HowWeWork = lazy(() => import("./pages/HowWeWork"));
+const Showcase = lazy(() => import("./pages/Showcase"));
 
 // Loading Fallback Component
 const PageLoader = () => (
@@ -78,6 +79,14 @@ function App() {
           element: (
             <Suspense fallback={<PageLoader />}>
               <CustomProduct />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/showcase",
+          element: (
+            <Suspense fallback={<PageLoader />}>
+              <Showcase />
             </Suspense>
           ),
         },

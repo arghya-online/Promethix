@@ -47,6 +47,7 @@ export function Footer() {
                         <h4 className="font-bold text-white uppercase tracking-wider mb-8 text-xs">Explore</h4>
                         <ul className="space-y-4 text-sm font-medium">
                             <li><Link to="/products" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> All Products</Link></li>
+                            <li><Link to="/showcase" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> Showcase</Link></li>
                             <li><Link to="/custom" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> Custom Orders</Link></li>
                             <li><Link to="/about" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> About Us</Link></li>
                             <li><Link to="/support" className="hover:text-amber-500 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 bg-amber-500 rounded-none opacity-0 group-hover:opacity-100 transition-opacity" /> Support Center</Link></li>
