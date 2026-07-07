@@ -101,7 +101,7 @@ export default function AdminDashboard() {
         let newItem = null;
 
         if (selectedProductId && selectedProductId !== "custom") {
-            const product = PRODUCTS.find(p => p.id === parseInt(selectedProductId));
+            const product = PRODUCTS.find(p => p.id.toString() === selectedProductId.toString());
             if (product) {
                 newItem = {
                     id: product.id,
