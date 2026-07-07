@@ -54,9 +54,9 @@ export default function Products() {
         <>
           <CommunityHero />
           <div className="bg-white border-b border-slate-200 py-6 text-center no-print flex justify-center">
-            <Link to="/showcase">
+            <Link to="/products">
               <Button className="bg-slate-900 text-white hover:bg-amber-500 hover:text-black font-bold uppercase tracking-widest text-xs px-8 py-3 h-12 rounded-none transition-all duration-300 flex items-center gap-2 shadow-sm border border-transparent cursor-pointer">
-                <span>Explore Digital Portfolio Showcase</span>
+                <span>Explore All Products</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>

@@ -73,7 +73,7 @@ export function CartProvider({ children }) {
     const clearCart = () => setCart([]);
 
     const cartTotal = cart.reduce(
-        (total, item) => total + (item.price || 0) * item.quantity,
+        (total, item) => total + (typeof item.price === 'number' ? item.price : 0) * item.quantity,
         0
     );
 

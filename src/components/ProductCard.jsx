@@ -80,7 +80,7 @@ export function ProductCard({ product }) {
             <Star className="w-2.5 h-2.5 fill-current" />
             <span>{rating}</span>
           </div>
-          {product.originalPrice && (
+          {typeof product.price === 'number' && typeof product.originalPrice === 'number' && product.originalPrice > product.price && (
             <span className="text-[10px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-sm">
               -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
             </span>
@@ -97,9 +97,9 @@ export function ProductCard({ product }) {
         <div className="mt-auto flex items-end justify-between pt-2 border-t border-slate-50">
           <div className="flex flex-col leading-none">
             <span className="font-mono text-base md:text-lg font-bold text-slate-900">
-              ₹{product.price}
+              {typeof product.price === 'number' ? `₹${product.price}` : product.price}
             </span>
-            {product.originalPrice && (
+            {typeof product.originalPrice === 'number' && product.originalPrice > product.price && (
               <span className="text-[10px] text-slate-400 line-through mt-0.5">₹{product.originalPrice}</span>
             )}
           </div>

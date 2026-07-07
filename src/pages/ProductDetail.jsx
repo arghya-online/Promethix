@@ -125,8 +125,10 @@ export function ProductDetail() {
               <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">{product.name}</h1>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-3xl font-bold">₹{product.price}</span>
-                  {product.originalPrice > product.price && (
+                  <span className="text-3xl font-bold">
+                    {typeof product.price === 'number' ? `₹${product.price}` : product.price}
+                  </span>
+                  {typeof product.originalPrice === 'number' && product.originalPrice > product.price && (
                     <span className="text-lg text-slate-400 line-through">₹{product.originalPrice}</span>
                   )}
                 </div>
@@ -167,7 +169,7 @@ export function ProductDetail() {
                   onClick={handleAddToCart}
                   className={`flex-1 h-[52px] text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-white ${isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-slate-900 hover:bg-slate-800'}`}
                 >
-                  {isAdded ? "View Cart" : `Add to Cart - ₹${(product.price * quantity).toLocaleString()}`}
+                  {isAdded ? "View Cart" : `Add to Cart - ${typeof product.price === 'number' ? `₹${(product.price * quantity).toLocaleString()}` : product.price}`}
                   {isAdded && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
               </div>
@@ -218,7 +220,7 @@ export function ProductDetail() {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] md:hidden z-50 flex items-center gap-4">
         <div className="flex flex-col">
           <span className="text-xs font-bold text-slate-500 uppercase">Total</span>
-          <span className="text-lg font-black text-slate-900">₹{product.price * quantity}</span>
+          <span className="text-lg font-black text-slate-900">{typeof product.price === 'number' ? `₹${product.price * quantity}` : product.price}</span>
         </div>
         <Button onClick={handleAddToCart} className="flex-1 h-12 bg-slate-900 text-white font-bold rounded-none">
           {isAdded ? "View Cart" : "Add to Cart"}

@@ -102,7 +102,9 @@ export function CartDrawer() {
                                                         <Plus className="w-3 h-3" />
                                                     </button>
                                                 </div>
-                                                <span className="font-bold text-slate-900 text-sm">₹{item.price * item.quantity}</span>
+                                                <span className="font-bold text-slate-900 text-sm">
+                                                    {typeof item.price === 'number' ? `₹${item.price * item.quantity}` : item.price}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

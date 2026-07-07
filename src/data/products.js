@@ -497,10 +497,12 @@ export const PRODUCTS = [
 
 // Enriched dataset
 export const ENRICHED_PRODUCTS = PRODUCTS.map(p => {
-  const originalPrice = p.discountPercent ? p.price / (1 - (p.discountPercent / 100)) : p.price;
+  const priceNum = typeof p.price === 'number' ? p.price : parseFloat(p.price);
+  const hasValidPrice = !isNaN(priceNum);
+  const originalPrice = (hasValidPrice && p.discountPercent) ? priceNum / (1 - (p.discountPercent / 100)) : p.price;
   return {
     ...p,
-    originalPrice: Math.round(originalPrice),
+    originalPrice: hasValidPrice ? Math.round(originalPrice) : p.price,
     images: p.images || [p.image]
   }
 });

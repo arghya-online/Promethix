@@ -50,7 +50,7 @@ export default function OrderCart() {
       message += `Items:\n`;
 
       cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name} (x${item.quantity}) - ₹${item.price * item.quantity}\n`;
+        message += `${index + 1}. ${item.name} (x${item.quantity}) - ${typeof item.price === 'number' ? `₹${item.price * item.quantity}` : item.price}\n`;
       });
 
       message += `\nTotal Value: ₹${cartTotal}\n`;
@@ -115,7 +115,9 @@ export default function OrderCart() {
                       <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
-                  <p className="text-primary font-medium">₹{item.price}</p>
+                  <p className="text-primary font-medium">
+                    {typeof item.price === 'number' ? `₹${item.price}` : item.price}
+                  </p>
                   <div className="text-xs text-text-secondary mt-1 uppercase tracking-wider">
                     {item.category}
                   </div>
