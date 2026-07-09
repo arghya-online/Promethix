@@ -7,11 +7,13 @@ import aetherVase from "../assets/productImages/Aether_vase.png";
 import greenLamp from "../assets/productImages/greenLamp.jpeg";
 
 // Showcase product imports
+import nataraj from "../assets/showcaseImages/nataraj.png";
 import kedarnath from "../assets/showcaseImages/kedarnath.png";
 import swaraswati from "../assets/showcaseImages/swaraswati.png";
 import buddhaIdol from "../assets/showcaseImages/buddhaIdol.png";
-import ganeshaIdol from "../assets/showcaseImages/GaneshaIdol.png";
+import ganeshaIdol from "../assets/showcaseImages/ganeshaIdol.png";
 import shiva2 from "../assets/showcaseImages/shiva2.png";
+import dakshineswar from "../assets/productImages/dakshineswar.png";
 
 import spiralVase from "../assets/showcaseImages/spiralVase.png";
 import clayVase from "../assets/showcaseImages/3dPrintedClayVase.jpeg";
@@ -96,40 +98,19 @@ export const PRODUCTS = [
   },
   {
     id: 4,
-    name: "Mini Hoodie Pen Holder",
-    category: "Desk Decor",
-    price: 399,
-    discountPercent: 10,
-    rating: 4.8,
-    reviews: 63,
-    image: hoodieHolder,
-    images: [hoodieHolder],
-    description: "A stylish mini hoodie-shaped pen holder that adds cozy vibes to your workspace.",
-    details: [
-      "Unique hoodie design with realistic folds and pocket detail.",
-      "Perfect for holding pens, markers, or small desk essentials.",
-      "Adds a fun and aesthetic touch to study tables and office desks."
-    ],
-    specs: {
-      material: "PLA+ (Matte Finish)",
-      dimensions: "Approx. 9cm x 9cm x 12cm"
-    }
-  },
-  {
-    id: 4,
     name: "Aesthetic Lamp",
     category: "Desk Decor",
-    price: 500,
+    price: 480,
     discountPercent: 7,
     rating: 4.8,
     reviews: 63,
     image: greenLamp,
     images: [greenLamp],
-    description: "A LED based Lamp to make your desk look premium",
+    description: "A premium LED-based desktop lamp designed to elevate your workspace.",
     details: [
-      "Unique design with realistic detail.",
-      "Perfect for small desk essentials.",
-      "Adds a fun and aesthetic touch to study tables and office desks."
+      "Elegant minimalist lattice design that diffuses light beautifully.",
+      "Includes a low-heat energy-efficient warm LED module.",
+      "Adds a cozy, sophisticated, and aesthetic ambient glow to study tables and office desks."
     ],
     specs: {
       material: "PLA+ (Matte Finish)",
@@ -159,6 +140,27 @@ export const PRODUCTS = [
   },
   {
     id: 6,
+    name: "Mini Hoodie Pen Holder",
+    category: "Desk Decor",
+    price: 399,
+    discountPercent: 10,
+    rating: 4.8,
+    reviews: 63,
+    image: hoodieHolder,
+    images: [hoodieHolder],
+    description: "A stylish mini hoodie-shaped pen holder that adds cozy vibes to your workspace.",
+    details: [
+      "Unique hoodie design with realistic folds and pocket detail.",
+      "Perfect for holding pens, markers, or small desk essentials.",
+      "Adds a fun and aesthetic touch to study tables and office desks."
+    ],
+    specs: {
+      material: "PLA+ (Matte Finish)",
+      dimensions: "Approx. 9cm x 9cm x 12cm"
+    }
+  },
+  {
+    id: 7,
     name: "Aether Vase",
     category: "Home Decor",
     price: 599,
@@ -179,9 +181,30 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-03",
-    name: "Kedarnath Temple Model",
+    id: 8,
+    name: "Nataraj Sculpture",
     category: "Idols",
+    price: 20000,
+    discountPercent: 0,
+    rating: 4.9,
+    reviews: 32,
+    image: nataraj,
+    images: [nataraj],
+    description: "Elegant 3D printed replica of the cosmic dancer Nataraja, Lord Shiva.",
+    details: [
+      "Detailed arch of flames (Prabha Mandala) and dynamic balance pose.",
+      "Adds a spiritual, classical, and artistic grace to your living space.",
+      "High-precision layer alignment for a clean metallic bronze-look finish."
+    ],
+    specs: {
+      material: "PLA+ (Metallic Bronze Finish)",
+      dimensions: "2.5 Feet Height"
+    }
+  },
+  {
+    id: 9,
+    name: "Kedarnath Temple Model",
+    category: "Temples",
     price: 2499,
     discountPercent: 20,
     rating: 4.9,
@@ -200,7 +223,28 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-04",
+    id: 10,
+    name: "Dakshineswar Temple Model",
+    category: "Temples",
+    price: 2100,
+    discountPercent: 10,
+    rating: 4.9,
+    reviews: 42,
+    image: dakshineswar,
+    images: [dakshineswar],
+    description: "Exquisitely detailed 3D printed replica of the famous Dakshineswar Kali Temple.",
+    details: [
+      "Faithful scale recreation of the historic Dakshineswar temple architecture.",
+      "Features the iconic nine spires (Navaratna style) and ornate detailed pillars.",
+      "Made from premium terracotta-colored polymer for a classic, authentic finish."
+    ],
+    specs: {
+      material: "PLA+ (Premium Terracotta Finish)",
+      dimensions: "18cm x 18cm x 22cm"
+    }
+  },
+  {
+    id: 11,
     name: "Saraswati Idol",
     category: "Idols",
     price: 1299,
@@ -221,7 +265,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-05",
+    id: 12,
     name: "Buddha Figurine",
     category: "Idols",
     price: 1100,
@@ -242,7 +286,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-06",
+    id: 13,
     name: "Ganesha Idol",
     category: "Idols",
     price: 899,
@@ -263,7 +307,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-07",
+    id: 14,
     name: "Lord Shiva Sculpture",
     category: "Idols",
     price: 999,
@@ -284,9 +328,9 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-08",
+    id: 15,
     name: "Parametric Spiral Vase",
-    category: "Other",
+    category: "Home Decor",
     price: 749,
     discountPercent: 10,
     rating: 4.8,
@@ -305,7 +349,28 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-10",
+    id: 16,
+    name: "3D Printed Clay Vase",
+    category: "Home Decor",
+    price: 699,
+    discountPercent: 10,
+    rating: 4.7,
+    reviews: 14,
+    image: clayVase,
+    images: [clayVase],
+    description: "Classic pottery aesthetics met with modern additive fabrication curves.",
+    details: [
+      "Terracotta clay-like layer texturing.",
+      "Authentic artisanal look with modern design structural integrity.",
+      "Perfect for office counters and rustic shelves."
+    ],
+    specs: {
+      material: "PLA+ (Clay-Texture Finish)",
+      dimensions: "11cm x 11cm x 20cm"
+    }
+  },
+  {
+    id: 17,
     name: "C-17 Galaxy Airplane Model",
     category: "Other",
     price: 499,
@@ -326,9 +391,9 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-11",
+    id: 18,
     name: "Pink Charizard Figurine",
-    category: "Other",
+    category: "Superheroes",
     price: 300,
     discountPercent: 0,
     rating: 4.8,
@@ -347,9 +412,9 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-12",
+    id: 19,
     name: "TEDx Event Memento",
-    category: "Other",
+    category: "Custom Order",
     price: "Custom Order",
     discountPercent: 5,
     rating: 5.0,
@@ -368,9 +433,30 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-14",
-    name: "Mini Drone",
-    category: "Other",
+    id: 20,
+    name: "Dopamine Molecule Memento",
+    category: "Custom Order",
+    price: "Custom Order",
+    discountPercent: 10,
+    rating: 4.9,
+    reviews: 12,
+    image: dopamineMemento,
+    images: [dopamineMemento],
+    description: "Chemical dopamine structure model - a beautiful symbol of motivation, focus, and drive.",
+    details: [
+      "Detailed organic molecular grid representation.",
+      "Inspirational gift for students, scientists, or workspaces.",
+      "Includes a weighted matte stand base."
+    ],
+    specs: {
+      material: "PLA+ (Silky Finish)",
+      dimensions: "14cm x 6cm x 12cm"
+    }
+  },
+  {
+    id: 21,
+    name: "Industrial Drone Frame Prototype",
+    category: "Custom Order",
     price: 2999,
     discountPercent: 8,
     rating: 4.9,
@@ -389,9 +475,9 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-15",
+    id: 22,
     name: "Heart-Shaped Flower Pot",
-    category: "Other",
+    category: "Home Decor",
     price: 699,
     discountPercent: 15,
     rating: 4.8,
@@ -410,9 +496,51 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-18",
+    id: 23,
+    name: "Heart Pop Figurine",
+    category: "Valentines",
+    price: 149,
+    discountPercent: 5,
+    rating: 4.8,
+    reviews: 25,
+    image: heartPop,
+    images: [heartPop],
+    description: "An alternate styled cute heart pop character with a premium smooth skin texture.",
+    details: [
+      "Stylized heart figurine with cute animated expression.",
+      "Delightful Valentine’s day present.",
+      "Compact scale fits tiny shelves and workspaces."
+    ],
+    specs: {
+      material: "PLA+ (Satin Finish)",
+      dimensions: "5cm x 5cm x 4cm"
+    }
+  },
+  {
+    id: 24,
+    name: "Mini Hoodie Desktop Pen Nest",
+    category: "Desk Decor",
+    price: 449,
+    discountPercent: 10,
+    rating: 4.9,
+    reviews: 31,
+    image: hoodiePenstand,
+    images: [hoodiePenstand],
+    description: "Delightfully cozy desktop organizer shaped like a tiny sports hoodie.",
+    details: [
+      "Features realistic woven drawstrings and pocket folds.",
+      "Keeps pencils, highlighters, and desk accessories tidy.",
+      "Adds a warm youth-inspired vibe to study setups."
+    ],
+    specs: {
+      material: "PLA+ (Woven Texture Pattern)",
+      dimensions: "10cm x 10cm x 13cm"
+    }
+  },
+  {
+    id: 25,
     name: "ICCES Conference Memento",
-    category: "Other",
+    category: "Custom Order",
     price: "Custom Order",
     discountPercent: 5,
     rating: 4.9,
@@ -431,7 +559,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-19",
+    id: 26,
     name: "Anatomical Jaw & Skull Study",
     category: "Other",
     price: "Custom Order",
@@ -452,7 +580,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-20",
+    id: 27,
     name: "Anatomical Jaw & Skull Study (Alt)",
     category: "Other",
     price: "Custom Order",
@@ -473,7 +601,7 @@ export const PRODUCTS = [
     }
   },
   {
-    id: "SC-21",
+    id: 28,
     name: "Robotic Arm Prototype Part",
     category: "Custom Order",
     price: "Custom Order",
@@ -493,6 +621,27 @@ export const PRODUCTS = [
       dimensions: "15cm x 6cm x 8cm"
     }
   },
+  {
+    id: 29,
+    name: "Rose Pop Character Sculpture",
+    category: "Valentines",
+    price: 129,
+    discountPercent: 10,
+    rating: 4.8,
+    reviews: 28,
+    image: rosePop,
+    images: [rosePop],
+    description: "Premium scale rose pop character sculpture with polished finish layers.",
+    details: [
+      "High accuracy facial and leaf details.",
+      "Looks superb on floating shelves and accent tables.",
+      "Hand-inspected surface lines for a perfect look."
+    ],
+    specs: {
+      material: "PLA+ (Matte Coral/Green Finish)",
+      dimensions: "12cm x 12cm x 22cm"
+    }
+  }
 ];
 
 // Enriched dataset

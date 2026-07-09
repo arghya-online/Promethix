@@ -31,7 +31,7 @@ export function ShowcaseProductCard({ product }) {
       <div className="flex flex-col flex-grow p-4 md:p-5 bg-white/40 print:p-3 print:bg-white">
         {/* Category Label */}
         <span className="text-[9px] uppercase tracking-[0.25em] text-amber-600 mb-1.5 font-mono select-none">
-          {product.category === "idols" ? "SACRED SCULPT" : "DESIGN & FAB"}
+          {["idols", "temples"].includes(product.category.toLowerCase()) ? "SACRED SCULPT" : "DESIGN & FAB"}
         </span>
 
         {/* Product Title */}

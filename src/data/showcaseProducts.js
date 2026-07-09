@@ -3,8 +3,9 @@ import nataraj from "../assets/showcaseImages/nataraj.png";
 import kedarnath from "../assets/showcaseImages/kedarnath.png";
 import swaraswati from "../assets/showcaseImages/swaraswati.png";
 import buddhaIdol from "../assets/showcaseImages/buddhaIdol.png";
-import ganeshaIdol from "../assets/showcaseImages/GaneshaIdol.png";
+import ganeshaIdol from "../assets/showcaseImages/ganeshaIdol.png";
 import shiva2 from "../assets/showcaseImages/shiva2.png";
+import dakshineswar from "../assets/productImages/dakshineswar.png";
 
 import spiralVase from "../assets/showcaseImages/spiralVase.png";
 import clayVase from "../assets/showcaseImages/3dPrintedClayVase.jpeg";
@@ -23,45 +24,53 @@ import roboticArm from "../assets/showcaseImages/roboticArm.jpeg";
 import rosePop from "../assets/showcaseImages/rosePop.png";
 
 export const SHOWCASE_PRODUCTS = [
+  // --- temples CATEGORY (New) ---
+  {
+    id: 9,
+    name: "Kedarnath Temple Model",
+    image: kedarnath,
+    category: "temples"
+  },
+  {
+    id: 10,
+    name: "Dakshineswar Temple Model",
+    image: dakshineswar,
+    category: "temples"
+  },
+
   // --- idols CATEGORY (First) ---
   {
-    id: "SC-01",
+    id: 30, // Showcase exhibit-only (not in shop)
     name: "Durga Idol",
     image: durgaIdol,
     category: "idols"
   },
   {
-    id: "SC-02",
+    id: 8,
     name: "Nataraj Sculpture",
     image: nataraj,
     category: "idols"
   },
   {
-    id: "SC-03",
-    name: "Kedarnath Temple Model",
-    image: kedarnath,
-    category: "idols"
-  },
-  {
-    id: "SC-04",
+    id: 11,
     name: "Saraswati Idol",
     image: swaraswati,
     category: "idols"
   },
   {
-    id: "SC-05",
+    id: 12,
     name: "Buddha Figurine",
     image: buddhaIdol,
     category: "idols"
   },
   {
-    id: "SC-06",
+    id: 13,
     name: "Ganesha Idol",
     image: ganeshaIdol,
     category: "idols"
   },
   {
-    id: "SC-07",
+    id: 14,
     name: "Lord Shiva Sculpture",
     image: shiva2,
     category: "idols"
@@ -69,91 +78,91 @@ export const SHOWCASE_PRODUCTS = [
 
   // --- other CATEGORY (Second) ---
   {
-    id: "SC-08",
+    id: 15,
     name: "Parametric Spiral Vase",
     image: spiralVase,
     category: "other"
   },
   {
-    id: "SC-09",
+    id: 16,
     name: "3D Printed Clay Vase",
     image: clayVase,
     category: "other"
   },
   {
-    id: "SC-10",
+    id: 17,
     name: "C-17 Galaxy Airplane Model",
     image: c17Model,
     category: "other"
   },
   {
-    id: "SC-11",
+    id: 18,
     name: "Pink Charizard Figurine",
     image: charizard,
     category: "other"
   },
   {
-    id: "SC-12",
+    id: 19,
     name: "TEDx Event Memento",
     image: tedxMemento,
     category: "other"
   },
   {
-    id: "SC-13",
+    id: 20,
     name: "Dopamine Molecule Memento",
     image: dopamineMemento,
     category: "other"
   },
   {
-    id: "SC-14",
+    id: 21,
     name: "Industrial Drone Frame Prototype",
     image: drone,
     category: "other"
   },
   {
-    id: "SC-15",
+    id: 22,
     name: "Heart-Shaped Flower Pot",
     image: heartFlowerPot,
     category: "other"
   },
   {
-    id: "SC-16",
+    id: 23,
     name: "Heart Pop Figurine",
     image: heartPop,
     category: "other"
   },
   {
-    id: "SC-17",
+    id: 24,
     name: "Mini Hoodie Desktop Pen Nest",
     image: hoodiePenstand,
     category: "other"
   },
   {
-    id: "SC-18",
+    id: 25,
     name: "ICCES Conference Memento",
     image: iccesMemento,
     category: "other"
   },
   {
-    id: "SC-19",
+    id: 26,
     name: "Anatomical Jaw & Skull Study",
     image: jawSkull,
     category: "other"
   },
   {
-    id: "SC-20",
+    id: 27,
     name: "Anatomical Jaw & Skull Study (Alt)",
     image: jawSkull2,
     category: "other"
   },
   {
-    id: "SC-21",
+    id: 28,
     name: "Robotic Arm Prototype Part",
     image: roboticArm,
     category: "other"
   },
   {
-    id: "SC-22",
+    id: 29,
     name: "Rose Pop Character Sculpture",
     image: rosePop,
     category: "other"

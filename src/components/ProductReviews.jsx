@@ -39,10 +39,16 @@ export function ProductReviews({ productId }) {
     const localKey = `promethix_reviews_${productId}`;
     const stored = localStorage.getItem(localKey);
     
-    if (stored) {
-      setReviews(JSON.parse(stored));
-    } else {
-      // Seed default mock reviews
+    try {
+      if (stored) {
+        setReviews(JSON.parse(stored));
+      } else {
+        // Seed default mock reviews
+        localStorage.setItem(localKey, JSON.stringify(DEFAULT_REVIEWS));
+        setReviews(DEFAULT_REVIEWS);
+      }
+    } catch (e) {
+      console.error("ProductReviews: Failed to parse reviews:", e);
       localStorage.setItem(localKey, JSON.stringify(DEFAULT_REVIEWS));
       setReviews(DEFAULT_REVIEWS);
     }

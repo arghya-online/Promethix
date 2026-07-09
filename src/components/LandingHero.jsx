@@ -96,7 +96,7 @@ export function LandingHero() {
         <div className="flex items-center gap-3.5 mt-2">
           <Link to="/products">
             <Button className="h-10 px-6.5 bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-[10px] uppercase tracking-widest rounded-full border-0 shadow-md cursor-pointer transition-colors duration-200">
-              Shop Now
+              View All Products
             </Button>
           </Link>
           <Link to="/custom">

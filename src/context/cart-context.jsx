@@ -4,8 +4,13 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("PROMETHIX3D_cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    try {
+      const savedCart = localStorage.getItem("PROMETHIX3D_cart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (e) {
+      console.error("Cart Context: Failed to parse saved cart:", e);
+      return [];
+    }
   });
 
   // Save to LocalStorage always

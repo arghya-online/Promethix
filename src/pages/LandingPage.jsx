@@ -8,6 +8,7 @@ import { LandingHero } from "@/components/LandingHero";
 import { Marquee } from "@/components/Marquee";
 import { CustomOrderSection } from "@/components/CustomOrderSection";
 import { ShopByCategory } from "@/components/ShopByCategory";
+import { ImageTo3DSection } from "@/components/ImageTo3DSection";
 import { motion } from "framer-motion";
 
 export function LandingPage() {
@@ -86,6 +87,9 @@ export function LandingPage() {
 
       {/* 2.5 MARQUEE */}
       <Marquee />
+
+      {/* 2.8 AI IMAGE TO 3D MODEL SECTION */}
+      <ImageTo3DSection />
 
       {/* 3. CUSTOM ORDER SECTION */}
       <CustomOrderSection />
