@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+    --font-heading: "Outfit", sans-serif;
+    --font-body: "Outfit", sans-serif;
+
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-light: #fcfcfd;
+
+    --color-border: rgba(9, 9, 11, 0.06);
+
+    --color-primary: #d97706;
+    /* Clean Amber */
+    --color-primary-foreground: #ffffff;
+
+    --color-secondary: #0f766e;
+    /* Clean Teal */
+    --color-secondary-foreground: #ffffff;
+
+    --color-text-primary: #09090b;
+    /* Zinc 950 */
+    --color-text-secondary: #71717a;
+    /* Zinc 500 */
+    --color-text-muted: #a1a1aa;
+    /* Zinc 400 */
+
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+    --radius-3xl: 1.5rem;
+
+    --radius: 0.5rem;
+
+    --animate-fade-in: fade-in 0.5s ease-in-out;
+    --animate-slide-up: slide-up 0.5s ease-out;
+}
+
+:root {
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(9, 9, 11, 0.08);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(9, 9, 11, 0.15);
+}
+
+@layer utilities {
+
+    /* Disable backdrop-filter on Low Power Mode / small screens if needed */
+    @media (max-width: 768px) {
+        .disable-glass-mobile {
+            background-color: #ffffff;
+        }
+    }
+
+    /* Hardware acceleration for smoother animations */
+    .gpu-accelerate {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    /* Unified Clean-Tech Minimal Panel and Cards */
+    .clean-panel {
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1px solid rgba(9, 9, 11, 0.06);
+        box-shadow: 0 1px 3px rgba(9, 9, 11, 0.01), 0 12px 36px rgba(9, 9, 11, 0.02);
+    }
+    
+    .clean-tech-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid rgba(9, 9, 11, 0.06);
+        box-shadow: 0 1px 3px rgba(9, 9, 11, 0.01), 0 8px 30px rgba(9, 9, 11, 0.015);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .clean-tech-card:hover {
+        border-color: rgba(9, 9, 11, 0.15);
+        box-shadow: 0 1px 4px rgba(9, 9, 11, 0.02), 0 20px 40px rgba(9, 9, 11, 0.04);
+        transform: translateY(-2px);
+    }
+
+    .interactive-hover {
+        transition: all 0.2s ease;
+    }
+    .interactive-hover:hover {
+        opacity: 0.85;
+    }
+}
+
+/* Global click-to-fullscreen zoom cursor */
+main img:not(.no-zoom):not(button img) {
+    cursor: zoom-in;
+    transition: opacity 0.3s ease;
+}
+main img:not(.no-zoom):not(button img):hover {
+    opacity: 0.95;
+}
